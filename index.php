@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -515,6 +516,63 @@ function prevSlide() {
     </div>
     <a href="/deal" class="more-all" style="color:#fff; font-size: 16px; text-decoration: none;">Xem Tất Cả</a>
 </div>
+<?php
+$servername = "localhost";
+$username = "root"; // Tên người dùng MySQL
+$password = ""; // Mật khẩu MySQL, nếu có
+$dbname = "doan1"; // Tên cơ sở dữ liệu MySQL
+
+// Tạo kết nối
+$connect = mysqli_connect($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if (!$connect) {
+    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
+}
+  $sql = "SELECT * FROM product WHERE type_id='1'";
+  $counter = 0; // Counter to keep track of number of products in each row
+
+  if($result = mysqli_query($connect, $sql)) {
+    while($row = mysqli_fetch_array($result)){
+      if ($counter % 5 == 0) { // Start a new row after every 5 products
+        echo '<div class="row">';
+      }
+
+      echo "<div class=\"col-md-2 m-4 text-center px-20\">"; // Divide each row into 5 columns for products
+      echo "<div class=\"border bg-white h-100\" style=\"max-width: 300px;\">"; // Add bg-white class to keep white background
+      echo '<img class="card-img-top" src="img/product/acer/' . $row['image_link_1'] . '" alt="" style="display:inline;">';  
+      echo "<div class=\"card-body\">";
+      echo "<h5 class=\"card-title\" style=\"max-height: 2.3em; overflow: hidden; font-size: 14px;\">".$row['name']."</h5>";
+      echo "<p class=\"card-text description\" style=\"text-align: left; font-size: 16px;\"><br>" . str_replace(", ", "<br>", $row['description']) . "</p>";
+      $originalPrice = $row['price'];
+
+// Giảm giá từ cột "discount" trong cơ sở dữ liệu (được lưu dưới dạng phần trăm)
+$discountPercentage = $row['discount'];
+
+// Tính giá sau khi giảm giá
+$discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+
+// Hiển thị giá gốc và giá sau khi giảm giá
+echo "<h5 class=\"card-text discounted-price\" style=\"font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;\"> " . number_format($originalPrice, 0, ',', '.') . " ₫ </h5>";
+echo "<div class=\"rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center\" style=\"display: inline-block;\"> " . - intval($discountPercentage) . "%</div>";
+
+
+echo "<h6 class=\"card-text price\" style=\"padding: 5px;\"> " . number_format($discountedPrice, 0, ',', '.') . " ₫ </h6>";
+      echo "</div>";
+      echo "<div class=\"card-footer\">";
+      
+
+      $counter++;
+
+      if ($counter % 5 == 0) { // Close the row after every 5 products
+        echo '</div>';
+      }
+    }
+    mysqli_free_result($result);
+  } else {
+    echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
+  }
+?>
 
 </div>
 

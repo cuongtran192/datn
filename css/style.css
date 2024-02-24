@@ -335,7 +335,20 @@ transform: scale(1.2);
     margin-left: 200px;
     margin-right: 200px;
     background: linear-gradient(to bottom, rgb(250, 138, 0), rgb(252, 85, 2));
-    height: 600px; /* Điều chỉnh chiều cao tùy ý */
+    height: 790px; /* Điều chỉnh chiều cao tùy ý */
     border-radius: 20px; /* Bo tròn các góc */
         margin-top: 25px; /* Cách bên trên là 25px */
+}
+.card-text.description {
+    margin-bottom: 30px;
+}
+.card-text.price {
+    border-radius: 15px;
+    background-color: orange;
+    padding: 10px;
+    color: white; /* Đặt màu chữ là trắng */
+    width: 200px; /* Điều chỉnh độ rộng của ô */
+    text-align: center; /* Căn giữa nội dung trong ô */
+    display: inline-block; /* Đảm bảo rằng chỉ có phần giá có chiều rộng tối thiểu */
+    font-size: 22px;
 }
