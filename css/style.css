@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+
+.login-form{
+    position: relative;
+    min-height: 100vh;
+    z-index: 0;
+    background: #4e34b6;
+    padding: 30px;
+    justify-content: center;
+    display: grid;
+    font-family: 'poppins',sans-serif;
+
+    grid-template-rows: 1fr auto 1fr;
+    align-items: center;
+}
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.login-form h1{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #fff;
+    font-family: 'poppins',sans-serif;
+
+}
+.login-form h2{
+    line-height: 40px;
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #272346;
+    text-align: center;
+}
+.login-form .main{
+    position: relative;
+    display: flex;
+    margin: 30px 0;
+}
+.content{
+    flex-basis: 50%;
+    padding: 3em 3em;
+    background: #fff;
+    box-shadow: 2px 9px 49px -17px rgba(0,0,0,0.1);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.form-img{
+    flex-basis: 50%;
+    background: #dfe5ea;
+    background-size: cover;
+    padding: 40px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    align-items: center;
+    display: grid;
+}
+.form-img img{
+    max-width: 100%;
+}
+p{
+    color: #666;
+    font-size: 16px;
+    line-height: 25px;
+    opacity: 0.6;
+    text-align: center;
+}
+.btn,button,input{
+    border-radius: 35px;
+}
+.btn:hover,
+button:hover{
+  color: #272346;
+    transition: 0.5s ease;
+}
+a{
+    text-decoration: none;
+}
+.login-form form{
+    margin: 30px 0;
+}
+.login-form input{
+    outline: none;
+    margin-bottom: 15px;
+    font-stretch: 16px;
+    color: #999;
+    text-align: left;
+    padding: 14px 20px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    background: #c5cbcb;
+    transition: 0.3s ease;
+}
+.login-form input:focus{
+    background: transparent;
+    border: 1px solid #4e34b6;
+}
+
+.login-form button{
+    font-size: 18px;
+    color: #fff;
+    width: 100%;
+    background: #4e34b6;
+    border: none;
+    padding: 14px 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+p.account a{
+    color: #4e34b6;
+}
+p.account a:hover{
+ text-decoration: underline;
+}
+@media(max-width:736px){
+    .login-form .main{
+        flex-direction: column;
+    }
+    .login-form form{
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    .form-img{
+        border-radius: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        order: 2;
+    }
+    .content{
+        order: 1;
+        border-radius: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+
+}
+
+/*menu
+/* Style cho thanh menu */
+.menu {
+    background-color: #D0011B;
+    width: 100%; /* Menu chiếm toàn bộ chiều rộng */
+    height: 120px; /* Độ cao của thanh menu */
+}
+
+/* Style cho nền trang chủ */
+body {
+    background-color: #EADEDE;
+    margin: 0; /* Loại bỏ margin mặc định */
+    padding: 0; /* Loại bỏ padding mặc định */
+}
+/* Style cho logo */
+.logo {
+    margin-left: 200px; /* Điều chỉnh lề trái cho logo */
+    padding-top: 40px; /* Điều chỉnh lề trên cho logo */
+}
+
+.logo img {
+    height: 50px; /* Chiều cao của logo */
+    width: 200px;
+}
+/* Thanh tìm kiếm */
+.logo,
+.search-bar {
+    display: inline-block; /* Hiển thị cùng một hàng */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+    margin-top: 5px;
+}
+
+.logo {
+    margin-right: 20px; /* Tạo khoảng cách giữa logo và thanh tìm kiếm */
+}
+
+.search-bar input[type="text"] {
+    width: 350px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 30px 0 0 30px; /* Bo tròn 2 góc bên phải */
+    border: none;
+    margin-top: 30px; /* Di chuyển xuống 10px */
+
+
+}
+
+.search-bar .search-button {
+    width: 80px;
+    height: 50px;
+    background-color: #FFFFFF;
+    border-radius: 0 30px 30px 0; /* Bo tròn 2 góc bên phải */
+    border: none;
+    margin-left: -5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2); /* Bôi đen viền */
+    
+}
+
+.search-bar .search-button:hover {
+    background-color: #F0F0F0; /* Màu nền khi hover */
+}
+.contact, .warranty, .cart, .user , .user1{
+    display: inline-block; /* Hiển thị cùng một hàng */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+.contact, .warranty, .cart, .user , .user1{
+    margin-left: 65px; /* Khoảng cách bên trái với phần tử liền kề */
+    margin-top: 30px
+}
+
+.contact img, .warranty img, .cart img, .user img {
+    width: 60px; /* Độ rộng của logo */
+    height: 60px; /* Chiều cao của logo */
+    cursor: pointer; /* Con trỏ chuột khi di chuyển qua logo */
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển đổi phóng to */
+}
+
+.contact img:hover, .warranty img:hover, .cart img:hover, .user img:hover {
+    transform: scale(1.2); /* Phóng to khi hover */
+}
+
+.contact-text, .warranty-text, .cart-text, .user-text {
+    display: flex; /* Sử dụng flexbox để căn chỉnh ngang */
+    align-items: center; /* Căn chỉnh theo chiều dọc */
+    margin-left: 70px; /* Khoảng cách bên trái với logo */
+    color: #FFFFFF; /* Màu chữ */
+    margin-top: -55px;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+.contact-text:hover, .warranty-text:hover, .cart-text:hover, .user-text:hover {
+    color: #e3afaf; /* Màu chữ khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+
+.a{
+    color: white;
+}        
+
+.brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.brand img {
+    width: 100px; /* Đặt kích thước cố định cho các hình ảnh */
+    height: 50px; /* Đặt kích thước cố định cho các hình ảnh */
+    margin: 0 20px; /* Giảm khoảng cách giữa các logo */
+    object-fit: contain;
+    border: 1px solid #ddd8d8; /* Thêm viền vuông với độ dày 2px */
+    border-radius: 10px; /* Bo tròn các góc của viền */
+    transition: transform 0.3s ease;
+}
+
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 50px;
+}
+.brand img:hover {
+transform: scale(1.2);
+} 
+.image-container {
+    margin: 0 200px; /* Cách lề trái và lề phải 200px */
+    display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử */
+    justify-content: space-between; /* Căn các phần tử ở giữa và căn cách nhau */
+    padding-top: 20px; /* Dịch chuyển hình ảnh xuống phía dưới */
+}
+/* Hiển thị modal */
+.modal {
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 700px;
+        height: 700px;
+        margin-top : 100px;
+      }
+  }
+  
+  /* Hiển thị hình ảnh trong modal */
+  .modal-content {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Đóng modal */
+  .close {
+    position: absolute;
+    top: 90px;
+    right: 580px;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    transition: 0s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal-dialog {
+    background-color: transparent !important;
+}
+
+.modal-body {
+    background-color: transparent !important;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ là 50% */
+    z-index: 999; /* Đảm bảo overlay hiển thị trên tất cả các phần tử khác */
+}
+

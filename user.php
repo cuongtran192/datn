@@ -1,0 +1,1 @@
+'<a href="logout.php" class="user-text">Đăng xuất</a>' .
