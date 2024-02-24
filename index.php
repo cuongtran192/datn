@@ -487,6 +487,36 @@ function prevSlide() {
     <img src="img/banner/c3.jpg" alt="Image 1" style="width: 500px; height: 200px;">
 </div>
 
+<div class="rectangle-container">
+<div class="main-title d-flex justify-content-between align-items-center" style="padding: 0 10px;">
+    <div class="title d-flex align-items-center text-center justify-content-center flex-grow-1">
+    <img src="img/logo/flash.png" alt="Flash Sale Icon" style="width: 100px; height: 100px; margin-right: 10px;">
+        <h3 class="mb-1" style="margin-left: 10px; font-size: 40px; color: white; font-weight: bold;">Flash Sale</h3>
+        <div class="deal-time-holder d-flex align-items-center" id="js-time_down" style="margin-left: 20px;">
+    <div class="time-item-container d-flex align-items-center mr-2">
+        <div class="time-item bg-light text-white rounded-pill px-2 py-1">
+            <p class="m-0 font-weight-bold">5 ngày</p>
+        </div>
+        <div class="separator text-white mx-2">:</div>
+    </div>
+    <div class="time-item-container d-flex align-items-center mr-2">
+        <div class="time-item bg-light text-white rounded-pill px-2 py-1">
+            <p class="m-0 font-weight-bold">7 Giờ</p>
+        </div>
+        <div class="separator text-white mx-2">:</div>
+    </div>
+    <div class="time-item-container d-flex align-items-center">
+        <div class="time-item bg-light text-white rounded-pill px-2 py-1">
+            <p class="m-0 font-weight-bold">51 Phút</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+    <a href="/deal" class="more-all" style="color:#fff; font-size: 16px; text-decoration: none;">Xem Tất Cả</a>
+</div>
+
+</div>
 
 </body>
 </html>

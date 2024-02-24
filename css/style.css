@@ -331,3 +331,11 @@ transform: scale(1.2);
     z-index: 999; /* Đảm bảo overlay hiển thị trên tất cả các phần tử khác */
 }
 
+.rectangle-container {
+    margin-left: 200px;
+    margin-right: 200px;
+    background: linear-gradient(to bottom, rgb(250, 138, 0), rgb(252, 85, 2));
+    height: 600px; /* Điều chỉnh chiều cao tùy ý */
+    border-radius: 20px; /* Bo tròn các góc */
+        margin-top: 25px; /* Cách bên trên là 25px */
+}
