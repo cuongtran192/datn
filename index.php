@@ -602,7 +602,7 @@ if (!$connect) {
         echo '<div class="col-md-2 m-4 text-center px-25" style="margin-bottom: 50px;">';
         echo '<div class=" bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
         echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="img/product/acer/' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
         echo '</a>';
         echo '<div class="card-body">';
         echo '<h5 class="card-title" style="max-height: 2.3em; overflow: hidden; font-size: 14px;">' . $row['name'] . '</h5>';
@@ -657,7 +657,7 @@ if (!$connect) {
         echo '<div class="col-md-2 m-4 text-center px-25" style="margin-bottom: 50px;">';
         echo '<div class=" bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
         echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="img/product/acer/' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
         echo '</a>';
         echo '<div class="card-body">';
         echo '<h5 class="card-title" style="max-height: 2.3em; overflow: hidden; font-size: 14px;">' . $row['name'] . '</h5>';
