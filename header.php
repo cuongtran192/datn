@@ -10,7 +10,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<script>
+    $(document).ready(function(){
+    $(".dropdown-toggle").click(function(){
+        $(".dropdown-menu").toggle();
+    });
+});
+</script>
     <div class="header">
         <div class="menu">
             <div class="logo">
@@ -62,21 +68,30 @@ if (isset($_SESSION['phone'])) {
     }
 
     // Nếu đã đăng nhập, hiển thị tên người dùng
-    echo
-            '<a href="user.php" style="text-decoration: none;">' .
-            '<img src="img/logo/user-icon.png" alt="user Icon" style="margin-bottom: -5px;" >' .
-            '<span class="user-text">Xin chào!<br>' . $name . '</span>' .
-         '</div>';
+    echo '
+    <div class="dropdown">
+        <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+            <img src="img/logo/user-icon.png" alt="User Icon" style="margin-bottom: -5px;">
+            <span class="user-text">Xin chào!<br>' . $name . '</span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px;">
+        <li><a class="dropdown-item text-danger  mb-2" href="user.php">Thông tin cá nhân</a></li>
+        <li><a class="dropdown-item text-primary " href="logout.php">Đăng xuất</a></li>
+    </ul>
+    
+    </div>';
+    
 } else {
     // Nếu chưa đăng nhập, hiển thị nút Đăng nhập/Đăng ký
-    echo 
-            '<a href="login.php" style="text-decoration: none;">' .
-                '<img src="img/logo/user-icon.png" alt="User Icon">' .
-                '<span class="user-text">Đăng nhập <br> & Đăng Ký</span>' .
-            '</a>' .
-         '</div>';
+    echo '
+    <a href="login.php" style="text-decoration: none;">
+        <img src="img/logo/user-icon.png" alt="User Icon">
+        <span class="user-text">Đăng nhập <br> & Đăng Ký</span>
+    </a>';
 }
+
 ?>
+
 
             </div>
         </div>

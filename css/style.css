@@ -388,3 +388,6 @@ transform: scale(1.2);
     outline: none;
     background-color: #f0f0f0; /* Thêm màu nền cho phần nhập liệu */
 }
+.dropdown-toggle::after {
+    display: none;
+}

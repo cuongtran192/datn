@@ -127,21 +127,98 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo "Tham số không hợp lệ.";
 }
 echo '<div style="margin-top: 30px; font-size: 20px; margin-left: 200px; margin-right: 200px;">'; // Căn lề trái và lề phải cách nhau 200px
-echo '<h4 style="font-weight: bold;font-size: 35px;">Thông số sản phẩm:</h4>'; // Đặt chữ đậm
+echo '<h4 style="font-weight: bold; font-size: 35px;margin-bottom: 20px;font-family: Arial, sans-serif;">Thông số sản phẩm:</h4>'; // Đặt chữ đậm
+
+echo '</div>';
 $text = $row['description1']; // Lấy đoạn văn bản từ cột 'description1'
 
 // Tách đoạn văn bản thành các dòng dựa trên ký tự xuống dòng (\n)
 $lines = explode("\n", $text);
 
 // Hiển thị từng dòng trên một dòng mới
-echo '<div style="margin-right:300;">'; // Đặt lề trái 0
+echo '<div style="text-align:left; display: flex; flex-direction: column; align-items: flex-start; margin-right: 200px;">'; // Đặt lề trái 0
 foreach ($lines as $line) {
-    echo '<p style="font-weight: i; font-size: 20px; margin-left: 0px; margin-bottom: 15px; color: #000000;">' . $line . '</p>';
-
-
+    echo '<p style="font-weight: i; font-size: 20px; margin-left: 200px; margin-bottom: 10px;  color: #000000; background-color: #ffffff; padding: 10px;">' . $line . '</p>';
 }
 echo '</div>';
 
+echo '<div style="margin-top: 30px; font-size: 20px; margin-left: 200px; margin-right: 200px;">'; // Căn lề trái và lề phải cách nhau 200px
+echo '<h4 style="font-weight: bold; font-size: 35px;margin-bottom: 20px;font-family: Arial, sans-serif;">Đánh giá người dùng:</h4>'; // Đặt chữ đậm
+
+
+
+// Truy vấn dữ liệu từ bảng review và kết hợp với bảng users để lấy tên người đánh giá
+
+// Truy vấn dữ liệu từ bảng review và kết hợp với bảng users để lấy tên người đánh giá
+
+// Truy vấn dữ liệu từ bảng review và kết hợp với bảng users để lấy tên người đánh giá
+$review_query = "SELECT review.*, users.name AS reviewer_name FROM review INNER JOIN users ON review.user_id = users.user_id WHERE review.product_id = $product_id";
+$review_result = $conn->query($review_query);
+
+// Kiểm tra xem có đánh giá nào không
+if ($review_result->num_rows > 0) {
+    // Hiển thị đánh giá
+    while ($review_row = $review_result->fetch_assoc()) {
+        $rating = $review_row['rate']; // Điểm đánh giá
+        $comment = $review_row['comment']; // Nhận xét
+        $review_date = date('d/m/Y', strtotime($review_row['date_review'])); // Định dạng ngày tháng năm
+        $reviewer_name = $review_row['reviewer_name']; // Tên người đánh giá
+
+        // Hiển thị điểm đánh giá dưới dạng số sao
+        echo '<div style="text-align:left; display: flex; flex-direction: column; align-items: flex-start; margin-right: 200px;">'; // Đặt lề trái 0
+
+        echo '<p style="margin-bottom: 5px; color: black;">Đánh giá: ';
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $rating) {
+                echo '<i class="fa fa-star" style="color: gold;"></i>'; // Icon sao vàng
+            } else {
+                echo '<i class="fa fa-star" style="color: grey;"></i>'; // Icon sao xám
+            }
+        }
+        echo '</p>';
+
+        // Hiển thị tên người đánh giá và ngày đánh giá
+        echo '<p style="margin-bottom: 5px; color: red;">Đánh giá bởi :' . $reviewer_name . ' - ' . $review_date . '</p>';
+
+        // Hiển thị nhận xét
+        echo '<p style="color: red;">Nhận xét: ' . $comment . '</p>';
+        echo '</div>';
+    }
+} else {
+    echo '<div style="text-align: center;">Chưa có đánh giá nào cho sản phẩm này.</div>';
+}
+
+echo '<div style="margin-top: 30px; font-size: 20px; margin-left: 200px; margin-left:0px;">'; // Căn lề trái và lề phải cách nhau 200px
+echo '<h4 style="font-weight: bold; font-size: 35px;margin-bottom: 20px;font-family: Arial, sans-serif;">Để lại đánh giá của bạn:</h4>'; // Đặt chữ đậm
+
+
+if(isset($_SESSION['user_id'])) {
+    // Hiển thị form đánh giá
+    echo '<form action="process_review.php" method="post">';
+    echo '<input type="hidden" name="product_id" value="' . $product_id . '">';
+
+    echo '<label for="rate">Đánh giá:</label>';
+    echo '<select name="rate" id="rate">';
+    echo '<option value="1">1 sao</option>';
+    echo '<option value="2">2 sao</option>';
+    echo '<option value="3">3 sao</option>';
+    echo '<option value="4">4 sao</option>';
+    echo '<option value="5">5 sao</option>';
+    echo '</select>';
+    echo '<br>';
+    echo '<label for="comment">Nhận xét:</label>';
+    echo '<textarea name="comment" id="comment" rows="2" cols="50" style="resize: none; width: 100%; margin-bottom: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 20px;" placeholder="Nhận xét của bạn về sản phẩm"></textarea>';
+
+    echo '<button type="submit" class="btn btn-primary">Gửi đánh giá</button>'; // Sử dụng lớp Bootstrap btn btn-primary
+    echo '</form>';
+} else {
+    // Hiển thị cảnh báo và nút đăng nhập
+    echo '<div style="display: flex; align-items: center; margin-bottom: 20px;">'; // Thêm margin-bottom vào div chứa cảnh báo và nút đăng nhập
+    echo '<div style="margin-right: 10px;">Vui lòng đăng nhập để đánh giá sản phẩm.</div>';
+    echo '<a href="login.php" class="btn btn-danger" style="text-decoration: none; color: white;">Đăng nhập</a>';
+
+    echo '</div>';
+}
 ?>
 
 
