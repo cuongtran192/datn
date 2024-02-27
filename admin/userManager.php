@@ -1,55 +1,67 @@
 <div class="flex flex-col items-left mr-2 my-2  bg-white p-4 rounded-[15px]">
-      <!-- phần thông tin chính  -->
-      <div class="mx-auto">
 
-      <div class="grid grid-cols-10  border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
-      <div class="border-b-2 text-gray-400 font-bold text-xl p-2">ID</div>
-      <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Khách hàng</div>
-      <div class="col-span-4 border-b-2 text-gray-400 p-2 font-bold text-xl">Địa chỉ</div>
-      <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Số điện thoại</div>
-      <div class="border-b-2 text-gray-400 col-span-2 font-bold text-xl p-2">Email</div>
-      <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Hành động</div>
-      <?php
-    include '../connectdb.php';
+<?php
+include '../connectdb.php';
 
-    // Function to fetch users from the database
-    function getUsers() {
-        global $conn;
-        $result = $conn->query("SELECT * FROM users");
-        $users = $result->fetch_all(MYSQLI_ASSOC);
-        return $users;
-    }
-
-    // Display users
-    $users = getUsers();
-
-    foreach ($users as $user) {
-
-    
-      echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $user['user_id'] . "</div>";
-      $name = empty($user['name']) ? "Chưa cập nhật" : $user['name'];
-      echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $name . "</div>";
-      $address = empty($user['Address']) ? "Chưa cập nhật" : $user['Address'];
-      echo "<div class='col-span-4 border-b-2 font-sans font-base text-base p-2 '>" . $address . "</div>";
-      
-      
-      echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $user['phone'] . "</div>";
-      $email= empty($user['email']) ? "Chưa cập nhật" : $user['email'];
-      echo "<div class='border-b-2 font-sans col-span-2 font-base text-base p-2'>" . $email. "</div>";
-      echo "<div class='border-b-2 font-sans font-base text-base p-2'>"  ;
-      echo "<a href='userProcess.php?action=edit&id={$user['user_id']}' class='text-blue-500 px-2'>Sửa</a>";
-      echo "<a href='userProcess.php?action=delete&id={$user['user_id']}' class='text-red-500 px-2'>Xóa</a>";
-     echo "</div>";
-
-    }
-    ?>
-
-</div>
-
-
-
-
-    
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
    
+    // Sử dụng $page để include file tương ứng
+    switch ($action) {
+        case 'them':
+            include 'quanlynguoidung/them.php';
+            break;
+
+        case 'xulysua':
+          $id= $_GET['id'];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+             $idd = $_POST['id'];
+          $name = $_POST['name'];
+            $address = $_POST['address'];
+          $phone = $_POST['phone'];
+          $email = $_POST['email'];
+
+  
+  // Cập nhật dữ liệu trong bảng users
+        $sql = "UPDATE users SET name='$name', Address='$address', phone='$phone', email='$email' WHERE user_id=$idd";
+
+       if ($conn->query($sql) === TRUE) {
+            header("Location: index.php?page=user&action=sua&id=$idd");
+        } else {
+            echo "Lỗi: " . $conn->error;
+      }
+        }          
+       case 'sua':
+        $id= $_GET['id'];
+            include "quanlynguoidung/formsua.php";
+              break;
+        case 'xoa':
+          $id= $_GET['id'];
+          $deleteQuery = "DELETE FROM users WHERE user_id = $id";
+          if($conn->query($deleteQuery)) {
+              header("Location: index.php?page=user");
+          } else {
+              echo "Lỗi khi xóa: " . $conn->error;
+          }
+            break;
+        case 'lietke':
+          include 'quanlynguoidung/lietke.php';
+            break; 
+                                             
+        // Thêm các trường hợp khác tương tự
+
+        default:
+            break;
+    }
+} else {
+  include 'quanlynguoidung/lietke.php';
+}
+?>
+
 </div>
-    </div>
+
+
+      
+
+
+ 
