@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <?php
 // Kết nối với cơ sở dữ liệu
 include 'header.php';
 include 'connectdb.php';
+
 // Kiểm tra xem sản phẩm có tồn tại không
 // Kiểm tra xem có sản phẩm được chọn không
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -95,13 +97,22 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo '<button class="quantity-plus" style="margin-right: 0px;">+</button>';
         echo '<span class="available-quantity" style="margin-left: 20px; margin-right: 5px;"> Còn ' . $row['number'] . ' sản phẩm</span>'; // Thay đổi giá trị margin-right
         echo '</div>';
-        echo '<button class="add-to-cart-btn" style="background-color: #f8d7da; border: 1px solid #CC0000; color: #CC0000; padding: 17px 30px; margin-right: 10px; margin-top: 20px">';
-        echo '<i class="fa fa-shopping-cart" style="color: #dc3545; margin-right: 5px;"></i> Thêm vào giỏ hàng';
-        echo '</button>';
-
-        echo '<button class="buy-now-btn" style="background-color: #CC0000; border: none; color: #fff; padding: 18px 44px; ">';
+        if ($product_id && $discountedPrice) {
+            echo '<form method="post" action="add_to_cart.php">';
+            echo '<input type="hidden" name="product_id" value="' . $product_id . '">'; // Ẩn trường chứa ID sản phẩm
+            echo '<input type="hidden" name="price" value="' . $discountedPrice . '">'; // Ẩn trường chứa giá đã giảm
+            echo '<button type="submit" class="add-to-cart-btn" style="background-color: #f8d7da; border: 1px solid #CC0000; color: #CC0000; padding: 17px 30px; margin-right: 10px; margin-top: 20px">';
+            echo '<i class="fa fa-shopping-cart" style="color: #dc3545; margin-right: 5px;"></i> Thêm vào giỏ hàng';
+            echo '</button>';
+            echo '<button class="buy-now-btn" style="background-color: #CC0000; border: none; color: #fff; padding: 18px 44px; ">';
         echo 'Mua ngay';
         echo '</button>';
+      
+            echo '</form>';
+        }
+
+        
+        
         echo '<div style="margin-top: 30px; font-size: 18px;">';
         echo '<i class="fa fa-reply" style="color: #CC0000; margin-right: 10px;"></i> 7 ngày miễn phí trả hàng';
         echo '<i class="fa fa-check-circle" style="color: #CC0000; margin-left: 40px; margin-right: 10px;"></i> Hàng chính hãng 100%';
@@ -248,7 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 </script>
+
 
 <style>
     .thumbnail:hover {

@@ -37,9 +37,13 @@
                 <span class="warranty-text">Chính sách <br> bảo hành</span>
             </div>
             <div class="cart">
-                <img src="img/logo/cart-icon.png" alt="Cart Icon">
-                <span class="cart-text">Giỏ hàng <br> của bạn </span>
-            </div>
+   <a href="cart.php" style="text-decoration: none;">
+    <img src="img/logo/cart-icon.png" alt="Cart Icon">
+    <span class="cart-text">Giỏ hàng <br> của bạn</span>
+</a>
+
+</div>
+
             <div class="user">
 <?php
 // Thực hiện kết nối tới cơ sở dữ liệu
