@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-qlsWP0I8ZBw0UzoI5B+xVrXsd2emtu8we0tp2I7uDUZf0TKfXVoFjMRrdV7pzgvt+zr9rA+ijU7zNHN1sdWPwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Các dòng khác của bạn -->
 </head>
-<div class="my-5">
+<div class="my-auto">
   <!-- Footer -->
   <footer class="text-center text-lg-start" style="background-color: #BB0000;">
     <!-- Grid container -->
@@ -19,8 +19,8 @@
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold text-white">Về chúng tôi</h6>
             <p style="text-align: left; color: white;">
-    Luôn mang cho khách hàng những sản phẩm tốt nhất và chính hãng đến tay người dùng
-</p>
+          Luôn mang cho khách hàng những sản phẩm tốt nhất và chính hãng đến tay người dùng
+          </p>
 
 
           </div>

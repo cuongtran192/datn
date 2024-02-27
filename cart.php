@@ -60,6 +60,7 @@ if (!isset($_SESSION['user_id'])) {
         <table class="table table-striped">
             <thead class="table-header">
                 <tr>
+                <th scope="col" style="width: 20%;">Hình ảnh</th>
                     <th scope="col" style="width: 150%;">Tên Sản Phẩm</th>
                     <th scope="col" style="width: 20%;">Loại Sản Phẩm</th>
                     <th scope="col" style="width: 10%;">Số Lượng</th>
@@ -77,7 +78,7 @@ if (!isset($_SESSION['user_id'])) {
                 $user_id = $_SESSION['user_id'];
 
                 // Truy vấn SQL để lấy thông tin giỏ hàng của user hiện tại
-                $sql = "SELECT p.name AS product_name, t.name AS product_type, c.number AS quantity, p.price AS price, p.discount AS discount, c.total AS total, c.product_id AS product_id
+                $sql = "SELECT p.name AS product_name, t.name AS product_type,p.image_link_1, c.number AS quantity, p.price AS price, p.discount AS discount, c.total AS total, c.product_id AS product_id
                         FROM product p
                         INNER JOIN cart c ON p.product_id = c.product_id
                         INNER JOIN type t ON p.type_id = t.type_id
@@ -88,6 +89,7 @@ if (!isset($_SESSION['user_id'])) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
+                        echo '<td><img src="' . $row["image_link_1"] . '" class="img-thumbnail"></td>';
                         echo "<td>" . $row["product_name"] . "</td>";
                         echo "<td>" . $row["product_type"] . "</td>";
                         echo '<form action="update_cart.php" method="post">';
@@ -100,13 +102,13 @@ if (!isset($_SESSION['user_id'])) {
                         echo '<td class="text-right">
                         <button type="submit" class="btn btn-primary btn-update">Cập nhật</button>
                         <button type="submit" formaction="delete_product.php" class="btn btn-danger btn-delete" name="delete_product">Xóa</button>
-                      </td>';
+                        </td>';
                         echo '</form>';
                         echo "</tr>";
                     }
                     // Hiển thị hàng tổng cộng
                     echo "<tr>";
-                    echo "<td colspan='5' class='text-right'><b>Tổng cộng:</b></td>";
+                    echo "<td colspan='6' class='text-right'><b>Tổng cộng:</b></td>";
                     echo "<td><b>" . number_format($total_price, 0, '', '.') . 'đ</b></td>';
                     echo "<td></td>"; // Thêm cột trống cho phần cập nhật
                     echo "</tr>";
@@ -131,10 +133,10 @@ if (!isset($_SESSION['user_id'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<?php
+include 'footer.php';
+?>
 
 </body>
 </html>
 
-<?php
-include 'footer.php';
-?>

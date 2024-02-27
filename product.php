@@ -105,8 +105,8 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
             echo '<i class="fa fa-shopping-cart" style="color: #dc3545; margin-right: 5px;"></i> Thêm vào giỏ hàng';
             echo '</button>';
             echo '<button class="buy-now-btn" style="background-color: #CC0000; border: none; color: #fff; padding: 18px 44px; ">';
-        echo 'Mua ngay';
-        echo '</button>';
+            echo 'Mua ngay';
+            echo '</button>';
       
             echo '</form>';
         }
@@ -271,5 +271,8 @@ document.addEventListener('DOMContentLoaded', function() {
         background-color: #f0f0f0; /* Đặt màu nền trang là màu xám nhạt */
     }
     </style>
+    <?php
+include 'footer.php';
+?>
 </body>
 </html>
