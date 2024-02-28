@@ -78,7 +78,7 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo '<h6 class="card-text price" style="padding: 10px; color: #FF0000; font-size: 40px;background-color: transparent; font-family: Arial, sans-serif; white-space: nowrap;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
 
 // Hiển thị phần trừ giảm giá theo phần trăm (màu đỏ)
-        echo '<div class=" bg-danger text-white px-2 py-1 ml-1 align-items-center" style="position: absolute; top: 17px; left: 53%; font-family: Arial, sans-serif; font-weight: bold; white-space: nowrap;">' . -intval($discountPercentage) . '%</div>';
+        echo '<div class=" bg-danger text-white px-2 py-1 ml-1 align-items-center" style="position: absolute; top: 17px; left: 51%; font-family: Arial, sans-serif; font-weight: bold; white-space: nowrap;">' . -intval($discountPercentage) . '%</div>';
         echo '<div class="discount-code" style="font-family: Arial, sans-serif; font-size: 16px; white-space: nowrap;">Mã giảm giá: ';
         // Hiển thị phần mã giảm giá (chỉ là text cố định)
         echo '<div class="discount-code" style="font-family: Arial, sans-serif; font-size: 16px; white-space: nowrap; background-color: #ffcccc; padding: 5px; display: inline-block; border-radius: 5px; margin-top: 10px; color: #FF0000;">Giảm đ200k</div>';

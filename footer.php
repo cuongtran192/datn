@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-qlsWP0I8ZBw0UzoI5B+xVrXsd2emtu8we0tp2I7uDUZf0TKfXVoFjMRrdV7pzgvt+zr9rA+ijU7zNHN1sdWPwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Các dòng khác của bạn -->
 </head>
-<div class="my-5">
+<div class="my-auto">
   <!-- Footer -->
   <footer class="text-center text-lg-start" style="background-color: #BB0000;">
     <!-- Grid container -->
