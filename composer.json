@@ -1,12 +1,5 @@
 {
-<<<<<<< HEAD
   "require": {
     "cloudinary/cloudinary_php": "^2"
   }
 }
-=======
-    "require": {
-      "cloudinary/cloudinary_php": "^2"
-    }
-  }
->>>>>>> c2063fa4ef2f1d6d34896f519f10b796eba91533
