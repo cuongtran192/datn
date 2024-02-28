@@ -2,6 +2,15 @@
 
 <?php
 include '../connectdb.php';
+require 'vendor/autoload.php'; // Import Cloudinary PHP SDK
+
+  
+// Cấu hình Cloudinary
+\Cloudinary::config(array(
+  "cloud_name" => "doxa1jpq0",
+  "api_key" => "832514887176995",
+  "api_secret" => "-q2pDBam_xi6KVqzPihNIox2r78"
+));
 
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
