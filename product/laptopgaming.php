@@ -10,6 +10,7 @@ include 'header.php';
         border: 1px solid #ccc;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng */
+        overflow: hidden; /* Ẩn nội dung dư thừa */
     }
 
     .product-card img {
@@ -19,6 +20,8 @@ include 'header.php';
 
     .product-card .card-body {
         padding: 1.25rem;
+        height: 280px; /* Chiều cao cố định */
+        overflow: hidden; /* Ẩn nội dung dư thừa */
     }
 
     .product-card .card-title {

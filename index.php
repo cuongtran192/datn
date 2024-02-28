@@ -553,29 +553,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(220px + 2.3em);"> ';
-        echo '<div class="border bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.4em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -607,29 +607,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);"> ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -664,30 +664,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -721,31 +720,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
-
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
         $counter++;
 
         if ($counter % 5 == 0) { // Close the row after every 5 products
@@ -779,30 +776,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -836,30 +832,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -892,31 +887,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
-
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
         $counter++;
 
         if ($counter % 5 == 0) { // Close the row after every 5 products
@@ -948,30 +941,29 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
 
         $counter++;
 
@@ -1005,30 +997,30 @@ if (!$connect) {
 
     while ($row = mysqli_fetch_array($result)) {
         if ($counter % 5 == 0) { // Start a new row after every 5 products
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
         }
 
-        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
-        ';
-        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
-        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
-        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '<div class="col-md-2 custom-margin text-center">';
+        echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
-        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+        echo '<h5 class="card-title">' . $row['name'] . '</h5>';
+        echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
         $discountPercentage = $row['discount'];
         $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
 
-        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
-        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
         echo '</div>'; // Close card-body
         echo '<div class="card-footer"></div>'; // Empty card-footer
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-2
+        echo '</div>'; // Close product-card
+        echo '</div>'; // Close col-md-3
+
 
         $counter++;
 

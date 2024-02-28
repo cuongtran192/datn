@@ -404,3 +404,68 @@ transform: scale(1.2);
     text-align: center; /* Căn giữa nội dung */
     margin-top: 20px; /* Khoảng cách từ tiêu đề đến nội dung */
 }
+.product-card {
+    margin-bottom: 50px;
+    width: calc(221px + 2em);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng */
+    overflow: hidden; /* Ẩn nội dung dư thừa */
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px 10px 0 0; /* Bo tròn góc cho hình ảnh */
+}
+
+.product-card .card-body {
+    padding: 1.25rem;
+    overflow: hidden; /* Ẩn nội dung dư thừa */
+    
+}
+
+.product-card .card-title {
+    max-height: 2.5em;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.product-card .card-text {
+    text-align: left;
+    font-size: 16px;
+}
+
+.product-card .discounted-price {
+    font-size: 19px;
+    padding: 5px;
+    display: inline-block;
+    text-decoration: line-through;
+}
+
+.product-card .bg-danger {
+    background-color: #dc3545; /* Màu nền đỏ cho badge */
+}
+
+.product-card .rounded-pill {
+    border-radius: 20px; /* Bo tròn góc cho badge */
+    display: inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.product-card .price {
+    padding: 5px;
+    text-align: center; /* Căn giữa phần giá */
+}
+
+.custom-margin-top {
+    margin-top: 2rem; /* Đặt khoảng cách trên là 2rem */
+}
+
+.custom-margin {
+    margin: 1.3rem;
+}
+
+.custom-margin-bottom {
+    margin-bottom: -60px; /* Đặt khoảng cách dưới là 50px */
+}
