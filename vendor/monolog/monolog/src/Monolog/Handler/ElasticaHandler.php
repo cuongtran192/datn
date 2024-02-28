@@ -14,16 +14,9 @@ namespace Monolog\Handler;
 use Elastica\Document;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\ElasticaFormatter;
-<<<<<<< HEAD
-use Monolog\Level;
-use Elastica\Client;
-use Elastica\Exception\ExceptionInterface;
-use Monolog\LogRecord;
-=======
 use Monolog\Logger;
 use Elastica\Client;
 use Elastica\Exception\ExceptionInterface;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Elastic Search handler
@@ -40,28 +33,6 @@ use Elastica\Exception\ExceptionInterface;
  *    $log->pushHandler($handler);
  *
  * @author Jelle Vink <jelle.vink@gmail.com>
-<<<<<<< HEAD
- * @phpstan-type Options array{
- *     index: string,
- *     type: string,
- *     ignore_error: bool
- * }
- * @phpstan-type InputOptions array{
- *     index?: string,
- *     type?: string,
- *     ignore_error?: bool
- * }
- */
-class ElasticaHandler extends AbstractProcessingHandler
-{
-    protected Client $client;
-
-    /**
-     * @var mixed[] Handler config options
-     * @phpstan-var Options
-     */
-    protected array $options;
-=======
  */
 class ElasticaHandler extends AbstractProcessingHandler
 {
@@ -74,20 +45,12 @@ class ElasticaHandler extends AbstractProcessingHandler
      * @var mixed[] Handler config options
      */
     protected $options = [];
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param Client  $client  Elastica Client object
      * @param mixed[] $options Handler configuration
-<<<<<<< HEAD
-     *
-     * @phpstan-param InputOptions $options
-     */
-    public function __construct(Client $client, array $options = [], int|string|Level $level = Level::Debug, bool $bubble = true)
-=======
      */
     public function __construct(Client $client, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::__construct($level, $bubble);
         $this->client = $client;
@@ -102,17 +65,6 @@ class ElasticaHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function write(LogRecord $record): void
-    {
-        $this->bulkSend([$record->formatted]);
-    }
-
-    /**
-     * @inheritDoc
-=======
      * {@inheritDoc}
      */
     protected function write(array $record): void
@@ -122,7 +74,6 @@ class ElasticaHandler extends AbstractProcessingHandler
 
     /**
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -135,11 +86,6 @@ class ElasticaHandler extends AbstractProcessingHandler
 
     /**
      * @return mixed[]
-<<<<<<< HEAD
-     *
-     * @phpstan-return Options
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getOptions(): array
     {
@@ -147,11 +93,7 @@ class ElasticaHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {
@@ -159,11 +101,7 @@ class ElasticaHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function handleBatch(array $records): void
     {

@@ -14,20 +14,12 @@ namespace Monolog\Handler;
 use Elastic\Elasticsearch\Response\Elasticsearch;
 use Throwable;
 use RuntimeException;
-<<<<<<< HEAD
-use Monolog\Level;
-=======
 use Monolog\Logger;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\ElasticsearchFormatter;
 use InvalidArgumentException;
 use Elasticsearch\Common\Exceptions\RuntimeException as ElasticsearchRuntimeException;
 use Elasticsearch\Client;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Elastic\Elasticsearch\Exception\InvalidArgumentException as ElasticInvalidArgumentException;
 use Elastic\Elasticsearch\Client as Client8;
 
@@ -51,30 +43,6 @@ use Elastic\Elasticsearch\Client as Client8;
  *    $log->pushHandler($handler);
  *
  * @author Avtandil Kikabidze <akalongman@gmail.com>
-<<<<<<< HEAD
- * @phpstan-type Options array{
- *     index: string,
- *     type: string,
- *     ignore_error: bool,
- *     op_type: 'index'|'create'
- * }
- * @phpstan-type InputOptions array{
- *     index?: string,
- *     type?: string,
- *     ignore_error?: bool,
- *     op_type?: 'index'|'create'
- * }
- */
-class ElasticsearchHandler extends AbstractProcessingHandler
-{
-    protected Client|Client8 $client;
-
-    /**
-     * @var mixed[] Handler config options
-     * @phpstan-var Options
-     */
-    protected array $options;
-=======
  */
 class ElasticsearchHandler extends AbstractProcessingHandler
 {
@@ -87,7 +55,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
      * @var mixed[] Handler config options
      */
     protected $options = [];
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var bool
@@ -97,13 +64,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
     /**
      * @param Client|Client8 $client  Elasticsearch Client object
      * @param mixed[]        $options Handler configuration
-<<<<<<< HEAD
-     *
-     * @phpstan-param InputOptions $options
-     */
-    public function __construct(Client|Client8 $client, array $options = [], int|string|Level $level = Level::Debug, bool $bubble = true)
-    {
-=======
      */
     public function __construct($client, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
@@ -111,7 +71,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
             throw new \TypeError('Elasticsearch\Client or Elastic\Elasticsearch\Client instance required');
         }
 
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         parent::__construct($level, $bubble);
         $this->client = $client;
         $this->options = array_merge(
@@ -119,10 +78,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
                 'index'        => 'monolog', // Elastic index name
                 'type'         => '_doc',    // Elastic document type
                 'ignore_error' => false,     // Suppress Elasticsearch exceptions
-<<<<<<< HEAD
-                'op_type'      => 'index',   // Elastic op_type (index or create) (https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#docs-index-api-op_type)
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             ],
             $options
         );
@@ -137,17 +92,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function write(LogRecord $record): void
-    {
-        $this->bulkSend([$record->formatted]);
-    }
-
-    /**
-     * @inheritDoc
-=======
      * {@inheritDoc}
      */
     protected function write(array $record): void
@@ -157,7 +101,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
 
     /**
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -172,11 +115,6 @@ class ElasticsearchHandler extends AbstractProcessingHandler
      * Getter options
      *
      * @return mixed[]
-<<<<<<< HEAD
-     *
-     * @phpstan-return Options
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getOptions(): array
     {
@@ -184,11 +122,7 @@ class ElasticsearchHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {
@@ -196,11 +130,7 @@ class ElasticsearchHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function handleBatch(array $records): void
     {
@@ -211,11 +141,7 @@ class ElasticsearchHandler extends AbstractProcessingHandler
     /**
      * Use Elasticsearch bulk API to send list of documents
      *
-<<<<<<< HEAD
-     * @param  array<array<mixed>> $records Records + _index/_type keys
-=======
      * @param  array[]           $records Records + _index/_type keys
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      * @throws \RuntimeException
      */
     protected function bulkSend(array $records): void
@@ -227,11 +153,7 @@ class ElasticsearchHandler extends AbstractProcessingHandler
 
             foreach ($records as $record) {
                 $params['body'][] = [
-<<<<<<< HEAD
-                    $this->options['op_type'] => $this->needsType ? [
-=======
                     'index' => $this->needsType ? [
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                         '_index' => $record['_index'],
                         '_type'  => $record['_type'],
                     ] : [

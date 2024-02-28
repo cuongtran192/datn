@@ -13,20 +13,11 @@ namespace Monolog\Handler;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\FormatterInterface;
-<<<<<<< HEAD
-use Monolog\Level;
-=======
 use Monolog\Logger;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Monolog\Utils;
 use PhpConsole\Connector;
 use PhpConsole\Handler as VendorPhpConsoleHandler;
 use PhpConsole\Helper;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-use PhpConsole\Storage;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Monolog handler for Google Chrome extension "PHP Console"
@@ -46,69 +37,14 @@ use PhpConsole\Storage;
  *      PC::debug($_SERVER); // PHP Console debugger for any type of vars
  *
  * @author Sergey Barbushin https://www.linkedin.com/in/barbushin
-<<<<<<< HEAD
- * @phpstan-type Options array{
- *     enabled: bool,
- *     classesPartialsTraceIgnore: string[],
- *     debugTagsKeysInContext: array<int|string>,
- *     useOwnErrorsHandler: bool,
- *     useOwnExceptionsHandler: bool,
- *     sourcesBasePath: string|null,
- *     registerHelper: bool,
- *     serverEncoding: string|null,
- *     headersLimit: int|null,
- *     password: string|null,
- *     enableSslOnlyMode: bool,
- *     ipMasks: string[],
- *     enableEvalListener: bool,
- *     dumperDetectCallbacks: bool,
- *     dumperLevelLimit: int,
- *     dumperItemsCountLimit: int,
- *     dumperItemSizeLimit: int,
- *     dumperDumpSizeLimit: int,
- *     detectDumpTraceAndSource: bool,
- *     dataStorage: Storage|null
- * }
- * @phpstan-type InputOptions array{
- *     enabled?: bool,
- *     classesPartialsTraceIgnore?: string[],
- *     debugTagsKeysInContext?: array<int|string>,
- *     useOwnErrorsHandler?: bool,
- *     useOwnExceptionsHandler?: bool,
- *     sourcesBasePath?: string|null,
- *     registerHelper?: bool,
- *     serverEncoding?: string|null,
- *     headersLimit?: int|null,
- *     password?: string|null,
- *     enableSslOnlyMode?: bool,
- *     ipMasks?: string[],
- *     enableEvalListener?: bool,
- *     dumperDetectCallbacks?: bool,
- *     dumperLevelLimit?: int,
- *     dumperItemsCountLimit?: int,
- *     dumperItemSizeLimit?: int,
- *     dumperDumpSizeLimit?: int,
- *     detectDumpTraceAndSource?: bool,
- *     dataStorage?: Storage|null
- * }
- *
-=======
  *
  * @phpstan-import-type Record from \Monolog\Logger
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  * @deprecated Since 2.8.0 and 3.2.0, PHPConsole is abandoned and thus we will drop this handler in Monolog 4
  */
 class PHPConsoleHandler extends AbstractProcessingHandler
 {
-<<<<<<< HEAD
-    /**
-     * @phpstan-var Options
-     */
-    private array $options = [
-=======
     /** @var array<string, mixed> */
     private $options = [
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         'enabled' => true, // bool Is PHP Console server enabled
         'classesPartialsTraceIgnore' => ['Monolog\\'], // array Hide calls of classes started with...
         'debugTagsKeysInContext' => [0, 'tag'], // bool Is PHP Console server enabled
@@ -131,25 +67,15 @@ class PHPConsoleHandler extends AbstractProcessingHandler
         'dataStorage' => null, // \PhpConsole\Storage|null Fixes problem with custom $_SESSION handler(see http://goo.gl/Ne8juJ)
     ];
 
-<<<<<<< HEAD
-    private Connector $connector;
-=======
     /** @var Connector */
     private $connector;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param  array<string, mixed> $options   See \Monolog\Handler\PHPConsoleHandler::$options for more details
      * @param  Connector|null       $connector Instance of \PhpConsole\Connector class (optional)
      * @throws \RuntimeException
-<<<<<<< HEAD
-     * @phpstan-param InputOptions $options
-     */
-    public function __construct(array $options = [], ?Connector $connector = null, int|string|Level $level = Level::Debug, bool $bubble = true)
-=======
      */
     public function __construct(array $options = [], ?Connector $connector = null, $level = Logger::DEBUG, bool $bubble = true)
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!class_exists('PhpConsole\Connector')) {
             throw new \RuntimeException('PHP Console library not found. See https://github.com/barbushin/php-console#installation');
@@ -160,26 +86,14 @@ class PHPConsoleHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @param  array<string, mixed> $options
-     * @return array<string, mixed>
-     *
-     * @phpstan-param InputOptions $options
-     * @phpstan-return Options
-=======
      * @param array<string, mixed> $options
      *
      * @return array<string, mixed>
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     private function initOptions(array $options): array
     {
         $wrongOptions = array_diff(array_keys($options), array_keys($this->options));
-<<<<<<< HEAD
-        if (\count($wrongOptions) > 0) {
-=======
         if ($wrongOptions) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \RuntimeException('Unknown options: ' . implode(', ', $wrongOptions));
         }
 
@@ -188,13 +102,8 @@ class PHPConsoleHandler extends AbstractProcessingHandler
 
     private function initConnector(?Connector $connector = null): Connector
     {
-<<<<<<< HEAD
-        if (null === $connector) {
-            if ($this->options['dataStorage'] instanceof Storage) {
-=======
         if (!$connector) {
             if ($this->options['dataStorage']) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 Connector::setPostponeStorage($this->options['dataStorage']);
             }
             $connector = Connector::getInstance();
@@ -211,15 +120,6 @@ class PHPConsoleHandler extends AbstractProcessingHandler
                 $handler->setHandleExceptions($this->options['useOwnExceptionsHandler']);
                 $handler->start();
             }
-<<<<<<< HEAD
-            if (null !== $this->options['sourcesBasePath']) {
-                $connector->setSourcesBasePath($this->options['sourcesBasePath']);
-            }
-            if (null !== $this->options['serverEncoding']) {
-                $connector->setServerEncoding($this->options['serverEncoding']);
-            }
-            if (null !== $this->options['password']) {
-=======
             if ($this->options['sourcesBasePath']) {
                 $connector->setSourcesBasePath($this->options['sourcesBasePath']);
             }
@@ -227,23 +127,15 @@ class PHPConsoleHandler extends AbstractProcessingHandler
                 $connector->setServerEncoding($this->options['serverEncoding']);
             }
             if ($this->options['password']) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 $connector->setPassword($this->options['password']);
             }
             if ($this->options['enableSslOnlyMode']) {
                 $connector->enableSslOnlyMode();
             }
-<<<<<<< HEAD
-            if (\count($this->options['ipMasks']) > 0) {
-                $connector->setAllowedIpMasks($this->options['ipMasks']);
-            }
-            if (null !== $this->options['headersLimit'] && $this->options['headersLimit'] > 0) {
-=======
             if ($this->options['ipMasks']) {
                 $connector->setAllowedIpMasks($this->options['ipMasks']);
             }
             if ($this->options['headersLimit']) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 $connector->setHeadersLimit($this->options['headersLimit']);
             }
             if ($this->options['detectDumpTraceAndSource']) {
@@ -276,11 +168,7 @@ class PHPConsoleHandler extends AbstractProcessingHandler
         return $this->options;
     }
 
-<<<<<<< HEAD
-    public function handle(LogRecord $record): bool
-=======
     public function handle(array $record): bool
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if ($this->options['enabled'] && $this->connector->isActiveClient()) {
             return parent::handle($record);
@@ -292,33 +180,17 @@ class PHPConsoleHandler extends AbstractProcessingHandler
     /**
      * Writes the record down to the log of the implementing handler
      */
-<<<<<<< HEAD
-    protected function write(LogRecord $record): void
-    {
-        if ($record->level->isLowerThan(Level::Notice)) {
-            $this->handleDebugRecord($record);
-        } elseif (isset($record->context['exception']) && $record->context['exception'] instanceof \Throwable) {
-=======
     protected function write(array $record): void
     {
         if ($record['level'] < Logger::NOTICE) {
             $this->handleDebugRecord($record);
         } elseif (isset($record['context']['exception']) && $record['context']['exception'] instanceof \Throwable) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $this->handleExceptionRecord($record);
         } else {
             $this->handleErrorRecord($record);
         }
     }
 
-<<<<<<< HEAD
-    private function handleDebugRecord(LogRecord $record): void
-    {
-        [$tags, $filteredContext] = $this->getRecordTags($record);
-        $message = $record->message;
-        if (\count($filteredContext) > 0) {
-            $message .= ' ' . Utils::jsonEncode($this->connector->getDumper()->dump(array_filter($filteredContext)), null, true);
-=======
     /**
      * @phpstan-param Record $record
      */
@@ -328,25 +200,10 @@ class PHPConsoleHandler extends AbstractProcessingHandler
         $message = $record['message'];
         if ($record['context']) {
             $message .= ' ' . Utils::jsonEncode($this->connector->getDumper()->dump(array_filter($record['context'])), null, true);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
         $this->connector->getDebugDispatcher()->dispatchDebug($message, $tags, $this->options['classesPartialsTraceIgnore']);
     }
 
-<<<<<<< HEAD
-    private function handleExceptionRecord(LogRecord $record): void
-    {
-        $this->connector->getErrorsDispatcher()->dispatchException($record->context['exception']);
-    }
-
-    private function handleErrorRecord(LogRecord $record): void
-    {
-        $context = $record->context;
-
-        $this->connector->getErrorsDispatcher()->dispatchError(
-            $context['code'] ?? null,
-            $context['message'] ?? $record->message,
-=======
     /**
      * @phpstan-param Record $record
      */
@@ -365,7 +222,6 @@ class PHPConsoleHandler extends AbstractProcessingHandler
         $this->connector->getErrorsDispatcher()->dispatchError(
             $context['code'] ?? null,
             $context['message'] ?? $record['message'],
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $context['file'] ?? null,
             $context['line'] ?? null,
             $this->options['classesPartialsTraceIgnore']
@@ -373,23 +229,6 @@ class PHPConsoleHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @return array{string, mixed[]}
-     */
-    private function getRecordTags(LogRecord $record): array
-    {
-        $tags = null;
-        $filteredContext = [];
-        if ($record->context !== []) {
-            $filteredContext = $record->context;
-            foreach ($this->options['debugTagsKeysInContext'] as $key) {
-                if (isset($filteredContext[$key])) {
-                    $tags = $filteredContext[$key];
-                    if ($key === 0) {
-                        array_shift($filteredContext);
-                    } else {
-                        unset($filteredContext[$key]);
-=======
      * @phpstan-param Record $record
      * @return string
      */
@@ -405,26 +244,17 @@ class PHPConsoleHandler extends AbstractProcessingHandler
                         array_shift($context);
                     } else {
                         unset($context[$key]);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                     }
                     break;
                 }
             }
         }
 
-<<<<<<< HEAD
-        return [$tags ?? $record->level->toPsrLogLevel(), $filteredContext];
-    }
-
-    /**
-     * @inheritDoc
-=======
         return $tags ?: strtolower($record['level_name']);
     }
 
     /**
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {

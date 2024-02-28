@@ -11,11 +11,6 @@
 
 namespace Monolog\Formatter;
 
-<<<<<<< HEAD
-use Monolog\LogRecord;
-
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 /**
  * formats the record to be used in the FlowdockHandler
  *
@@ -24,11 +19,6 @@ use Monolog\LogRecord;
  */
 class FlowdockFormatter implements FormatterInterface
 {
-<<<<<<< HEAD
-    private string $source;
-
-    private string $sourceEmail;
-=======
     /**
      * @var string
      */
@@ -38,7 +28,6 @@ class FlowdockFormatter implements FormatterInterface
      * @var string
      */
     private $sourceEmail;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     public function __construct(string $source, string $sourceEmail)
     {
@@ -47,21 +36,6 @@ class FlowdockFormatter implements FormatterInterface
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     *
-     * @return mixed[]
-     */
-    public function format(LogRecord $record): array
-    {
-        $tags = [
-            '#logs',
-            '#' . $record->level->toPsrLogLevel(),
-            '#' . $record->channel,
-        ];
-
-        foreach ($record->extra as $value) {
-=======
      * {@inheritDoc}
      *
      * @return mixed[]
@@ -75,31 +49,12 @@ class FlowdockFormatter implements FormatterInterface
         ];
 
         foreach ($record['extra'] as $value) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $tags[] = '#' . $value;
         }
 
         $subject = sprintf(
             'in %s: %s - %s',
             $this->source,
-<<<<<<< HEAD
-            $record->level->getName(),
-            $this->getShortMessage($record->message)
-        );
-
-        return [
-            'source' => $this->source,
-            'from_address' => $this->sourceEmail,
-            'subject' => $subject,
-            'content' => $record->message,
-            'tags' => $tags,
-            'project' => $this->source,
-        ];
-    }
-
-    /**
-     * @inheritDoc
-=======
             $record['level_name'],
             $this->getShortMessage($record['message'])
         );
@@ -118,7 +73,6 @@ class FlowdockFormatter implements FormatterInterface
 
     /**
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @return mixed[][]
      */

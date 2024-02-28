@@ -11,13 +11,7 @@
 
 namespace Monolog\Handler;
 
-<<<<<<< HEAD
-use Closure;
 use Monolog\Formatter\FormatterInterface;
-use Monolog\LogRecord;
-=======
-use Monolog\Formatter\FormatterInterface;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sampling handler
@@ -32,35 +26,15 @@ use Monolog\Formatter\FormatterInterface;
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @author Kunal Mehta <legoktm@gmail.com>
-<<<<<<< HEAD
-=======
  *
  * @phpstan-import-type Record from \Monolog\Logger
  * @phpstan-import-type Level from \Monolog\Logger
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  */
 class SamplingHandler extends AbstractHandler implements ProcessableHandlerInterface, FormattableHandlerInterface
 {
     use ProcessableHandlerTrait;
 
     /**
-<<<<<<< HEAD
-     * Handler or factory Closure($record, $this)
-     *
-     * @phpstan-var (Closure(LogRecord|null, HandlerInterface): HandlerInterface)|HandlerInterface
-     */
-    protected Closure|HandlerInterface $handler;
-
-    protected int $factor;
-
-    /**
-     * @phpstan-param (Closure(LogRecord|null, HandlerInterface): HandlerInterface)|HandlerInterface $handler
-     *
-     * @param Closure|HandlerInterface $handler Handler or factory Closure($record|null, $samplingHandler).
-     * @param int                      $factor  Sample factor (e.g. 10 means every ~10th record is sampled)
-     */
-    public function __construct(Closure|HandlerInterface $handler, int $factor)
-=======
      * @var HandlerInterface|callable
      * @phpstan-var HandlerInterface|callable(Record|array{level: Level}|null, HandlerInterface): HandlerInterface
      */
@@ -78,16 +52,10 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
      * @param int                       $factor  Sample factor (e.g. 10 means every ~10th record is sampled)
      */
     public function __construct($handler, int $factor)
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::__construct();
         $this->handler = $handler;
         $this->factor = $factor;
-<<<<<<< HEAD
-    }
-
-    public function isHandling(LogRecord $record): bool
-=======
 
         if (!$this->handler instanceof HandlerInterface && !is_callable($this->handler)) {
             throw new \RuntimeException("The given handler (".json_encode($this->handler).") is not a callable nor a Monolog\Handler\HandlerInterface object");
@@ -95,23 +63,15 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
     }
 
     public function isHandling(array $record): bool
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         return $this->getHandler($record)->isHandling($record);
     }
 
-<<<<<<< HEAD
-    public function handle(LogRecord $record): bool
-    {
-        if ($this->isHandling($record) && mt_rand(1, $this->factor) === 1) {
-            if (\count($this->processors) > 0) {
-=======
     public function handle(array $record): bool
     {
         if ($this->isHandling($record) && mt_rand(1, $this->factor) === 1) {
             if ($this->processors) {
                 /** @var Record $record */
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 $record = $this->processRecord($record);
             }
 
@@ -124,18 +84,6 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
     /**
      * Return the nested handler
      *
-<<<<<<< HEAD
-     * If the handler was provided as a factory, this will trigger the handler's instantiation.
-     */
-    public function getHandler(LogRecord $record = null): HandlerInterface
-    {
-        if (!$this->handler instanceof HandlerInterface) {
-            $handler = ($this->handler)($record, $this);
-            if (!$handler instanceof HandlerInterface) {
-                throw new \RuntimeException("The factory Closure should return a HandlerInterface");
-            }
-            $this->handler = $handler;
-=======
      * If the handler was provided as a factory callable, this will trigger the handler's instantiation.
      *
      * @phpstan-param Record|array{level: Level}|null $record
@@ -149,18 +97,13 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
             if (!$this->handler instanceof HandlerInterface) {
                 throw new \RuntimeException("The factory callable should return a HandlerInterface");
             }
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return $this->handler;
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -175,11 +118,7 @@ class SamplingHandler extends AbstractHandler implements ProcessableHandlerInter
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getFormatter(): FormatterInterface
     {

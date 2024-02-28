@@ -14,36 +14,19 @@ namespace Monolog\Handler;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Utils;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-use Monolog\Level;
-=======
 use Monolog\Logger;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 use function count;
 use function headers_list;
 use function stripos;
-<<<<<<< HEAD
-=======
 use function trigger_error;
 
 use const E_USER_DEPRECATED;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Handler sending logs to browser's javascript console with no browser extension required
  *
  * @author Olivier Poitrey <rs@dailymotion.com>
-<<<<<<< HEAD
- */
-class BrowserConsoleHandler extends AbstractProcessingHandler
-{
-    protected static bool $initialized = false;
-
-    /** @var LogRecord[] */
-    protected static array $records = [];
-=======
  *
  * @phpstan-import-type FormattedRecord from AbstractProcessingHandler
  */
@@ -53,18 +36,13 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     protected static $initialized = false;
     /** @var FormattedRecord[] */
     protected static $records = [];
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     protected const FORMAT_HTML = 'html';
     protected const FORMAT_JS = 'js';
     protected const FORMAT_UNKNOWN = 'unknown';
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * Formatted output may contain some formatting markers to be transferred to `console.log` using the %c format.
      *
@@ -78,15 +56,9 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function write(LogRecord $record): void
-=======
      * {@inheritDoc}
      */
     protected function write(array $record): void
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         // Accumulate records
         static::$records[] = $record;
@@ -109,19 +81,11 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
             return;
         }
 
-<<<<<<< HEAD
-        if (count(static::$records) > 0) {
-            if ($format === self::FORMAT_HTML) {
-                static::writeOutput('<script>' . self::generateScript() . '</script>');
-            } else { // js format
-                static::writeOutput(self::generateScript());
-=======
         if (count(static::$records)) {
             if ($format === self::FORMAT_HTML) {
                 static::writeOutput('<script>' . static::generateScript() . '</script>');
             } elseif ($format === self::FORMAT_JS) {
                 static::writeOutput(static::generateScript());
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             }
             static::resetStatic();
         }
@@ -132,11 +96,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         self::resetStatic();
     }
 
-<<<<<<< HEAD
-    public function reset(): void
-=======
     public function reset()
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::reset();
 
@@ -214,20 +174,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     {
         $script = [];
         foreach (static::$records as $record) {
-<<<<<<< HEAD
-            $context = self::dump('Context', $record->context);
-            $extra = self::dump('Extra', $record->extra);
-
-            if (\count($context) === 0 && \count($extra) === 0) {
-                $script[] = self::call_array(self::getConsoleMethodForLevel($record->level), self::handleStyles($record->formatted));
-            } else {
-                $script = array_merge(
-                    $script,
-                    [self::call_array('groupCollapsed', self::handleStyles($record->formatted))],
-                    $context,
-                    $extra,
-                    [self::call('groupEnd')]
-=======
             $context = static::dump('Context', $record['context']);
             $extra = static::dump('Extra', $record['extra']);
 
@@ -240,7 +186,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
                     $context,
                     $extra,
                     [static::call('groupEnd')]
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 );
             }
         }
@@ -248,16 +193,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         return "(function (c) {if (c && c.groupCollapsed) {\n" . implode("\n", $script) . "\n}})(console);";
     }
 
-<<<<<<< HEAD
-    private static function getConsoleMethodForLevel(Level $level): string
-    {
-        return match ($level) {
-            Level::Debug => 'debug',
-            Level::Info, Level::Notice => 'info',
-            Level::Warning => 'warn',
-            Level::Error, Level::Critical, Level::Alert, Level::Emergency => 'error',
-        };
-=======
     private static function getConsoleMethodForLevel(int $level): string
     {
         return [
@@ -270,7 +205,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
             Logger::ALERT => 'error',
             Logger::EMERGENCY => 'error',
         ][$level] ?? 'log';
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     /**
@@ -284,23 +218,14 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
 
         foreach (array_reverse($matches) as $match) {
             $args[] = '"font-weight: normal"';
-<<<<<<< HEAD
-            $args[] = self::quote(self::handleCustomStyles($match[2][0], $match[1][0]));
-=======
             $args[] = static::quote(static::handleCustomStyles($match[2][0], $match[1][0]));
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
             $pos = $match[0][1];
             $format = Utils::substr($format, 0, $pos) . '%c' . $match[1][0] . '%c' . Utils::substr($format, $pos + strlen($match[0][0]));
         }
 
-<<<<<<< HEAD
-        $args[] = self::quote('font-weight: normal');
-        $args[] = self::quote($format);
-=======
         $args[] = static::quote('font-weight: normal');
         $args[] = static::quote($format);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         return array_reverse($args);
     }
@@ -326,10 +251,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
 
         if (null === $style) {
             $pcreErrorCode = preg_last_error();
-<<<<<<< HEAD
-
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \RuntimeException('Failed to run preg_replace_callback: ' . $pcreErrorCode . ' / ' . Utils::pcreLastErrorMessage($pcreErrorCode));
         }
 
@@ -344,18 +265,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     {
         $script = [];
         $dict = array_filter($dict);
-<<<<<<< HEAD
-        if (\count($dict) === 0) {
-            return $script;
-        }
-        $script[] = self::call('log', self::quote('%c%s'), self::quote('font-weight: bold'), self::quote($title));
-        foreach ($dict as $key => $value) {
-            $value = json_encode($value);
-            if (false === $value) {
-                $value = self::quote('');
-            }
-            $script[] = self::call('log', self::quote('%s: %o'), self::quote((string) $key), $value);
-=======
         if (empty($dict)) {
             return $script;
         }
@@ -366,7 +275,6 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
                 $value = static::quote('');
             }
             $script[] = static::call('log', static::quote('%s: %o'), static::quote((string) $key), $value);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return $script;
@@ -387,11 +295,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
             throw new \UnexpectedValueException('Expected the first arg to be a string, got: '.var_export($method, true));
         }
 
-<<<<<<< HEAD
-        return self::call_array($method, $args);
-=======
         return static::call_array($method, $args);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     /**

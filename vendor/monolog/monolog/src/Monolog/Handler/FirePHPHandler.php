@@ -13,20 +13,13 @@ namespace Monolog\Handler;
 
 use Monolog\Formatter\WildfireFormatter;
 use Monolog\Formatter\FormatterInterface;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Simple FirePHP Handler (http://www.firephp.org/), which uses the Wildfire protocol.
  *
  * @author Eric Clemmons (@ericclemmons) <eric@uxdriven.com>
-<<<<<<< HEAD
-=======
  *
  * @phpstan-import-type FormattedRecord from AbstractProcessingHandler
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  */
 class FirePHPHandler extends AbstractProcessingHandler
 {
@@ -54,17 +47,6 @@ class FirePHPHandler extends AbstractProcessingHandler
 
     /**
      * Whether or not Wildfire vendor-specific headers have been generated & sent yet
-<<<<<<< HEAD
-     */
-    protected static bool $initialized = false;
-
-    /**
-     * Shared static message index between potentially multiple handlers
-     */
-    protected static int $messageIndex = 1;
-
-    protected static bool $sendHeaders = true;
-=======
      * @var bool
      */
     protected static $initialized = false;
@@ -77,7 +59,6 @@ class FirePHPHandler extends AbstractProcessingHandler
 
     /** @var bool */
     protected static $sendHeaders = true;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * Base header creation function used by init headers & record headers
@@ -104,34 +85,21 @@ class FirePHPHandler extends AbstractProcessingHandler
      * @phpstan-return non-empty-array<string, string>
      *
      * @see createHeader()
-<<<<<<< HEAD
-     */
-    protected function createRecordHeader(LogRecord $record): array
-=======
      *
      * @phpstan-param FormattedRecord $record
      */
     protected function createRecordHeader(array $record): array
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         // Wildfire is extensible to support multiple protocols & plugins in a single request,
         // but we're not taking advantage of that (yet), so we're using "1" for simplicity's sake.
         return $this->createHeader(
             [1, 1, 1, self::$messageIndex++],
-<<<<<<< HEAD
-            $record->formatted
-=======
             $record['formatted']
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         );
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {
@@ -172,11 +140,7 @@ class FirePHPHandler extends AbstractProcessingHandler
      * @see sendHeader()
      * @see sendInitHeaders()
      */
-<<<<<<< HEAD
-    protected function write(LogRecord $record): void
-=======
     protected function write(array $record): void
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!self::$sendHeaders || !$this->isWebRequest()) {
             return;
@@ -207,11 +171,7 @@ class FirePHPHandler extends AbstractProcessingHandler
      */
     protected function headersAccepted(): bool
     {
-<<<<<<< HEAD
-        if (isset($_SERVER['HTTP_USER_AGENT']) && 1 === preg_match('{\bFirePHP/\d+\.\d+\b}', $_SERVER['HTTP_USER_AGENT'])) {
-=======
         if (!empty($_SERVER['HTTP_USER_AGENT']) && preg_match('{\bFirePHP/\d+\.\d+\b}', $_SERVER['HTTP_USER_AGENT'])) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             return true;
         }
 

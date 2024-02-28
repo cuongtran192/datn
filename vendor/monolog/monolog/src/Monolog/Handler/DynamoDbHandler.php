@@ -16,12 +16,7 @@ use Aws\DynamoDb\DynamoDbClient;
 use Monolog\Formatter\FormatterInterface;
 use Aws\DynamoDb\Marshaler;
 use Monolog\Formatter\ScalarFormatter;
-<<<<<<< HEAD
-use Monolog\Level;
-use Monolog\LogRecord;
-=======
 use Monolog\Logger;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Amazon DynamoDB handler (http://aws.amazon.com/dynamodb/)
@@ -33,17 +28,6 @@ class DynamoDbHandler extends AbstractProcessingHandler
 {
     public const DATE_FORMAT = 'Y-m-d\TH:i:s.uO';
 
-<<<<<<< HEAD
-    protected DynamoDbClient $client;
-
-    protected string $table;
-
-    protected Marshaler $marshaler;
-
-    public function __construct(DynamoDbClient $client, string $table, int|string|Level $level = Level::Debug, bool $bubble = true)
-    {
-        $this->marshaler = new Marshaler;
-=======
     /**
      * @var DynamoDbClient
      */
@@ -73,7 +57,6 @@ class DynamoDbHandler extends AbstractProcessingHandler
         } else {
             $this->version = 2;
         }
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         $this->client = $client;
         $this->table = $table;
@@ -82,14 +65,6 @@ class DynamoDbHandler extends AbstractProcessingHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function write(LogRecord $record): void
-    {
-        $filtered = $this->filterEmptyFields($record->formatted);
-        $formatted = $this->marshaler->marshalItem($filtered);
-=======
      * {@inheritDoc}
      */
     protected function write(array $record): void
@@ -101,7 +76,6 @@ class DynamoDbHandler extends AbstractProcessingHandler
             /** @phpstan-ignore-next-line */
             $formatted = $this->client->formatAttributes($filtered);
         }
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         $this->client->putItem([
             'TableName' => $this->table,
@@ -116,20 +90,12 @@ class DynamoDbHandler extends AbstractProcessingHandler
     protected function filterEmptyFields(array $record): array
     {
         return array_filter($record, function ($value) {
-<<<<<<< HEAD
-            return [] !== $value;
-=======
             return !empty($value) || false === $value || 0 === $value;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         });
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {

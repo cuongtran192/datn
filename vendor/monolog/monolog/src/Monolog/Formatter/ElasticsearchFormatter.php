@@ -12,10 +12,6 @@
 namespace Monolog\Formatter;
 
 use DateTimeInterface;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Format a log message into an Elasticsearch record
@@ -27,29 +23,16 @@ class ElasticsearchFormatter extends NormalizerFormatter
     /**
      * @var string Elasticsearch index name
      */
-<<<<<<< HEAD
-    protected string $index;
-=======
     protected $index;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var string Elasticsearch record type
      */
-<<<<<<< HEAD
-    protected string $type;
-=======
     protected $type;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string $index Elasticsearch index name
      * @param string $type  Elasticsearch record type
-<<<<<<< HEAD
-     *
-     * @throws \RuntimeException If the function json_encode does not exist
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(string $index, string $type)
     {
@@ -61,15 +44,9 @@ class ElasticsearchFormatter extends NormalizerFormatter
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    public function format(LogRecord $record)
-=======
      * {@inheritDoc}
      */
     public function format(array $record)
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $record = parent::format($record);
 
@@ -78,11 +55,8 @@ class ElasticsearchFormatter extends NormalizerFormatter
 
     /**
      * Getter index
-<<<<<<< HEAD
-=======
      *
      * @return string
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getIndex(): string
     {
@@ -91,11 +65,8 @@ class ElasticsearchFormatter extends NormalizerFormatter
 
     /**
      * Getter type
-<<<<<<< HEAD
-=======
      *
      * @return string
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getType(): string
     {

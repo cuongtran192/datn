@@ -12,10 +12,6 @@
 namespace Monolog\Formatter;
 
 use Monolog\Utils;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Class FluentdFormatter
@@ -43,16 +39,8 @@ class FluentdFormatter implements FormatterInterface
     /**
      * @var bool $levelTag should message level be a part of the fluentd tag
      */
-<<<<<<< HEAD
-    protected bool $levelTag = false;
-
-    /**
-     * @throws \RuntimeException If the function json_encode does not exist
-     */
-=======
     protected $levelTag = false;
 
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     public function __construct(bool $levelTag = false)
     {
         if (!function_exists('json_encode')) {
@@ -67,27 +55,6 @@ class FluentdFormatter implements FormatterInterface
         return $this->levelTag;
     }
 
-<<<<<<< HEAD
-    public function format(LogRecord $record): string
-    {
-        $tag = $record->channel;
-        if ($this->levelTag) {
-            $tag .= '.' . $record->level->toPsrLogLevel();
-        }
-
-        $message = [
-            'message' => $record->message,
-            'context' => $record->context,
-            'extra' => $record->extra,
-        ];
-
-        if (!$this->levelTag) {
-            $message['level'] = $record->level->value;
-            $message['level_name'] = $record->level->getName();
-        }
-
-        return Utils::jsonEncode([$tag, $record->datetime->getTimestamp(), $message]);
-=======
     public function format(array $record): string
     {
         $tag = $record['channel'];
@@ -107,7 +74,6 @@ class FluentdFormatter implements FormatterInterface
         }
 
         return Utils::jsonEncode([$tag, $record['datetime']->getTimestamp(), $message]);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     public function formatBatch(array $records): string

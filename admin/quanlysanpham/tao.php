@@ -80,18 +80,17 @@ if (isset($_GET['id'])) {
         <label for="discount">Giảm giá:</label>
         <input type="number" id="discount" name="discount" min="0" required><br>
 
-        <label for="image_link_1">Link hình ảnh 1:</label>
-        <input type="text" id="image_link_1" name="image_link_1" required><br>
+        <label for="image1">Image 1:</label>
+        <input type="file" name="image_1" accept="image/*" required><br>
 
-        <label for="image_link_2">Link hình ảnh 2:</label>
-        <input type="text" id="image_link_2" name="image_link_2"><br>
+        <label for="image2">Image 2:</label>
+        <input type="file" name="image_2" accept="image/*" required><br>
 
-        <label for="image_link_3">Link hình ảnh 3:</label>
-        <input type="text" id="image_link_3" name="image_link_3"><br>
+        <label for="image3">Image 3:</label>
+        <input type="file" name="image_3" accept="image/*" required><br>
 
-        <label for="image_link_4">Link hình ảnh 4:</label>
-        <input type="text" id="image_link_4" name="image_link_4"><br>
-
+        <label for="image4">Image 4:</label>
+        <input type="file" name="image_4" accept="image/*" required><br>
         <label for="number">Số lượng:</label>
         <input type="number" id="number" name="number" min="0" required><br>
 

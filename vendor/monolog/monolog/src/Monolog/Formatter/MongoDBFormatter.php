@@ -14,10 +14,6 @@ namespace Monolog\Formatter;
 use MongoDB\BSON\Type;
 use MongoDB\BSON\UTCDateTime;
 use Monolog\Utils;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Formats a record for use with the MongoDBHandler.
@@ -26,14 +22,6 @@ use Monolog\LogRecord;
  */
 class MongoDBFormatter implements FormatterInterface
 {
-<<<<<<< HEAD
-    private bool $exceptionTraceAsString;
-    private int $maxNestingLevel;
-    private bool $isLegacyMongoExt;
-
-    /**
-     * @param int  $maxNestingLevel        0 means infinite nesting, the $record itself is level 1, $record->context is 2
-=======
     /** @var bool */
     private $exceptionTraceAsString;
     /** @var int */
@@ -43,7 +31,6 @@ class MongoDBFormatter implements FormatterInterface
 
     /**
      * @param int  $maxNestingLevel        0 means infinite nesting, the $record itself is level 1, $record['context'] is 2
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      * @param bool $exceptionTraceAsString set to false to log exception traces as a sub documents instead of strings
      */
     public function __construct(int $maxNestingLevel = 3, bool $exceptionTraceAsString = true)
@@ -55,16 +42,6 @@ class MongoDBFormatter implements FormatterInterface
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     *
-     * @return mixed[]
-     */
-    public function format(LogRecord $record): array
-    {
-        /** @var mixed[] $res */
-        $res = $this->formatArray($record->toArray());
-=======
      * {@inheritDoc}
      *
      * @return mixed[]
@@ -73,17 +50,12 @@ class MongoDBFormatter implements FormatterInterface
     {
         /** @var mixed[] $res */
         $res = $this->formatArray($record);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         return $res;
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @return array<mixed[]>
      */
@@ -184,10 +156,7 @@ class MongoDBFormatter implements FormatterInterface
             ? (int) $milliseconds
             : (string) $milliseconds;
 
-<<<<<<< HEAD
-=======
         // @phpstan-ignore-next-line
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         return new UTCDateTime($milliseconds);
     }
 }

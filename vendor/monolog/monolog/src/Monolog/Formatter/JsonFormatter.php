@@ -11,13 +11,7 @@
 
 namespace Monolog\Formatter;
 
-<<<<<<< HEAD
-use Stringable;
 use Throwable;
-use Monolog\LogRecord;
-=======
-use Throwable;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Encodes whatever record data is passed to it as json
@@ -25,11 +19,8 @@ use Throwable;
  * This can be useful to log to databases or remote APIs
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
-<<<<<<< HEAD
-=======
  *
  * @phpstan-import-type Record from \Monolog\Logger
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  */
 class JsonFormatter extends NormalizerFormatter
 {
@@ -37,20 +28,6 @@ class JsonFormatter extends NormalizerFormatter
     public const BATCH_MODE_NEWLINES = 2;
 
     /** @var self::BATCH_MODE_* */
-<<<<<<< HEAD
-    protected int $batchMode;
-
-    protected bool $appendNewline;
-
-    protected bool $ignoreEmptyContextAndExtra;
-
-    protected bool $includeStacktraces = false;
-
-    /**
-     * @param self::BATCH_MODE_* $batchMode
-     *
-     * @throws \RuntimeException If the function json_encode does not exist
-=======
     protected $batchMode;
     /** @var bool */
     protected $appendNewline;
@@ -61,7 +38,6 @@ class JsonFormatter extends NormalizerFormatter
 
     /**
      * @param self::BATCH_MODE_* $batchMode
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(int $batchMode = self::BATCH_MODE_JSON, bool $appendNewline = true, bool $ignoreEmptyContextAndExtra = false, bool $includeStacktraces = false)
     {
@@ -94,19 +70,11 @@ class JsonFormatter extends NormalizerFormatter
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    public function format(LogRecord $record): string
-    {
-        $normalized = parent::format($record);
-=======
      * {@inheritDoc}
      */
     public function format(array $record): string
     {
         $normalized = $this->normalize($record);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         if (isset($normalized['context']) && $normalized['context'] === []) {
             if ($this->ignoreEmptyContextAndExtra) {
@@ -127,20 +95,6 @@ class JsonFormatter extends NormalizerFormatter
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    public function formatBatch(array $records): string
-    {
-        return match ($this->batchMode) {
-            static::BATCH_MODE_NEWLINES => $this->formatBatchNewlines($records),
-            default => $this->formatBatchJson($records),
-        };
-    }
-
-    /**
-     * @return $this
-=======
      * {@inheritDoc}
      */
     public function formatBatch(array $records): string
@@ -157,7 +111,6 @@ class JsonFormatter extends NormalizerFormatter
 
     /**
      * @return self
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function includeStacktraces(bool $include = true): self
     {
@@ -169,11 +122,7 @@ class JsonFormatter extends NormalizerFormatter
     /**
      * Return a JSON-encoded array of records.
      *
-<<<<<<< HEAD
-     * @phpstan-param LogRecord[] $records
-=======
      * @phpstan-param Record[] $records
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function formatBatchJson(array $records): string
     {
@@ -184,18 +133,6 @@ class JsonFormatter extends NormalizerFormatter
      * Use new lines to separate records instead of a
      * JSON-encoded array.
      *
-<<<<<<< HEAD
-     * @phpstan-param LogRecord[] $records
-     */
-    protected function formatBatchNewlines(array $records): string
-    {
-        $oldNewline = $this->appendNewline;
-        $this->appendNewline = false;
-        $formatted = array_map(fn (LogRecord $record) => $this->format($record), $records);
-        $this->appendNewline = $oldNewline;
-
-        return implode("\n", $formatted);
-=======
      * @phpstan-param Record[] $records
      */
     protected function formatBatchNewlines(array $records): string
@@ -210,23 +147,16 @@ class JsonFormatter extends NormalizerFormatter
         $this->appendNewline = $oldNewline;
 
         return implode("\n", $records);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     /**
      * Normalizes given $data.
      *
-<<<<<<< HEAD
-     * @return null|scalar|array<mixed[]|scalar|null|object>|object
-     */
-    protected function normalize(mixed $data, int $depth = 0): mixed
-=======
      * @param mixed $data
      *
      * @return mixed
      */
     protected function normalize($data, int $depth = 0)
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if ($depth > $this->maxNormalizeDepth) {
             return 'Over '.$this->maxNormalizeDepth.' levels deep, aborting normalization';
@@ -262,11 +192,7 @@ class JsonFormatter extends NormalizerFormatter
                 return $data;
             }
 
-<<<<<<< HEAD
-            if ($data instanceof Stringable) {
-=======
             if (method_exists($data, '__toString')) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 return $data->__toString();
             }
 
@@ -284,11 +210,7 @@ class JsonFormatter extends NormalizerFormatter
      * Normalizes given exception with or without its own stack trace based on
      * `includeStacktraces` property.
      *
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function normalizeException(Throwable $e, int $depth = 0): array
     {

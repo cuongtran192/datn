@@ -11,15 +11,8 @@
 
 namespace Monolog\Handler;
 
-<<<<<<< HEAD
-use Monolog\Level;
 use Monolog\Logger;
 use Psr\Log\LogLevel;
-use Monolog\LogRecord;
-=======
-use Monolog\Logger;
-use Psr\Log\LogLevel;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Simple handler wrapper that deduplicates log records across multiple requests
@@ -40,31 +33,6 @@ use Psr\Log\LogLevel;
  * same way.
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
-<<<<<<< HEAD
- */
-class DeduplicationHandler extends BufferHandler
-{
-    protected string $deduplicationStore;
-
-    protected Level $deduplicationLevel;
-
-    protected int $time;
-
-    private bool $gc = false;
-
-    /**
-     * @param HandlerInterface                       $handler            Handler.
-     * @param string|null                            $deduplicationStore The file/path where the deduplication log should be kept
-     * @param int|string|Level|LogLevel::* $deduplicationLevel The minimum logging level for log records to be looked at for deduplication purposes
-     * @param int                                    $time               The period (in seconds) during which duplicate entries should be suppressed after a given log is sent through
-     * @param bool                                   $bubble             Whether the messages that are handled can bubble up the stack or not
-     *
-     * @phpstan-param value-of<Level::VALUES>|value-of<Level::NAMES>|Level|LogLevel::* $deduplicationLevel
-     */
-    public function __construct(HandlerInterface $handler, ?string $deduplicationStore = null, int|string|Level $deduplicationLevel = Level::Error, int $time = 60, bool $bubble = true)
-    {
-        parent::__construct($handler, 0, Level::Debug, $bubble, false);
-=======
  *
  * @phpstan-import-type Record from \Monolog\Logger
  * @phpstan-import-type LevelName from \Monolog\Logger
@@ -104,7 +72,6 @@ class DeduplicationHandler extends BufferHandler
     public function __construct(HandlerInterface $handler, ?string $deduplicationStore = null, $deduplicationLevel = Logger::ERROR, int $time = 60, bool $bubble = true)
     {
         parent::__construct($handler, 0, Logger::DEBUG, $bubble, false);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         $this->deduplicationStore = $deduplicationStore === null ? sys_get_temp_dir() . '/monolog-dedup-' . substr(md5(__FILE__), 0, 20) .'.log' : $deduplicationStore;
         $this->deduplicationLevel = Logger::toMonologLevel($deduplicationLevel);
@@ -120,13 +87,8 @@ class DeduplicationHandler extends BufferHandler
         $passthru = null;
 
         foreach ($this->buffer as $record) {
-<<<<<<< HEAD
-            if ($record->level->value >= $this->deduplicationLevel->value) {
-                $passthru = $passthru === true || !$this->isDuplicate($record);
-=======
             if ($record['level'] >= $this->deduplicationLevel) {
                 $passthru = $passthru || !$this->isDuplicate($record);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 if ($passthru) {
                     $this->appendRecord($record);
                 }
@@ -145,14 +107,10 @@ class DeduplicationHandler extends BufferHandler
         }
     }
 
-<<<<<<< HEAD
-    private function isDuplicate(LogRecord $record): bool
-=======
     /**
      * @phpstan-param Record $record
      */
     private function isDuplicate(array $record): bool
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!file_exists($this->deduplicationStore)) {
             return false;
@@ -164,22 +122,13 @@ class DeduplicationHandler extends BufferHandler
         }
 
         $yesterday = time() - 86400;
-<<<<<<< HEAD
-        $timestampValidity = $record->datetime->getTimestamp() - $this->time;
-        $expectedMessage = preg_replace('{[\r\n].*}', '', $record->message);
-=======
         $timestampValidity = $record['datetime']->getTimestamp() - $this->time;
         $expectedMessage = preg_replace('{[\r\n].*}', '', $record['message']);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         for ($i = count($store) - 1; $i >= 0; $i--) {
             list($timestamp, $level, $message) = explode(':', $store[$i], 3);
 
-<<<<<<< HEAD
-            if ($level === $record->level->getName() && $message === $expectedMessage && $timestamp > $timestampValidity) {
-=======
             if ($level === $record['level_name'] && $message === $expectedMessage && $timestamp > $timestampValidity) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 return true;
             }
 
@@ -199,11 +148,7 @@ class DeduplicationHandler extends BufferHandler
 
         $handle = fopen($this->deduplicationStore, 'rw+');
 
-<<<<<<< HEAD
-        if (false === $handle) {
-=======
         if (!$handle) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \RuntimeException('Failed to open file for reading and writing: ' . $this->deduplicationStore);
         }
 
@@ -214,11 +159,7 @@ class DeduplicationHandler extends BufferHandler
 
         while (!feof($handle)) {
             $log = fgets($handle);
-<<<<<<< HEAD
-            if (is_string($log) && '' !== $log && substr($log, 0, 10) >= $timestampValidity) {
-=======
             if ($log && substr($log, 0, 10) >= $timestampValidity) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 $validLogs[] = $log;
             }
         }
@@ -235,17 +176,11 @@ class DeduplicationHandler extends BufferHandler
         $this->gc = false;
     }
 
-<<<<<<< HEAD
-    private function appendRecord(LogRecord $record): void
-    {
-        file_put_contents($this->deduplicationStore, $record->datetime->getTimestamp() . ':' . $record->level->getName() . ':' . preg_replace('{[\r\n].*}', '', $record->message) . "\n", FILE_APPEND);
-=======
     /**
      * @phpstan-param Record $record
      */
     private function appendRecord(array $record): void
     {
         file_put_contents($this->deduplicationStore, $record['datetime']->getTimestamp() . ':' . $record['level_name'] . ':' . preg_replace('{[\r\n].*}', '', $record['message']) . "\n", FILE_APPEND);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }

@@ -13,12 +13,7 @@ namespace Monolog\Handler;
 
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
-<<<<<<< HEAD
-use Monolog\Level;
-use Monolog\LogRecord;
-=======
 use Monolog\Logger;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sends logs to Fleep.io using Webhook integrations
@@ -27,11 +22,8 @@ use Monolog\Logger;
  *
  * @see https://fleep.io/integrations/webhooks/ Fleep Webhooks Documentation
  * @author Ando Roots <ando@sqroot.eu>
-<<<<<<< HEAD
-=======
  *
  * @phpstan-import-type FormattedRecord from AbstractProcessingHandler
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  */
 class FleepHookHandler extends SocketHandler
 {
@@ -42,11 +34,7 @@ class FleepHookHandler extends SocketHandler
     /**
      * @var string Webhook token (specifies the conversation where logs are sent)
      */
-<<<<<<< HEAD
-    protected string $token;
-=======
     protected $token;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * Construct a new Fleep.io Handler.
@@ -54,21 +42,12 @@ class FleepHookHandler extends SocketHandler
      * For instructions on how to create a new web hook in your conversations
      * see https://fleep.io/integrations/webhooks/
      *
-<<<<<<< HEAD
-     * @param  string                    $token Webhook token
-     * @throws MissingExtensionException if OpenSSL is missing
-     */
-    public function __construct(
-        string $token,
-        $level = Level::Debug,
-=======
      * @param  string                    $token  Webhook token
      * @throws MissingExtensionException
      */
     public function __construct(
         string $token,
         $level = Logger::DEBUG,
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true,
         bool $persistent = false,
         float $timeout = 0.0,
@@ -110,26 +89,16 @@ class FleepHookHandler extends SocketHandler
     /**
      * Handles a log record
      */
-<<<<<<< HEAD
-    public function write(LogRecord $record): void
-=======
     public function write(array $record): void
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::write($record);
         $this->closeSocket();
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function generateDataStream(LogRecord $record): string
-=======
      * {@inheritDoc}
      */
     protected function generateDataStream(array $record): string
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $content = $this->buildContent($record);
 
@@ -152,13 +121,6 @@ class FleepHookHandler extends SocketHandler
 
     /**
      * Builds the body of API call
-<<<<<<< HEAD
-     */
-    private function buildContent(LogRecord $record): string
-    {
-        $dataArray = [
-            'message' => $record->formatted,
-=======
      *
      * @phpstan-param FormattedRecord $record
      */
@@ -166,7 +128,6 @@ class FleepHookHandler extends SocketHandler
     {
         $dataArray = [
             'message' => $record['formatted'],
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         ];
 
         return http_build_query($dataArray);

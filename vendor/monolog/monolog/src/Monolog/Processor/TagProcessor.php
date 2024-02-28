@@ -11,11 +11,6 @@
 
 namespace Monolog\Processor;
 
-<<<<<<< HEAD
-use Monolog\LogRecord;
-
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 /**
  * Adds a tags array into record
  *
@@ -24,11 +19,7 @@ use Monolog\LogRecord;
 class TagProcessor implements ProcessorInterface
 {
     /** @var string[] */
-<<<<<<< HEAD
-    private array $tags;
-=======
     private $tags;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string[] $tags
@@ -40,10 +31,6 @@ class TagProcessor implements ProcessorInterface
 
     /**
      * @param string[] $tags
-<<<<<<< HEAD
-     * @return $this
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function addTags(array $tags = []): self
     {
@@ -54,10 +41,6 @@ class TagProcessor implements ProcessorInterface
 
     /**
      * @param string[] $tags
-<<<<<<< HEAD
-     * @return $this
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setTags(array $tags = []): self
     {
@@ -67,19 +50,11 @@ class TagProcessor implements ProcessorInterface
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    public function __invoke(LogRecord $record): LogRecord
-    {
-        $record->extra['tags'] = $this->tags;
-=======
      * {@inheritDoc}
      */
     public function __invoke(array $record): array
     {
         $record['extra']['tags'] = $this->tags;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         return $record;
     }

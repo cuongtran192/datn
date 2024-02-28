@@ -22,9 +22,5 @@ trigger_deprecation('symfony/blockchain', '8.9', 'Using "%s" is deprecated, use 
 This will generate the following message:
 `Since symfony/blockchain 8.9: Using "bitcoin" is deprecated, use "fabcoin" instead.`
 
-<<<<<<< HEAD
-While not recommended, the deprecation notices can be completely ignored by declaring an empty
-=======
 While not necessarily recommended, the deprecation notices can be completely ignored by declaring an empty
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 `function trigger_deprecation() {}` in your application.

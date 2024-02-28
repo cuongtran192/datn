@@ -11,18 +11,10 @@
 
 namespace Monolog\Handler;
 
-<<<<<<< HEAD
-use Monolog\Level;
-use Monolog\Utils;
-use Monolog\Formatter\FlowdockFormatter;
-use Monolog\Formatter\FormatterInterface;
-use Monolog\LogRecord;
-=======
 use Monolog\Logger;
 use Monolog\Utils;
 use Monolog\Formatter\FlowdockFormatter;
 use Monolog\Formatter\FormatterInterface;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sends notifications through the Flowdock push API
@@ -34,34 +26,23 @@ use Monolog\Formatter\FormatterInterface;
  *
  * @author Dominik Liebler <liebler.dominik@gmail.com>
  * @see https://www.flowdock.com/api/push
-<<<<<<< HEAD
-=======
  *
  * @phpstan-import-type FormattedRecord from AbstractProcessingHandler
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  * @deprecated Since 2.9.0 and 3.3.0, Flowdock was shutdown we will thus drop this handler in Monolog 4
  */
 class FlowdockHandler extends SocketHandler
 {
-<<<<<<< HEAD
-    protected string $apiToken;
-=======
     /**
      * @var string
      */
     protected $apiToken;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @throws MissingExtensionException if OpenSSL is missing
      */
     public function __construct(
         string $apiToken,
-<<<<<<< HEAD
-        $level = Level::Debug,
-=======
         $level = Logger::DEBUG,
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true,
         bool $persistent = false,
         float $timeout = 0.0,
@@ -87,11 +68,7 @@ class FlowdockHandler extends SocketHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-=======
      * {@inheritDoc}
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -111,15 +88,9 @@ class FlowdockHandler extends SocketHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function write(LogRecord $record): void
-=======
      * {@inheritDoc}
      */
     protected function write(array $record): void
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::write($record);
 
@@ -127,15 +98,9 @@ class FlowdockHandler extends SocketHandler
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    protected function generateDataStream(LogRecord $record): string
-=======
      * {@inheritDoc}
      */
     protected function generateDataStream(array $record): string
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $content = $this->buildContent($record);
 
@@ -144,19 +109,12 @@ class FlowdockHandler extends SocketHandler
 
     /**
      * Builds the body of API call
-<<<<<<< HEAD
-     */
-    private function buildContent(LogRecord $record): string
-    {
-        return Utils::jsonEncode($record->formatted);
-=======
      *
      * @phpstan-param FormattedRecord $record
      */
     private function buildContent(array $record): string
     {
         return Utils::jsonEncode($record['formatted']['flowdock']);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     /**

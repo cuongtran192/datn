@@ -12,10 +12,6 @@
 namespace Monolog\Processor;
 
 use Monolog\Utils;
-<<<<<<< HEAD
-use Monolog\LogRecord;
-=======
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Processes a record's message according to PSR-3 rules
@@ -28,17 +24,11 @@ class PsrLogMessageProcessor implements ProcessorInterface
 {
     public const SIMPLE_DATE = "Y-m-d\TH:i:s.uP";
 
-<<<<<<< HEAD
-    private ?string $dateFormat;
-
-    private bool $removeUsedContextFields;
-=======
     /** @var string|null */
     private $dateFormat;
 
     /** @var bool */
     private $removeUsedContextFields;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string|null $dateFormat              The format of the timestamp: one supported by DateTime::format
@@ -51,37 +41,15 @@ class PsrLogMessageProcessor implements ProcessorInterface
     }
 
     /**
-<<<<<<< HEAD
-     * @inheritDoc
-     */
-    public function __invoke(LogRecord $record): LogRecord
-    {
-        if (false === strpos($record->message, '{')) {
-=======
      * {@inheritDoc}
      */
     public function __invoke(array $record): array
     {
         if (false === strpos($record['message'], '{')) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             return $record;
         }
 
         $replacements = [];
-<<<<<<< HEAD
-        $context = $record->context;
-
-        foreach ($context as $key => $val) {
-            $placeholder = '{' . $key . '}';
-            if (strpos($record->message, $placeholder) === false) {
-                continue;
-            }
-
-            if (null === $val || is_scalar($val) || (is_object($val) && method_exists($val, "__toString"))) {
-                $replacements[$placeholder] = $val;
-            } elseif ($val instanceof \DateTimeInterface) {
-                if (null === $this->dateFormat && $val instanceof \Monolog\DateTimeImmutable) {
-=======
         foreach ($record['context'] as $key => $val) {
             $placeholder = '{' . $key . '}';
             if (strpos($record['message'], $placeholder) === false) {
@@ -92,16 +60,11 @@ class PsrLogMessageProcessor implements ProcessorInterface
                 $replacements[$placeholder] = $val;
             } elseif ($val instanceof \DateTimeInterface) {
                 if (!$this->dateFormat && $val instanceof \Monolog\DateTimeImmutable) {
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                     // handle monolog dates using __toString if no specific dateFormat was asked for
                     // so that it follows the useMicroseconds flag
                     $replacements[$placeholder] = (string) $val;
                 } else {
-<<<<<<< HEAD
-                    $replacements[$placeholder] = $val->format($this->dateFormat ?? static::SIMPLE_DATE);
-=======
                     $replacements[$placeholder] = $val->format($this->dateFormat ?: static::SIMPLE_DATE);
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
                 }
             } elseif ($val instanceof \UnitEnum) {
                 $replacements[$placeholder] = $val instanceof \BackedEnum ? $val->value : $val->name;
@@ -114,13 +77,6 @@ class PsrLogMessageProcessor implements ProcessorInterface
             }
 
             if ($this->removeUsedContextFields) {
-<<<<<<< HEAD
-                unset($context[$key]);
-            }
-        }
-
-        return $record->with(message: strtr($record->message, $replacements), context: $context);
-=======
                 unset($record['context'][$key]);
             }
         }
@@ -128,6 +84,5 @@ class PsrLogMessageProcessor implements ProcessorInterface
         $record['message'] = strtr($record['message'], $replacements);
 
         return $record;
->>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }
