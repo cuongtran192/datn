@@ -335,7 +335,7 @@ transform: scale(1.2);
     margin-left: 200px;
     margin-right: 200px;
     background: linear-gradient(to bottom, rgb(250, 138, 0), rgb(252, 85, 2));
-    height: 710px; /* Điều chỉnh chiều cao tùy ý */
+    height: 725px; /* Điều chỉnh chiều cao tùy ý */
     border-radius: 20px; /* Bo tròn các góc */
         margin-top: 25px; /* Cách bên trên là 25px */
 }

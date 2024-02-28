@@ -541,8 +541,8 @@ $connect = mysqli_connect($servername, $username, $password, $dbname);
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
 }
-  $sql = "SELECT * FROM product WHERE type_id='1'";
-  $counter = 0; // Counter to keep track of number of products in each row
+  $sql = "SELECT * FROM product WHERE purpose_id IN (1, 2, 3) ORDER BY RAND() LIMIT 5";
+  $counter = 4; // Counter to keep track of number of products in each row
 
   if ($result = mysqli_query($connect, $sql)) {
     $counter = 0; // Initialize product counter
@@ -556,13 +556,13 @@ if (!$connect) {
             echo '<div class="row">';
         }
 
-        echo '<div class="col-md-2 m-3 text-center px-25 custom-column" style="margin-bottom: 50px;">';
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(220px + 2.3em);"> ';
         echo '<div class="border bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
         echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.3em; overflow: hidden; font-size: 14px;">' . $row['name'] . '</h5>';
+        echo '<h5 class="card-title" style="max-height: 2.4em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
         echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
@@ -588,15 +588,14 @@ if (!$connect) {
     echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
 }
 ?>
-</div>
 <div>
-    <h2 style="color: black; font-size: 30px; margin-top: 40px;">SẢN PHẨM BÁN CHẠY</h2>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP GAMING SIÊU ƯU ĐÃI</h2>
     </div>
 <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
 }
-  $sql = "SELECT * FROM product WHERE type_id='1'";
+  $sql = "SELECT * FROM product WHERE purpose_id='3'LIMIT 5";
   $counter = 0; // Counter to keep track of number of products in each row
 
   if ($result = mysqli_query($connect, $sql)) {
@@ -611,13 +610,13 @@ if (!$connect) {
             echo '<div class="row">';
         }
 
-        echo '<div class="col-md-2 m-4 text-center px-25" style="margin-bottom: 50px;">';
-        echo '<div class=" bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);"> ';
+        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
         echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.3em; overflow: hidden; font-size: 14px;">' . $row['name'] . '</h5>';
+        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
         echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
@@ -643,15 +642,17 @@ if (!$connect) {
     echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
 }
 ?>
-</div>
+
 <div>
-    <h2 style="color: black; font-size: 30px; margin-top: 20px;">LAPTOP GAMING HOT</h2>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP VĂN PHÒNG HOT</h2>
     </div>
-<?php
+
+
+    <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
 }
-  $sql = "SELECT * FROM product WHERE type_id='1'";
+  $sql = "SELECT * FROM product WHERE purpose_id='1'LIMIT 5";
   $counter = 0; // Counter to keep track of number of products in each row
 
   if ($result = mysqli_query($connect, $sql)) {
@@ -666,13 +667,14 @@ if (!$connect) {
             echo '<div class="row">';
         }
 
-        echo '<div class="col-md-2 m-4 text-center px-25" style="margin-bottom: 50px;">';
-        echo '<div class=" bg-white h-100" style="m-4;">'; // Add bg-white class to keep white background
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
+        ';
+        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
         echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
         echo '</a>';
         echo '<div class="card-body">';
-        echo '<h5 class="card-title" style="max-height: 2.3em; overflow: hidden; font-size: 14px;">' . $row['name'] . '</h5>';
+        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
         echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
 
         $originalPrice = $row['price'];
@@ -698,7 +700,178 @@ if (!$connect) {
     echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
 }
 ?>
-</div>
+<div>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP ĐỒ HỌA KHỦNG</h2>
+    </div>
+
+
+    <?php
+if (!$connect) {
+    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
+}
+  $sql = "SELECT * FROM product WHERE purpose_id='2'LIMIT 5";
+  $counter = 0; // Counter to keep track of number of products in each row
+
+  if ($result = mysqli_query($connect, $sql)) {
+    $counter = 0; // Initialize product counter
+    echo '<div class="row">';
+    echo '<a href="product.php" style="text-decoration: none;">'; // Thay link_den_trang_san_pham.php bằng đường link thực tế
+    echo '</a>';
+    echo '</div>';
+
+    while ($row = mysqli_fetch_array($result)) {
+        if ($counter % 5 == 0) { // Start a new row after every 5 products
+            echo '<div class="row">';
+        }
+
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
+        ';
+        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '</a>';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
+        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+
+        $originalPrice = $row['price'];
+        $discountPercentage = $row['discount'];
+        $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+
+        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '</div>'; // Close card-body
+        echo '<div class="card-footer"></div>'; // Empty card-footer
+        echo '</div>'; // Close card
+        echo '</div>'; // Close col-md-2
+
+        $counter++;
+
+        if ($counter % 5 == 0) { // Close the row after every 5 products
+            echo '</div>';
+        }
+    }
+    mysqli_free_result($result);
+} else {
+    echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
+}
+?>
+
+<div>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP VĂN PHÒNG HOT</h2>
+    </div>
+
+
+    <?php
+if (!$connect) {
+    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
+}
+  $sql = "SELECT * FROM product WHERE purpose_id='1'LIMIT 5";
+  $counter = 0; // Counter to keep track of number of products in each row
+
+  if ($result = mysqli_query($connect, $sql)) {
+    $counter = 0; // Initialize product counter
+    echo '<div class="row">';
+    echo '<a href="product.php" style="text-decoration: none;">'; // Thay link_den_trang_san_pham.php bằng đường link thực tế
+    echo '</a>';
+    echo '</div>';
+
+    while ($row = mysqli_fetch_array($result)) {
+        if ($counter % 5 == 0) { // Start a new row after every 5 products
+            echo '<div class="row">';
+        }
+
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
+        ';
+        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '</a>';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
+        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+
+        $originalPrice = $row['price'];
+        $discountPercentage = $row['discount'];
+        $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+
+        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '</div>'; // Close card-body
+        echo '<div class="card-footer"></div>'; // Empty card-footer
+        echo '</div>'; // Close card
+        echo '</div>'; // Close col-md-2
+
+        $counter++;
+
+        if ($counter % 5 == 0) { // Close the row after every 5 products
+            echo '</div>';
+        }
+    }
+    mysqli_free_result($result);
+} else {
+    echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
+}
+?>
+<div>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">BÀN PHÍM MỚI</h2>
+    </div>
+
+
+    <?php
+if (!$connect) {
+    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
+}
+  $sql = "SELECT * FROM product WHERE type_id='3'LIMIT 5";
+  $counter = 0; // Counter to keep track of number of products in each row
+
+  if ($result = mysqli_query($connect, $sql)) {
+    $counter = 0; // Initialize product counter
+    echo '<div class="row">';
+    echo '<a href="product.php" style="text-decoration: none;">'; // Thay link_den_trang_san_pham.php bằng đường link thực tế
+    echo '</a>';
+    echo '</div>';
+
+    while ($row = mysqli_fetch_array($result)) {
+        if ($counter % 5 == 0) { // Start a new row after every 5 products
+            echo '<div class="row">';
+        }
+
+        echo '<div class="col-md-2 m-4 text-center custom-column" style="margin-bottom: 50px; width: calc(221px + 2em);">
+        ';
+        echo '<div class=" boder bg-white h-120" style="m-4;">'; // Add bg-white class to keep white background
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="" style="display:inline;">';
+        echo '</a>';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title" style="max-height: 2.5em; overflow: hidden; font-size: 16px;">' . $row['name'] . '</h5>';
+        echo '<p class="card-text description" style="text-align: left; font-size: 16px;"><br>' . str_replace(", ", "<br>", $row['description']) . '</p>';
+
+        $originalPrice = $row['price'];
+        $discountPercentage = $row['discount'];
+        $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
+
+        echo '<h5 class="card-text discounted-price" style="font-size: 19px; padding: 5px; display: inline-block;text-decoration: line-through;">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+        echo '<div class="rounded-pill bg-danger text-white px-0.5 py-1 ml-1 mr-1 align-items-center" style="display: inline-block;">' . -intval($discountPercentage) . '%</div>';
+        echo '<h6 class="card-text price" style="padding: 5px;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+        echo '</div>'; // Close card-body
+        echo '<div class="card-footer"></div>'; // Empty card-footer
+        echo '</div>'; // Close card
+        echo '</div>'; // Close col-md-2
+
+        $counter++;
+
+        if ($counter % 5 == 0) { // Close the row after every 5 products
+            echo '</div>';
+        }
+    }
+    mysqli_free_result($result);
+} else {
+    echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
+}
+?>
 <?php
 include 'footer.php';
 ?>

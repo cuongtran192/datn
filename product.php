@@ -26,11 +26,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         // Hiển thị hình ảnh đại diện
         echo '<div class="product-images">';
         echo '<div class="main-image" id="main-image" style="margin-left: 200px; margin-top: 5px;">'; // Cách lề trái 200px và cách lề trên 25px
-        echo '<img src="' . $row['image_link_1'] . '" alt="' . $row['name'] . '" style=" width: 500px; height: 450px; display: inline-block; ">';
+        echo '<img src="' . $row['image_link_1'] . '" alt="' . $row['name'] . '" style=" width: 550px; height: 500px; display: inline-block; ">';
         echo '</div>'; // Close main-image
         echo '<div class="product-name" style="position: absolute; top: 210px ;margin-right: 120px;margin-left: 850px;  font-size: 30px; z-index: 1;">';
         echo $row['name'];
-        echo '<div class="product-info" style="position: absolute; top: 90px; left: 0px; font-size: 16px; color: #555555; z-index: 1;">';
+        echo '</div>'; // Close product-name   
+        echo '<div class="product-info" style="position: absolute; top: 300px; left: 850px; font-size: 16px; color: #555555; z-index: 1;">';
         echo '<span>Số lượng:   ' . $row['number'] . '</span> | <span>Đã bán:   ' . $row['number_buy'] . '</span> | ';
 
 // Lấy đánh giá trung bình từ bảng review
@@ -62,6 +63,9 @@ if ($brand_result->num_rows > 0 && $purpose_result->num_rows > 0) {
         echo '<span style="font-size: 25px; text-transform: uppercase;">  Hãng: <u>' . $brand_row['name'] . '</u></span>';
         echo '<span style="font-size: 25px; text-transform: uppercase;">  Loại: <u>' . $purpose_row['name'] . '</u></span>';
 }
+echo '</div>';
+
+echo '<div class="price-info" style="position: absolute; top: 360px; left: 850px; font-size: 16px; color: #555555; z-index: 1;">';
 $originalPrice = $row['price'];
 $discountPercentage = $row['discount'];
 $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
@@ -74,7 +78,7 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo '<h6 class="card-text price" style="padding: 10px; color: #FF0000; font-size: 40px;background-color: transparent; font-family: Arial, sans-serif; white-space: nowrap;">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
 
 // Hiển thị phần trừ giảm giá theo phần trăm (màu đỏ)
-        echo '<div class=" bg-danger text-white px-2 py-1 ml-1 align-items-center" style="position: absolute; top: 55px; left: 42%; font-family: Arial, sans-serif; font-weight: bold; white-space: nowrap;">' . -intval($discountPercentage) . '%</div>';
+        echo '<div class=" bg-danger text-white px-2 py-1 ml-1 align-items-center" style="position: absolute; top: 17px; left: 53%; font-family: Arial, sans-serif; font-weight: bold; white-space: nowrap;">' . -intval($discountPercentage) . '%</div>';
         echo '<div class="discount-code" style="font-family: Arial, sans-serif; font-size: 16px; white-space: nowrap;">Mã giảm giá: ';
         // Hiển thị phần mã giảm giá (chỉ là text cố định)
         echo '<div class="discount-code" style="font-family: Arial, sans-serif; font-size: 16px; white-space: nowrap; background-color: #ffcccc; padding: 5px; display: inline-block; border-radius: 5px; margin-top: 10px; color: #FF0000;">Giảm đ200k</div>';
@@ -119,14 +123,14 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo '<i class="fa fa-phone" style="color: #CC0000; margin-left: 40px; margin-right: 10px;"></i> Hỗ trợ thắc mắc';
         echo '</div>';
 
-        echo '</div>'; // Close product-name       
+         
         echo '</div>'; // Close main-image
         
         // Hiển thị 4 hình ảnh nhỏ
         echo '<div class="thumbnail-images" style="margin-left: 200px;">'; // Cách lề trái 200px
         for ($i = 1; $i <= 4; $i++) { // Bắt đầu từ 2 để bỏ qua hình ảnh đầu tiên
         echo '<div class="thumbnail" onmouseover="changeMainImage(this)" style="display: inline-block; margin: 0px;">'; // Tạo khoảng cách 10px giữa các hình ảnh nhỏ
-        echo '<img src="' . $row['image_link_' . $i] . '" alt="' . $row['name'] . '" style="width: 125px; height: 130; ">';
+        echo '<img src="' . $row['image_link_' . $i] . '" alt="' . $row['name'] . '" style="width: 137.5px; height: 130; ">';
         echo '</div>'; // Close thumbnail
         }
         echo '</div>'; // Close thumbnail-images

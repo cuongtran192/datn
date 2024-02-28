@@ -48,6 +48,8 @@ $stmt_order_product->close();
 $conn->close();
 
 // Chuyển hướng người dùng đến trang cảm ơn
-header("Location: thank_you.php");
-exit();
+echo '<script>';
+echo 'alert("Cảm ơn bạn đã mua hàng. Nhấn OK để quay lại trang chủ.");';
+echo 'window.location.href = "index.php";'; // Chuyển hướng về trang chủ
+echo '</script>';
 ?>
