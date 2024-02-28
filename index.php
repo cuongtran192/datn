@@ -150,7 +150,7 @@ if (isset($_SESSION['phone'])) {
                         <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle" href="#">Laptop</a>
                             <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                <li><a class="dropdown-item" href="#">Laptop Gaming</a></li>
+                                <li><a class="dropdown-item" href="product/laptopgaming.php">Laptop Gaming</a></li>
                                 <li><a class="dropdown-item" href="#">Laptop Đồ Họa</a></li>
                                 <li><a class="dropdown-item" href="#">Laptop Văn Phòng</a></li>
                                 <li class="dropdown-divider"></li>
