@@ -38,7 +38,7 @@ foreach ($product as $product) {
     echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $product['discount'] . "</div>";
     
     // Display image links (adjust as needed based on your actual image URLs)
-    echo "<div class='border-b-2 font-sans font-base text-base p-2'><img class='w-[20px] h-[20px]'src='{$product['image_link_1']}' alt='Image 1'></div>";
+    echo "<div class='border-b-2 font-sans font-base text-base p-2'><img class='w-[60px] h-[60px]'src='{$product['image_link_1']}' alt='Image'></div>";
    
     
     echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $product['number'] . "</div>";

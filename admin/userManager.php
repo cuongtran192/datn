@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
 
         case 'xulysua':
           $id= $_GET['id'];
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              $idd = $_POST['id'];
           $name = $_POST['name'];
             $address = $_POST['address'];

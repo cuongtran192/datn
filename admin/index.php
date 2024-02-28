@@ -65,7 +65,7 @@
      </a>
 
   <!-- Đơn hàng -->
-    <a  href="index.php?page=cart"  class="text-gray-500 flex flex-row my-2  hover:bg-gray-300 p-2 rounded-lg ">
+    <a  href="index.php?page=order"  class="text-gray-500 flex flex-row my-2  hover:bg-gray-300 p-2 rounded-lg ">
      <i class="fas fa-shopping-cart text-4xl mr-4  w-10"></i>
      <p class="text-2xl">Quản lý Đơn hàng</p>
     </a>
@@ -104,7 +104,7 @@ if (isset($_GET['page'])) {
         case 'product':
             include 'productManager.php';
             break;
-        case 'cart':
+        case 'order':
           include 'cartManager.php';
             break;
           

@@ -32,13 +32,7 @@ if (isset($_GET['action'])) {
              $type_id=$_POST['type_id'];
              $brand_id=$_POST['brand_id'];
              $purpose_id =$_POST['purpose_id'];
-            
-
-
-
-
-
-  
+          
   // Cập nhật dữ liệu trong bảng users
   $sql = "UPDATE product
         SET name='$name', description='$description', price='$price', discount='$discount', 
@@ -60,6 +54,11 @@ if (isset($_GET['action'])) {
         $id= $_GET['id'];
             include "quanlysanpham/formsua.php";
               break;
+       case 'xem':
+            $id= $_GET['id'];
+                include "quanlysanpham/xem.php";
+                break;
+
         case 'xoa':
           $id= $_GET['id'];
           $deleteQuery = "DELETE FROM product WHERE product_id = $id";
