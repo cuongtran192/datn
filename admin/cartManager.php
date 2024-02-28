@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
           $name = $_POST['name'];
             $address = $_POST['address'];
           $phone = $_POST['phone'];
-          $state = $_POST['email'];
+          $state = $_POST['order_status'];
 
   
   // Cập nhật dữ liệu trong bảng users
