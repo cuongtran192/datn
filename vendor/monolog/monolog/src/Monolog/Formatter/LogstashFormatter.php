@@ -11,8 +11,11 @@
 
 namespace Monolog\Formatter;
 
+<<<<<<< HEAD
 use Monolog\LogRecord;
 
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 /**
  * Serializes a log message to Logstash Event Format
  *
@@ -26,30 +29,49 @@ class LogstashFormatter extends NormalizerFormatter
     /**
      * @var string the name of the system for the Logstash log message, used to fill the @source field
      */
+<<<<<<< HEAD
     protected string $systemName;
+=======
+    protected $systemName;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var string an application name for the Logstash log message, used to fill the @type field
      */
+<<<<<<< HEAD
     protected string $applicationName;
+=======
+    protected $applicationName;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var string the key for 'extra' fields from the Monolog record
      */
+<<<<<<< HEAD
     protected string $extraKey;
+=======
+    protected $extraKey;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var string the key for 'context' fields from the Monolog record
      */
+<<<<<<< HEAD
     protected string $contextKey;
+=======
+    protected $contextKey;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string      $applicationName The application that sends the data, used as the "type" field of logstash
      * @param string|null $systemName      The system/machine name, used as the "source" field of logstash, defaults to the hostname of the machine
      * @param string      $extraKey        The key for extra keys inside logstash "fields", defaults to extra
      * @param string      $contextKey      The key for context keys inside logstash "fields", defaults to context
+<<<<<<< HEAD
      *
      * @throws \RuntimeException If the function json_encode does not exist
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(string $applicationName, ?string $systemName = null, string $extraKey = 'extra', string $contextKey = 'context')
     {
@@ -63,6 +85,7 @@ class LogstashFormatter extends NormalizerFormatter
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function format(LogRecord $record): string
@@ -95,6 +118,43 @@ class LogstashFormatter extends NormalizerFormatter
         }
         if (\count($recordData['context']) > 0) {
             $message[$this->contextKey] = $recordData['context'];
+=======
+     * {@inheritDoc}
+     */
+    public function format(array $record): string
+    {
+        $record = parent::format($record);
+
+        if (empty($record['datetime'])) {
+            $record['datetime'] = gmdate('c');
+        }
+        $message = [
+            '@timestamp' => $record['datetime'],
+            '@version' => 1,
+            'host' => $this->systemName,
+        ];
+        if (isset($record['message'])) {
+            $message['message'] = $record['message'];
+        }
+        if (isset($record['channel'])) {
+            $message['type'] = $record['channel'];
+            $message['channel'] = $record['channel'];
+        }
+        if (isset($record['level_name'])) {
+            $message['level'] = $record['level_name'];
+        }
+        if (isset($record['level'])) {
+            $message['monolog_level'] = $record['level'];
+        }
+        if ($this->applicationName) {
+            $message['type'] = $this->applicationName;
+        }
+        if (!empty($record['extra'])) {
+            $message[$this->extraKey] = $record['extra'];
+        }
+        if (!empty($record['context'])) {
+            $message[$this->contextKey] = $record['context'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return $this->toJson($message) . "\n";

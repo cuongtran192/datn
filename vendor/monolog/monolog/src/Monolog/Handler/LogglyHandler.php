@@ -11,12 +11,19 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LogglyFormatter;
 use function array_key_exists;
 use CurlHandle;
+<<<<<<< HEAD
 use Monolog\LogRecord;
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sends errors to Loggly.
@@ -34,6 +41,7 @@ class LogglyHandler extends AbstractProcessingHandler
     /**
      * Caches the curl handlers for every given endpoint.
      *
+<<<<<<< HEAD
      * @var CurlHandle[]
      */
     protected array $curlHandlers = [];
@@ -42,13 +50,28 @@ class LogglyHandler extends AbstractProcessingHandler
 
     /** @var string[] */
     protected array $tag = [];
+=======
+     * @var resource[]|CurlHandle[]
+     */
+    protected $curlHandlers = [];
+
+    /** @var string */
+    protected $token;
+
+    /** @var string[] */
+    protected $tag = [];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string $token API token supplied by Loggly
      *
      * @throws MissingExtensionException If the curl extension is missing
      */
+<<<<<<< HEAD
     public function __construct(string $token, int|string|Level $level = Level::Debug, bool $bubble = true)
+=======
+    public function __construct(string $token, $level = Logger::DEBUG, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the LogglyHandler');
@@ -61,8 +84,17 @@ class LogglyHandler extends AbstractProcessingHandler
 
     /**
      * Loads and returns the shared curl handler for the given endpoint.
+<<<<<<< HEAD
      */
     protected function getCurlHandler(string $endpoint): CurlHandle
+=======
+     *
+     * @param string $endpoint
+     *
+     * @return resource|CurlHandle
+     */
+    protected function getCurlHandler(string $endpoint)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!array_key_exists($endpoint, $this->curlHandlers)) {
             $this->curlHandlers[$endpoint] = $this->loadCurlHandle($endpoint);
@@ -73,8 +105,17 @@ class LogglyHandler extends AbstractProcessingHandler
 
     /**
      * Starts a fresh curl session for the given endpoint and returns its handler.
+<<<<<<< HEAD
      */
     private function loadCurlHandle(string $endpoint): CurlHandle
+=======
+     *
+     * @param string $endpoint
+     *
+     * @return resource|CurlHandle
+     */
+    private function loadCurlHandle(string $endpoint)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $url = sprintf("https://%s/%s/%s/", static::HOST, $endpoint, $this->token);
 
@@ -89,6 +130,7 @@ class LogglyHandler extends AbstractProcessingHandler
 
     /**
      * @param string[]|string $tag
+<<<<<<< HEAD
      * @return $this
      */
     public function setTag(string|array $tag): self
@@ -98,17 +140,31 @@ class LogglyHandler extends AbstractProcessingHandler
         } else {
             $this->tag = is_array($tag) ? $tag : [$tag];
         }
+=======
+     */
+    public function setTag($tag): self
+    {
+        $tag = !empty($tag) ? $tag : [];
+        $this->tag = is_array($tag) ? $tag : [$tag];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         return $this;
     }
 
     /**
      * @param string[]|string $tag
+<<<<<<< HEAD
      * @return $this
      */
     public function addTag(string|array $tag): self
     {
         if ('' !== $tag) {
+=======
+     */
+    public function addTag($tag): self
+    {
+        if (!empty($tag)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $tag = is_array($tag) ? $tag : [$tag];
             $this->tag = array_unique(array_merge($this->tag, $tag));
         }
@@ -116,9 +172,15 @@ class LogglyHandler extends AbstractProcessingHandler
         return $this;
     }
 
+<<<<<<< HEAD
     protected function write(LogRecord $record): void
     {
         $this->send($record->formatted, static::ENDPOINT_SINGLE);
+=======
+    protected function write(array $record): void
+    {
+        $this->send($record["formatted"], static::ENDPOINT_SINGLE);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     public function handleBatch(array $records): void
@@ -126,10 +188,17 @@ class LogglyHandler extends AbstractProcessingHandler
         $level = $this->level;
 
         $records = array_filter($records, function ($record) use ($level) {
+<<<<<<< HEAD
             return ($record->level->value >= $level->value);
         });
 
         if (\count($records) > 0) {
+=======
+            return ($record['level'] >= $level);
+        });
+
+        if ($records) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $this->send($this->getFormatter()->formatBatch($records), static::ENDPOINT_BATCH);
         }
     }
@@ -140,7 +209,11 @@ class LogglyHandler extends AbstractProcessingHandler
 
         $headers = ['Content-Type: application/json'];
 
+<<<<<<< HEAD
         if (\count($this->tag) > 0) {
+=======
+        if (!empty($this->tag)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $headers[] = 'X-LOGGLY-TAG: '.implode(',', $this->tag);
         }
 

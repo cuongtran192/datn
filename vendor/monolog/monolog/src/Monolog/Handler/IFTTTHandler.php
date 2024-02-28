@@ -11,9 +11,14 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Utils;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Utils;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * IFTTTHandler uses cURL to trigger IFTTT Maker actions
@@ -28,16 +33,28 @@ use Monolog\LogRecord;
  */
 class IFTTTHandler extends AbstractProcessingHandler
 {
+<<<<<<< HEAD
     private string $eventName;
     private string $secretKey;
+=======
+    /** @var string */
+    private $eventName;
+    /** @var string */
+    private $secretKey;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string $eventName The name of the IFTTT Maker event that should be triggered
      * @param string $secretKey A valid IFTTT secret key
+<<<<<<< HEAD
      *
      * @throws MissingExtensionException If the curl extension is missing
      */
     public function __construct(string $eventName, string $secretKey, int|string|Level $level = Level::Error, bool $bubble = true)
+=======
+     */
+    public function __construct(string $eventName, string $secretKey, $level = Logger::ERROR, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the IFTTTHandler');
@@ -50,6 +67,7 @@ class IFTTTHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function write(LogRecord $record): void
@@ -58,6 +76,16 @@ class IFTTTHandler extends AbstractProcessingHandler
             "value1" => $record->channel,
             "value2" => $record["level_name"],
             "value3" => $record->message,
+=======
+     * {@inheritDoc}
+     */
+    public function write(array $record): void
+    {
+        $postData = [
+            "value1" => $record["channel"],
+            "value2" => $record["level_name"],
+            "value3" => $record["message"],
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         ];
         $postString = Utils::jsonEncode($postData);
 

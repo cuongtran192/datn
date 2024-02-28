@@ -11,10 +11,16 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Rollbar\RollbarLogger;
 use Throwable;
 use Monolog\LogRecord;
+=======
+use Rollbar\RollbarLogger;
+use Throwable;
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sends errors to Rollbar
@@ -34,6 +40,7 @@ use Monolog\LogRecord;
  */
 class RollbarHandler extends AbstractProcessingHandler
 {
+<<<<<<< HEAD
     protected RollbarLogger $rollbarLogger;
 
     /**
@@ -42,11 +49,43 @@ class RollbarHandler extends AbstractProcessingHandler
     private bool $hasRecords = false;
 
     protected bool $initialized = false;
+=======
+    /**
+     * @var RollbarLogger
+     */
+    protected $rollbarLogger;
+
+    /** @var string[] */
+    protected $levelMap = [
+        Logger::DEBUG     => 'debug',
+        Logger::INFO      => 'info',
+        Logger::NOTICE    => 'info',
+        Logger::WARNING   => 'warning',
+        Logger::ERROR     => 'error',
+        Logger::CRITICAL  => 'critical',
+        Logger::ALERT     => 'critical',
+        Logger::EMERGENCY => 'critical',
+    ];
+
+    /**
+     * Records whether any log records have been added since the last flush of the rollbar notifier
+     *
+     * @var bool
+     */
+    private $hasRecords = false;
+
+    /** @var bool */
+    protected $initialized = false;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param RollbarLogger $rollbarLogger RollbarLogger object constructed with valid token
      */
+<<<<<<< HEAD
     public function __construct(RollbarLogger $rollbarLogger, int|string|Level $level = Level::Error, bool $bubble = true)
+=======
+    public function __construct(RollbarLogger $rollbarLogger, $level = Logger::ERROR, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $this->rollbarLogger = $rollbarLogger;
 
@@ -54,6 +93,7 @@ class RollbarHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * Translates Monolog log levels to Rollbar levels.
      *
      * @return 'debug'|'info'|'warning'|'error'|'critical'
@@ -89,6 +129,24 @@ class RollbarHandler extends AbstractProcessingHandler
             'monolog_level' => $record->level->getName(),
             'channel' => $record->channel,
             'datetime' => $record->datetime->format('U'),
+=======
+     * {@inheritDoc}
+     */
+    protected function write(array $record): void
+    {
+        if (!$this->initialized) {
+            // __destructor() doesn't get called on Fatal errors
+            register_shutdown_function(array($this, 'close'));
+            $this->initialized = true;
+        }
+
+        $context = $record['context'];
+        $context = array_merge($context, $record['extra'], [
+            'level' => $this->levelMap[$record['level']],
+            'monolog_level' => $record['level_name'],
+            'channel' => $record['channel'],
+            'datetime' => $record['datetime']->format('U'),
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         ]);
 
         if (isset($context['exception']) && $context['exception'] instanceof Throwable) {
@@ -96,7 +154,11 @@ class RollbarHandler extends AbstractProcessingHandler
             unset($context['exception']);
             $toLog = $exception;
         } else {
+<<<<<<< HEAD
             $toLog = $record->message;
+=======
+            $toLog = $record['message'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         // @phpstan-ignore-next-line
@@ -114,7 +176,11 @@ class RollbarHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function close(): void
     {
@@ -122,9 +188,15 @@ class RollbarHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function reset(): void
+=======
+     * {@inheritDoc}
+     */
+    public function reset()
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $this->flush();
 

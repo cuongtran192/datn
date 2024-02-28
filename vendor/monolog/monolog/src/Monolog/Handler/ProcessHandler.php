@@ -11,8 +11,12 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Stores to STDIN of any process, specified by a command.
@@ -34,14 +38,30 @@ class ProcessHandler extends AbstractProcessingHandler
      */
     private $process;
 
+<<<<<<< HEAD
     private string $command;
 
     private ?string $cwd;
+=======
+    /**
+     * @var string
+     */
+    private $command;
+
+    /**
+     * @var string|null
+     */
+    private $cwd;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var resource[]
      */
+<<<<<<< HEAD
     private array $pipes = [];
+=======
+    private $pipes = [];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var array<int, string[]>
@@ -58,7 +78,11 @@ class ProcessHandler extends AbstractProcessingHandler
      * @param  string|null               $cwd     "Current working directory" (CWD) for the process to be executed in.
      * @throws \InvalidArgumentException
      */
+<<<<<<< HEAD
     public function __construct(string $command, int|string|Level $level = Level::Debug, bool $bubble = true, ?string $cwd = null)
+=======
+    public function __construct(string $command, $level = Logger::DEBUG, bool $bubble = true, ?string $cwd = null)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if ($command === '') {
             throw new \InvalidArgumentException('The command argument must be a non-empty string.');
@@ -78,6 +102,7 @@ class ProcessHandler extends AbstractProcessingHandler
      *
      * @throws \UnexpectedValueException
      */
+<<<<<<< HEAD
     protected function write(LogRecord $record): void
     {
         $this->ensureProcessIsStarted();
@@ -86,6 +111,16 @@ class ProcessHandler extends AbstractProcessingHandler
 
         $errors = $this->readProcessErrors();
         if ($errors !== '') {
+=======
+    protected function write(array $record): void
+    {
+        $this->ensureProcessIsStarted();
+
+        $this->writeProcessInput($record['formatted']);
+
+        $errors = $this->readProcessErrors();
+        if (empty($errors) === false) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \UnexpectedValueException(sprintf('Errors while writing to process: %s', $errors));
         }
     }
@@ -129,7 +164,11 @@ class ProcessHandler extends AbstractProcessingHandler
 
         $errors = $this->readProcessErrors();
 
+<<<<<<< HEAD
         if (is_resource($this->process) === false || $errors !== '') {
+=======
+        if (is_resource($this->process) === false || empty($errors) === false) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \UnexpectedValueException(
                 sprintf('The process "%s" could not be opened: ' . $errors, $this->command)
             );
@@ -171,7 +210,11 @@ class ProcessHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function close(): void
     {

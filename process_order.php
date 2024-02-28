@@ -14,7 +14,7 @@ $order_date = date("Y-m-d H:i:s");
 
 // Thêm dữ liệu vào bảng orders
 $sql_order = "INSERT INTO orders (user_id, total_price, order_date, address, name, phone, state)
-              VALUES (?, ?, ?, ?, ?, ?, 'pending')";
+              VALUES (?, ?, ?, ?, ?, ?, 'cho_xac_nhan')";
 $stmt_order = $conn->prepare($sql_order);
 $stmt_order->bind_param("idssss", $user_id, $total_price, $order_date, $address, $name, $phone);
 $stmt_order->execute();

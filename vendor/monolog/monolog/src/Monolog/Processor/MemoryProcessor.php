@@ -21,12 +21,20 @@ abstract class MemoryProcessor implements ProcessorInterface
     /**
      * @var bool If true, get the real size of memory allocated from system. Else, only the memory used by emalloc() is reported.
      */
+<<<<<<< HEAD
     protected bool $realUsage;
+=======
+    protected $realUsage;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @var bool If true, then format memory size to human readable string (MB, KB, B depending on size)
      */
+<<<<<<< HEAD
     protected bool $useFormatting;
+=======
+    protected $useFormatting;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param bool $realUsage     Set this to true to get the real size of memory allocated from system.
@@ -41,6 +49,10 @@ abstract class MemoryProcessor implements ProcessorInterface
     /**
      * Formats bytes into a human readable string if $this->useFormatting is true, otherwise return $bytes as is
      *
+<<<<<<< HEAD
+=======
+     * @param  int        $bytes
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      * @return string|int Formatted string if $this->useFormatting is true, otherwise return $bytes as int
      */
     protected function formatBytes(int $bytes)

@@ -13,19 +13,36 @@ namespace Monolog\Attribute;
 
 /**
  * A reusable attribute to help configure a class or a method as a processor.
+<<<<<<< HEAD
  *
  * Using it offers no guarantee: it needs to be leveraged by a Monolog third-party consumer.
  *
+=======
+ * 
+ * Using it offers no guarantee: it needs to be leveraged by a Monolog third-party consumer.
+ * 
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  * Using it with the Monolog library only has no effect at all: processors should still be turned into a callable if
  * needed and manually pushed to the loggers and to the processable handlers.
  */
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 class AsMonologProcessor
 {
+<<<<<<< HEAD
+=======
+    /** @var string|null */
+    public $channel = null;
+    /** @var string|null */
+    public $handler = null;
+    /** @var string|null */
+    public $method = null;
+    
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     /**
      * @param string|null $channel  The logging channel the processor should be pushed to.
      * @param string|null $handler  The handler the processor should be pushed to.
      * @param string|null $method   The method that processes the records (if the attribute is used at the class level).
+<<<<<<< HEAD
      * @param int|null    $priority The priority of the processor so the order can be determined.
      */
     public function __construct(
@@ -36,3 +53,16 @@ class AsMonologProcessor
     ) {
     }
 }
+=======
+     */
+    public function __construct(
+        ?string $channel = null,
+        ?string $handler = null,
+        ?string $method = null
+    ) {
+        $this->channel = $channel;
+        $this->handler = $handler;
+        $this->method = $method;
+    }
+} 
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65

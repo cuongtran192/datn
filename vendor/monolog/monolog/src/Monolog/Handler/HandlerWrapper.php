@@ -13,7 +13,10 @@ namespace Monolog\Handler;
 
 use Monolog\ResettableInterface;
 use Monolog\Formatter\FormatterInterface;
+<<<<<<< HEAD
 use Monolog\LogRecord;
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * This simple wrapper class can be used to extend handlers functionality.
@@ -22,7 +25,11 @@ use Monolog\LogRecord;
  *
  * Inherit from this class and override handle() like this:
  *
+<<<<<<< HEAD
  *   public function handle(LogRecord $record)
+=======
+ *   public function handle(array $record)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  *   {
  *        if ($record meets certain conditions) {
  *            return false;
@@ -34,7 +41,14 @@ use Monolog\LogRecord;
  */
 class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, FormattableHandlerInterface, ResettableInterface
 {
+<<<<<<< HEAD
     protected HandlerInterface $handler;
+=======
+    /**
+     * @var HandlerInterface
+     */
+    protected $handler;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     public function __construct(HandlerInterface $handler)
     {
@@ -42,23 +56,39 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function isHandling(LogRecord $record): bool
+=======
+     * {@inheritDoc}
+     */
+    public function isHandling(array $record): bool
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         return $this->handler->isHandling($record);
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function handle(LogRecord $record): bool
+=======
+     * {@inheritDoc}
+     */
+    public function handle(array $record): bool
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         return $this->handler->handle($record);
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function handleBatch(array $records): void
     {
@@ -66,7 +96,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function close(): void
     {
@@ -74,7 +108,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function pushProcessor(callable $callback): HandlerInterface
     {
@@ -88,7 +126,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function popProcessor(): callable
     {
@@ -100,7 +142,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -114,7 +160,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getFormatter(): FormatterInterface
     {
@@ -125,7 +175,11 @@ class HandlerWrapper implements HandlerInterface, ProcessableHandlerInterface, F
         throw new \LogicException('The wrapped handler does not implement ' . FormattableHandlerInterface::class);
     }
 
+<<<<<<< HEAD
     public function reset(): void
+=======
+    public function reset()
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if ($this->handler instanceof ResettableInterface) {
             $this->handler->reset();

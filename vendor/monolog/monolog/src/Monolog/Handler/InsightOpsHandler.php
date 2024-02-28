@@ -11,8 +11,12 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Inspired on LogEntriesHandler.
@@ -22,12 +26,24 @@ use Monolog\LogRecord;
  */
 class InsightOpsHandler extends SocketHandler
 {
+<<<<<<< HEAD
     protected string $logToken;
 
     /**
      * @param string $token  Log token supplied by InsightOps
      * @param string $region Region where InsightOps account is hosted. Could be 'us' or 'eu'.
      * @param bool   $useSSL Whether or not SSL encryption should be used
+=======
+    /**
+     * @var string
+     */
+    protected $logToken;
+
+    /**
+     * @param string     $token  Log token supplied by InsightOps
+     * @param string     $region Region where InsightOps account is hosted. Could be 'us' or 'eu'.
+     * @param bool       $useSSL Whether or not SSL encryption should be used
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @throws MissingExtensionException If SSL encryption is set to true and OpenSSL is missing
      */
@@ -35,7 +51,11 @@ class InsightOpsHandler extends SocketHandler
         string $token,
         string $region = 'us',
         bool $useSSL = true,
+<<<<<<< HEAD
         $level = Level::Debug,
+=======
+        $level = Logger::DEBUG,
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true,
         bool $persistent = false,
         float $timeout = 0.0,
@@ -65,10 +85,18 @@ class InsightOpsHandler extends SocketHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     protected function generateDataStream(LogRecord $record): string
     {
         return $this->logToken . ' ' . $record->formatted;
+=======
+     * {@inheritDoc}
+     */
+    protected function generateDataStream(array $record): string
+    {
+        return $this->logToken . ' ' . $record['formatted'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }

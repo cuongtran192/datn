@@ -42,7 +42,11 @@ class Registry
      *
      * @var Logger[]
      */
+<<<<<<< HEAD
     private static array $loggers = [];
+=======
+    private static $loggers = [];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * Adds new logging channel to the registry
@@ -51,10 +55,18 @@ class Registry
      * @param  string|null               $name      Name of the logging channel ($logger->getName() by default)
      * @param  bool                      $overwrite Overwrite instance in the registry if the given name already exists?
      * @throws \InvalidArgumentException If $overwrite set to false and named Logger instance already exists
+<<<<<<< HEAD
      */
     public static function addLogger(Logger $logger, ?string $name = null, bool $overwrite = false): void
     {
         $name = $name ?? $logger->getName();
+=======
+     * @return void
+     */
+    public static function addLogger(Logger $logger, ?string $name = null, bool $overwrite = false)
+    {
+        $name = $name ?: $logger->getName();
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         if (isset(self::$loggers[$name]) && !$overwrite) {
             throw new InvalidArgumentException('Logger with the given name already exists');
@@ -109,7 +121,11 @@ class Registry
      * @param  string                    $name Name of the requested Logger instance
      * @throws \InvalidArgumentException If named Logger instance is not in the registry
      */
+<<<<<<< HEAD
     public static function getInstance(string $name): Logger
+=======
+    public static function getInstance($name): Logger
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!isset(self::$loggers[$name])) {
             throw new InvalidArgumentException(sprintf('Requested "%s" logger instance is not in the registry', $name));
@@ -126,7 +142,11 @@ class Registry
      * @throws \InvalidArgumentException If named Logger instance is not in the registry
      * @return Logger                    Requested instance of Logger
      */
+<<<<<<< HEAD
     public static function __callStatic(string $name, array $arguments): Logger
+=======
+    public static function __callStatic($name, $arguments)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         return self::getInstance($name);
     }

@@ -20,10 +20,34 @@ if (isset($_GET['action'])) {
         case 'them':
             include 'quanlysanpham/them.php';
             break;
+        case 'xulytao':
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Lấy thông tin từ form
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $price = $_POST['price'];
+            $discount = $_POST['discount'];
+            $image_link_1 = $_POST['image_link_1'];
+            $image_link_2 = $_POST['image_link_2'];
+            $image_link_3 = $_POST['image_link_3'];
+            $image_link_4 = $_POST['image_link_4'];
+            $number = $_POST['number'];
+            $number_buy = $_POST['number_buy'];
+            $type_id = $_POST['type_id'];
+            $brand_id = $_POST['brand_id'];
+            $purpose_id = $_POST['purpose_id'];
+          
+            echo "Sản phẩm đã được tạo thành công!";
+          } else {
+            echo "Không có dữ liệu được gửi đi.";
+        }
+
+
+            break;
+
 
         case 'xulysua':
-        
-
+  
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             
@@ -67,7 +91,9 @@ if (isset($_GET['action'])) {
             $id= $_GET['id'];
                 include "quanlysanpham/xem.php";
                 break;
-
+        case 'tao':
+           include "quanlysanpham/tao.php";
+              break;
         case 'xoa':
           $id= $_GET['id'];
           $deleteQuery = "DELETE FROM product WHERE product_id = $id";

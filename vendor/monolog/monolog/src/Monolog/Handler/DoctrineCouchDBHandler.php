@@ -11,11 +11,18 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Formatter\FormatterInterface;
 use Doctrine\CouchDB\CouchDBClient;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Formatter\NormalizerFormatter;
+use Monolog\Formatter\FormatterInterface;
+use Doctrine\CouchDB\CouchDBClient;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * CouchDB handler for Doctrine CouchDB ODM
@@ -24,20 +31,35 @@ use Monolog\LogRecord;
  */
 class DoctrineCouchDBHandler extends AbstractProcessingHandler
 {
+<<<<<<< HEAD
     private CouchDBClient $client;
 
     public function __construct(CouchDBClient $client, int|string|Level $level = Level::Debug, bool $bubble = true)
+=======
+    /** @var CouchDBClient */
+    private $client;
+
+    public function __construct(CouchDBClient $client, $level = Logger::DEBUG, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $this->client = $client;
         parent::__construct($level, $bubble);
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     protected function write(LogRecord $record): void
     {
         $this->client->postDocument($record->formatted);
+=======
+     * {@inheritDoc}
+     */
+    protected function write(array $record): void
+    {
+        $this->client->postDocument($record['formatted']);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     protected function getDefaultFormatter(): FormatterInterface

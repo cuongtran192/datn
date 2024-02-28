@@ -11,10 +11,14 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Closure;
 use Monolog\Level;
 use Monolog\Logger;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Monolog\Utils;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
@@ -26,6 +30,7 @@ use Symfony\Component\Mime\Email;
  * SymfonyMailerHandler uses Symfony's Mailer component to send the emails
  *
  * @author Jordi Boggiano <j.boggiano@seld.be>
+<<<<<<< HEAD
  */
 class SymfonyMailerHandler extends MailHandler
 {
@@ -40,6 +45,25 @@ class SymfonyMailerHandler extends MailHandler
      * @param Closure|Email                      $email  An email template, the subject/body will be replaced
      */
     public function __construct($mailer, Email|Closure $email, int|string|Level $level = Level::Error, bool $bubble = true)
+=======
+ *
+ * @phpstan-import-type Record from \Monolog\Logger
+ */
+class SymfonyMailerHandler extends MailHandler
+{
+    /** @var MailerInterface|TransportInterface */
+    protected $mailer;
+    /** @var Email|callable(string, Record[]): Email */
+    private $emailTemplate;
+
+    /**
+     * @psalm-param Email|callable(string, Record[]): Email $email
+     *
+     * @param MailerInterface|TransportInterface $mailer The mailer to use
+     * @param callable|Email                     $email  An email template, the subject/body will be replaced
+     */
+    public function __construct($mailer, $email, $level = Logger::ERROR, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         parent::__construct($level, $bubble);
 
@@ -68,8 +92,15 @@ class SymfonyMailerHandler extends MailHandler
     /**
      * Creates instance of Email to be sent
      *
+<<<<<<< HEAD
      * @param  string      $content formatted email body to be sent
      * @param  LogRecord[] $records Log records that formed the content
+=======
+     * @param  string        $content formatted email body to be sent
+     * @param  array         $records Log records that formed the content
+     *
+     * @phpstan-param Record[] $records
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function buildMessage(string $content, array $records): Email
     {
@@ -82,10 +113,17 @@ class SymfonyMailerHandler extends MailHandler
 
         if (!$message instanceof Email) {
             $record = reset($records);
+<<<<<<< HEAD
             throw new \InvalidArgumentException('Could not resolve message as instance of Email or a callable returning it' . ($record instanceof LogRecord ? Utils::getRecordMessageForException($record) : ''));
         }
 
         if (\count($records) > 0) {
+=======
+            throw new \InvalidArgumentException('Could not resolve message as instance of Email or a callable returning it' . ($record ? Utils::getRecordMessageForException($record) : ''));
+        }
+
+        if ($records) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $subjectFormatter = $this->getSubjectFormatter($message->getSubject());
             $message->subject($subjectFormatter->format($this->getHighestRecord($records)));
         }

@@ -11,27 +11,47 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * @author Robert Kaufmann III <rok3@rok3.me>
  */
 class LogEntriesHandler extends SocketHandler
 {
+<<<<<<< HEAD
     protected string $logToken;
 
     /**
      * @param string $token  Log token supplied by LogEntries
      * @param bool   $useSSL Whether or not SSL encryption should be used.
      * @param string $host   Custom hostname to send the data to if needed
+=======
+    /**
+     * @var string
+     */
+    protected $logToken;
+
+    /**
+     * @param string     $token  Log token supplied by LogEntries
+     * @param bool       $useSSL Whether or not SSL encryption should be used.
+     * @param string     $host   Custom hostname to send the data to if needed
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @throws MissingExtensionException If SSL encryption is set to true and OpenSSL is missing
      */
     public function __construct(
         string $token,
         bool $useSSL = true,
+<<<<<<< HEAD
         $level = Level::Debug,
+=======
+        $level = Logger::DEBUG,
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true,
         string $host = 'data.logentries.com',
         bool $persistent = false,
@@ -59,10 +79,18 @@ class LogEntriesHandler extends SocketHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     protected function generateDataStream(LogRecord $record): string
     {
         return $this->logToken . ' ' . $record->formatted;
+=======
+     * {@inheritDoc}
+     */
+    protected function generateDataStream(array $record): string
+    {
+        return $this->logToken . ' ' . $record['formatted'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }

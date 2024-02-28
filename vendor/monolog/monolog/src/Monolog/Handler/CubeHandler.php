@@ -11,9 +11,14 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Utils;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Utils;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Logs to Cube.
@@ -24,6 +29,7 @@ use Monolog\LogRecord;
  */
 class CubeHandler extends AbstractProcessingHandler
 {
+<<<<<<< HEAD
     private ?\Socket $udpConnection = null;
     private ?\CurlHandle $httpConnection = null;
     private string $scheme;
@@ -31,6 +37,20 @@ class CubeHandler extends AbstractProcessingHandler
     private int $port;
     /** @var string[] */
     private array $acceptedSchemes = ['http', 'udp'];
+=======
+    /** @var resource|\Socket|null */
+    private $udpConnection = null;
+    /** @var resource|\CurlHandle|null */
+    private $httpConnection = null;
+    /** @var string */
+    private $scheme;
+    /** @var string */
+    private $host;
+    /** @var int */
+    private $port;
+    /** @var string[] */
+    private $acceptedSchemes = ['http', 'udp'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * Create a Cube handler
@@ -39,7 +59,11 @@ class CubeHandler extends AbstractProcessingHandler
      *                                   A valid url must consist of three parts : protocol://host:port
      *                                   Only valid protocols used by Cube are http and udp
      */
+<<<<<<< HEAD
     public function __construct(string $url, int|string|Level $level = Level::Debug, bool $bubble = true)
+=======
+    public function __construct(string $url, $level = Logger::DEBUG, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $urlInfo = parse_url($url);
 
@@ -47,7 +71,11 @@ class CubeHandler extends AbstractProcessingHandler
             throw new \UnexpectedValueException('URL "'.$url.'" is not valid');
         }
 
+<<<<<<< HEAD
         if (!in_array($urlInfo['scheme'], $this->acceptedSchemes, true)) {
+=======
+        if (!in_array($urlInfo['scheme'], $this->acceptedSchemes)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \UnexpectedValueException(
                 'Invalid protocol (' . $urlInfo['scheme']  . ').'
                 . ' Valid options are ' . implode(', ', $this->acceptedSchemes)
@@ -56,7 +84,11 @@ class CubeHandler extends AbstractProcessingHandler
 
         $this->scheme = $urlInfo['scheme'];
         $this->host = $urlInfo['host'];
+<<<<<<< HEAD
         $this->port = $urlInfo['port'];
+=======
+        $this->port = (int) $urlInfo['port'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         parent::__construct($level, $bubble);
     }
@@ -107,6 +139,7 @@ class CubeHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     protected function write(LogRecord $record): void
@@ -125,6 +158,26 @@ class CubeHandler extends AbstractProcessingHandler
 
         $data['data'] = $context;
         $data['data']['level'] = $record->level;
+=======
+     * {@inheritDoc}
+     */
+    protected function write(array $record): void
+    {
+        $date = $record['datetime'];
+
+        $data = ['time' => $date->format('Y-m-d\TH:i:s.uO')];
+        unset($record['datetime']);
+
+        if (isset($record['context']['type'])) {
+            $data['type'] = $record['context']['type'];
+            unset($record['context']['type']);
+        } else {
+            $data['type'] = $record['channel'];
+        }
+
+        $data['data'] = $record['context'];
+        $data['data']['level'] = $record['level'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         if ($this->scheme === 'http') {
             $this->writeHttp(Utils::jsonEncode($data));
@@ -135,6 +188,7 @@ class CubeHandler extends AbstractProcessingHandler
 
     private function writeUdp(string $data): void
     {
+<<<<<<< HEAD
         if (null === $this->udpConnection) {
             $this->connectUdp();
         }
@@ -143,12 +197,22 @@ class CubeHandler extends AbstractProcessingHandler
             throw new \LogicException('No UDP socket could be opened');
         }
 
+=======
+        if (!$this->udpConnection) {
+            $this->connectUdp();
+        }
+
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         socket_send($this->udpConnection, $data, strlen($data), 0);
     }
 
     private function writeHttp(string $data): void
     {
+<<<<<<< HEAD
         if (null === $this->httpConnection) {
+=======
+        if (!$this->httpConnection) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $this->connectHttp();
         }
 

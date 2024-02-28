@@ -1,6 +1,6 @@
 <!-- phần thông tin chính  -->
 <div class="mx-auto">
-
+ <a href='index.php?page=product&action=tao' class='text-blue-500 px-2'>tao</a>
 <div class="grid grid-cols-9  border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
 
 <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Mã đơn</div>

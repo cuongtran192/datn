@@ -19,7 +19,11 @@ namespace Monolog\Handler;
 abstract class Handler implements HandlerInterface
 {
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function handleBatch(array $records): void
     {
@@ -29,7 +33,11 @@ abstract class Handler implements HandlerInterface
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function close(): void
     {

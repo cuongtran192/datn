@@ -11,9 +11,14 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Formatter\FormatterInterface;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Handler to only pass log messages when a certain threshold of number of messages is reached.
@@ -28,7 +33,11 @@ use Monolog\LogRecord;
  *   $handler = new SomeHandler(...)
  *
  *   // Pass all warnings to the handler when more than 10 & all error messages when more then 5
+<<<<<<< HEAD
  *   $overflow = new OverflowHandler($handler, [Level::Warning->value => 10, Level::Error->value => 5]);
+=======
+ *   $overflow = new OverflowHandler($handler, [Logger::WARNING => 10, Logger::ERROR => 5]);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  *
  *   $log->pushHandler($overflow);
  *```
@@ -37,25 +46,54 @@ use Monolog\LogRecord;
  */
 class OverflowHandler extends AbstractHandler implements FormattableHandlerInterface
 {
+<<<<<<< HEAD
     private HandlerInterface $handler;
 
     /** @var array<int, int> */
     private array $thresholdMap = [];
+=======
+    /** @var HandlerInterface */
+    private $handler;
+
+    /** @var int[] */
+    private $thresholdMap = [
+        Logger::DEBUG => 0,
+        Logger::INFO => 0,
+        Logger::NOTICE => 0,
+        Logger::WARNING => 0,
+        Logger::ERROR => 0,
+        Logger::CRITICAL => 0,
+        Logger::ALERT => 0,
+        Logger::EMERGENCY => 0,
+    ];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * Buffer of all messages passed to the handler before the threshold was reached
      *
      * @var mixed[][]
      */
+<<<<<<< HEAD
     private array $buffer = [];
 
     /**
      * @param array<int, int> $thresholdMap Dictionary of log level value => threshold
+=======
+    private $buffer = [];
+
+    /**
+     * @param HandlerInterface $handler
+     * @param int[]            $thresholdMap Dictionary of logger level => threshold
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(
         HandlerInterface $handler,
         array $thresholdMap = [],
+<<<<<<< HEAD
         $level = Level::Debug,
+=======
+        $level = Logger::DEBUG,
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true
     ) {
         $this->handler = $handler;
@@ -75,6 +113,7 @@ class OverflowHandler extends AbstractHandler implements FormattableHandlerInter
      * Unless the bubbling is interrupted (by returning true), the Logger class will keep on
      * calling further handlers in the stack with a given log record.
      *
+<<<<<<< HEAD
      * @inheritDoc
      */
     public function handle(LogRecord $record): bool
@@ -84,6 +123,17 @@ class OverflowHandler extends AbstractHandler implements FormattableHandlerInter
         }
 
         $level = $record->level->value;
+=======
+     * {@inheritDoc}
+     */
+    public function handle(array $record): bool
+    {
+        if ($record['level'] < $this->level) {
+            return false;
+        }
+
+        $level = $record['level'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         if (!isset($this->thresholdMap[$level])) {
             $this->thresholdMap[$level] = 0;
@@ -112,7 +162,11 @@ class OverflowHandler extends AbstractHandler implements FormattableHandlerInter
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setFormatter(FormatterInterface $formatter): HandlerInterface
     {
@@ -126,7 +180,11 @@ class OverflowHandler extends AbstractHandler implements FormattableHandlerInter
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function getFormatter(): FormatterInterface
     {

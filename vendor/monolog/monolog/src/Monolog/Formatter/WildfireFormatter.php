@@ -11,8 +11,12 @@
 
 namespace Monolog\Formatter;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Serializes a log message according to Wildfire's header requirements
@@ -20,13 +24,38 @@ use Monolog\LogRecord;
  * @author Eric Clemmons (@ericclemmons) <eric@uxdriven.com>
  * @author Christophe Coevoet <stof@notk.org>
  * @author Kirill chEbba Chebunin <iam@chebba.org>
+<<<<<<< HEAD
+=======
+ *
+ * @phpstan-import-type Level from \Monolog\Logger
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
  */
 class WildfireFormatter extends NormalizerFormatter
 {
     /**
+<<<<<<< HEAD
      * @param string|null $dateFormat The format of the timestamp: one supported by DateTime::format
      *
      * @throws \RuntimeException If the function json_encode does not exist
+=======
+     * Translates Monolog log levels to Wildfire levels.
+     *
+     * @var array<Level, string>
+     */
+    private $logLevels = [
+        Logger::DEBUG     => 'LOG',
+        Logger::INFO      => 'INFO',
+        Logger::NOTICE    => 'INFO',
+        Logger::WARNING   => 'WARN',
+        Logger::ERROR     => 'ERROR',
+        Logger::CRITICAL  => 'ERROR',
+        Logger::ALERT     => 'ERROR',
+        Logger::EMERGENCY => 'ERROR',
+    ];
+
+    /**
+     * @param string|null $dateFormat The format of the timestamp: one supported by DateTime::format
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(?string $dateFormat = null)
     {
@@ -37,6 +66,7 @@ class WildfireFormatter extends NormalizerFormatter
     }
 
     /**
+<<<<<<< HEAD
      * Translates Monolog log levels to Wildfire levels.
      *
      * @return 'LOG'|'INFO'|'WARN'|'ERROR'
@@ -79,12 +109,42 @@ class WildfireFormatter extends NormalizerFormatter
         }
         if (count($record->extra) > 0) {
             $message['extra'] = $this->normalize($record->extra);
+=======
+     * {@inheritDoc}
+     *
+     * @return string
+     */
+    public function format(array $record): string
+    {
+        // Retrieve the line and file if set and remove them from the formatted extra
+        $file = $line = '';
+        if (isset($record['extra']['file'])) {
+            $file = $record['extra']['file'];
+            unset($record['extra']['file']);
+        }
+        if (isset($record['extra']['line'])) {
+            $line = $record['extra']['line'];
+            unset($record['extra']['line']);
+        }
+
+        /** @var mixed[] $record */
+        $record = $this->normalize($record);
+        $message = ['message' => $record['message']];
+        $handleError = false;
+        if ($record['context']) {
+            $message['context'] = $record['context'];
+            $handleError = true;
+        }
+        if ($record['extra']) {
+            $message['extra'] = $record['extra'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $handleError = true;
         }
         if (count($message) === 1) {
             $message = reset($message);
         }
 
+<<<<<<< HEAD
         if (is_array($message) && isset($message['context']['table'])) {
             $type  = 'TABLE';
             $label = $record->channel .': '. $record->message;
@@ -92,6 +152,15 @@ class WildfireFormatter extends NormalizerFormatter
         } else {
             $type  = $this->toWildfireLevel($record->level);
             $label = $record->channel;
+=======
+        if (isset($record['context']['table'])) {
+            $type  = 'TABLE';
+            $label = $record['channel'] .': '. $record['message'];
+            $message = $record['context']['table'];
+        } else {
+            $type  = $this->logLevels[$record['level']];
+            $label = $record['channel'];
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         // Create JSON object describing the appearance of the message in the console
@@ -114,7 +183,11 @@ class WildfireFormatter extends NormalizerFormatter
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @phpstan-return never
      */
@@ -124,11 +197,19 @@ class WildfireFormatter extends NormalizerFormatter
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      *
      * @return null|scalar|array<mixed[]|scalar|null>|object
      */
     protected function normalize(mixed $data, int $depth = 0): mixed
+=======
+     * {@inheritDoc}
+     *
+     * @return null|scalar|array<array|scalar|null>|object
+     */
+    protected function normalize($data, int $depth = 0)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (is_object($data) && !$data instanceof \DateTimeInterface) {
             return $data;

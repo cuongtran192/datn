@@ -11,8 +11,11 @@
 
 namespace Monolog\Formatter;
 
+<<<<<<< HEAD
 use Monolog\LogRecord;
 
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 /**
  * Encodes message information into JSON in a format compatible with Loggly.
  *
@@ -35,6 +38,7 @@ class LogglyFormatter extends JsonFormatter
      * @see https://www.loggly.com/docs/automated-parsing/#json
      * @see \Monolog\Formatter\JsonFormatter::format()
      */
+<<<<<<< HEAD
     protected function normalizeRecord(LogRecord $record): array
     {
         $recordData = parent::normalizeRecord($record);
@@ -43,5 +47,15 @@ class LogglyFormatter extends JsonFormatter
         unset($recordData["datetime"]);
 
         return $recordData;
+=======
+    public function format(array $record): string
+    {
+        if (isset($record["datetime"]) && ($record["datetime"] instanceof \DateTimeInterface)) {
+            $record["timestamp"] = $record["datetime"]->format("Y-m-d\TH:i:s.uO");
+            unset($record["datetime"]);
+        }
+
+        return parent::format($record);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }

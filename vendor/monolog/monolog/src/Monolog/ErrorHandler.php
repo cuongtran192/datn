@@ -11,7 +11,10 @@
 
 namespace Monolog;
 
+<<<<<<< HEAD
 use Closure;
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -26,6 +29,7 @@ use Psr\Log\LogLevel;
  */
 class ErrorHandler
 {
+<<<<<<< HEAD
     private Closure|null $previousExceptionHandler = null;
 
     /** @var array<class-string, LogLevel::*> an array of class name to LogLevel::* constant mapping */
@@ -53,6 +57,37 @@ class ErrorHandler
     public function __construct(
         private LoggerInterface $logger
     ) {
+=======
+    /** @var LoggerInterface */
+    private $logger;
+
+    /** @var ?callable */
+    private $previousExceptionHandler = null;
+    /** @var array<class-string, LogLevel::*> an array of class name to LogLevel::* constant mapping */
+    private $uncaughtExceptionLevelMap = [];
+
+    /** @var callable|true|null */
+    private $previousErrorHandler = null;
+    /** @var array<int, LogLevel::*> an array of E_* constant to LogLevel::* constant mapping */
+    private $errorLevelMap = [];
+    /** @var bool */
+    private $handleOnlyReportedErrors = true;
+
+    /** @var bool */
+    private $hasFatalErrorHandler = false;
+    /** @var LogLevel::* */
+    private $fatalLevel = LogLevel::ALERT;
+    /** @var ?string */
+    private $reservedMemory = null;
+    /** @var ?array{type: int, message: string, file: string, line: int, trace: mixed} */
+    private $lastFatalData = null;
+    /** @var int[] */
+    private static $fatalErrors = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR];
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 
     /**
@@ -60,10 +95,18 @@ class ErrorHandler
      *
      * By default it will handle errors, exceptions and fatal errors
      *
+<<<<<<< HEAD
      * @param  array<int, LogLevel::*>|false          $errorLevelMap     an array of E_* constant to LogLevel::* constant mapping, or false to disable error handling
      * @param  array<class-string, LogLevel::*>|false $exceptionLevelMap an array of class name to LogLevel::* constant mapping, or false to disable exception handling
      * @param  LogLevel::*|null|false                 $fatalLevel        a LogLevel::* constant, null to use the default LogLevel::ALERT or false to disable fatal error handling
      * @return static
+=======
+     * @param  LoggerInterface                        $logger
+     * @param  array<int, LogLevel::*>|false          $errorLevelMap     an array of E_* constant to LogLevel::* constant mapping, or false to disable error handling
+     * @param  array<class-string, LogLevel::*>|false $exceptionLevelMap an array of class name to LogLevel::* constant mapping, or false to disable exception handling
+     * @param  LogLevel::*|null|false                 $fatalLevel        a LogLevel::* constant, null to use the default LogLevel::ALERT or false to disable fatal error handling
+     * @return ErrorHandler
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public static function register(LoggerInterface $logger, $errorLevelMap = [], $exceptionLevelMap = [], $fatalLevel = null): self
     {
@@ -97,8 +140,13 @@ class ErrorHandler
                 $this->uncaughtExceptionLevelMap[$class] = $level;
             }
         }
+<<<<<<< HEAD
         if ($callPrevious && null !== $prev) {
             $this->previousExceptionHandler = $prev(...);
+=======
+        if ($callPrevious && $prev) {
+            $this->previousExceptionHandler = $prev;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return $this;
@@ -110,10 +158,17 @@ class ErrorHandler
      */
     public function registerErrorHandler(array $levelMap = [], bool $callPrevious = true, int $errorTypes = -1, bool $handleOnlyReportedErrors = true): self
     {
+<<<<<<< HEAD
         $prev = set_error_handler($this->handleError(...), $errorTypes);
         $this->errorLevelMap = array_replace($this->defaultErrorLevelMap(), $levelMap);
         if ($callPrevious) {
             $this->previousErrorHandler = $prev !== null ? $prev(...) : true;
+=======
+        $prev = set_error_handler([$this, 'handleError'], $errorTypes);
+        $this->errorLevelMap = array_replace($this->defaultErrorLevelMap(), $levelMap);
+        if ($callPrevious) {
+            $this->previousErrorHandler = $prev ?: true;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         } else {
             $this->previousErrorHandler = null;
         }
@@ -126,11 +181,18 @@ class ErrorHandler
     /**
      * @param LogLevel::*|null $level              a LogLevel::* constant, null to use the default LogLevel::ALERT
      * @param int              $reservedMemorySize Amount of KBs to reserve in memory so that it can be freed when handling fatal errors giving Monolog some room in memory to get its job done
+<<<<<<< HEAD
      * @return $this
      */
     public function registerFatalHandler($level = null, int $reservedMemorySize = 20): self
     {
         register_shutdown_function($this->handleFatalError(...));
+=======
+     */
+    public function registerFatalHandler($level = null, int $reservedMemorySize = 20): self
+    {
+        register_shutdown_function([$this, 'handleFatalError']);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         $this->reservedMemory = str_repeat(' ', 1024 * $reservedMemorySize);
         $this->fatalLevel = null === $level ? LogLevel::ALERT : $level;
@@ -174,7 +236,14 @@ class ErrorHandler
         ];
     }
 
+<<<<<<< HEAD
     private function handleException(\Throwable $e): never
+=======
+    /**
+     * @phpstan-return never
+     */
+    private function handleException(\Throwable $e): void
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $level = LogLevel::ERROR;
         foreach ($this->uncaughtExceptionLevelMap as $class => $candidate) {
@@ -190,7 +259,11 @@ class ErrorHandler
             ['exception' => $e]
         );
 
+<<<<<<< HEAD
         if (null !== $this->previousExceptionHandler) {
+=======
+        if ($this->previousExceptionHandler) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             ($this->previousExceptionHandler)($e);
         }
 
@@ -201,14 +274,29 @@ class ErrorHandler
         exit(255);
     }
 
+<<<<<<< HEAD
     private function handleError(int $code, string $message, string $file = '', int $line = 0): bool
     {
         if ($this->handleOnlyReportedErrors && 0 === (error_reporting() & $code)) {
+=======
+    /**
+     * @private
+     *
+     * @param mixed[] $context
+     */
+    public function handleError(int $code, string $message, string $file = '', int $line = 0, ?array $context = []): bool
+    {
+        if ($this->handleOnlyReportedErrors && !(error_reporting() & $code)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             return false;
         }
 
         // fatal error codes are ignored if a fatal error handler is present as well to avoid duplicate log entries
+<<<<<<< HEAD
         if (!$this->hasFatalErrorHandler || !in_array($code, self::FATAL_ERRORS, true)) {
+=======
+        if (!$this->hasFatalErrorHandler || !in_array($code, self::$fatalErrors, true)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $level = $this->errorLevelMap[$code] ?? LogLevel::CRITICAL;
             $this->logger->log($level, self::codeToString($code).': '.$message, ['code' => $code, 'message' => $message, 'file' => $file, 'line' => $line]);
         } else {
@@ -219,9 +307,14 @@ class ErrorHandler
 
         if ($this->previousErrorHandler === true) {
             return false;
+<<<<<<< HEAD
         }
         if ($this->previousErrorHandler instanceof Closure) {
             return (bool) ($this->previousErrorHandler)($code, $message, $file, $line);
+=======
+        } elseif ($this->previousErrorHandler) {
+            return (bool) ($this->previousErrorHandler)($code, $message, $file, $line, $context);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return true;
@@ -239,7 +332,12 @@ class ErrorHandler
         } else {
             $lastError = error_get_last();
         }
+<<<<<<< HEAD
         if (is_array($lastError) && in_array($lastError['type'], self::FATAL_ERRORS, true)) {
+=======
+
+        if ($lastError && in_array($lastError['type'], self::$fatalErrors, true)) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $trace = $lastError['trace'] ?? null;
             $this->logger->log(
                 $this->fatalLevel,
@@ -255,6 +353,7 @@ class ErrorHandler
         }
     }
 
+<<<<<<< HEAD
     private static function codeToString(int $code): string
     {
         return match ($code) {
@@ -275,5 +374,46 @@ class ErrorHandler
             E_USER_DEPRECATED => 'E_USER_DEPRECATED',
             default => 'Unknown PHP error',
         };
+=======
+    /**
+     * @param int $code
+     */
+    private static function codeToString($code): string
+    {
+        switch ($code) {
+            case E_ERROR:
+                return 'E_ERROR';
+            case E_WARNING:
+                return 'E_WARNING';
+            case E_PARSE:
+                return 'E_PARSE';
+            case E_NOTICE:
+                return 'E_NOTICE';
+            case E_CORE_ERROR:
+                return 'E_CORE_ERROR';
+            case E_CORE_WARNING:
+                return 'E_CORE_WARNING';
+            case E_COMPILE_ERROR:
+                return 'E_COMPILE_ERROR';
+            case E_COMPILE_WARNING:
+                return 'E_COMPILE_WARNING';
+            case E_USER_ERROR:
+                return 'E_USER_ERROR';
+            case E_USER_WARNING:
+                return 'E_USER_WARNING';
+            case E_USER_NOTICE:
+                return 'E_USER_NOTICE';
+            case E_STRICT:
+                return 'E_STRICT';
+            case E_RECOVERABLE_ERROR:
+                return 'E_RECOVERABLE_ERROR';
+            case E_DEPRECATED:
+                return 'E_DEPRECATED';
+            case E_USER_DEPRECATED:
+                return 'E_USER_DEPRECATED';
+        }
+
+        return 'Unknown PHP error';
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     }
 }

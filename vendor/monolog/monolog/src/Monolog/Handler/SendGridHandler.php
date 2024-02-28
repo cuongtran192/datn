@@ -11,7 +11,11 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
+=======
+use Monolog\Logger;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * SendGridrHandler uses the SendGrid API v2 function to send Log emails, more information in https://sendgrid.com/docs/API_Reference/Web_API/mail.html
@@ -22,6 +26,7 @@ class SendGridHandler extends MailHandler
 {
     /**
      * The SendGrid API User
+<<<<<<< HEAD
      */
     protected string $apiUser;
 
@@ -34,17 +39,44 @@ class SendGridHandler extends MailHandler
      * The email addresses to which the message will be sent
      */
     protected string $from;
+=======
+     * @var string
+     */
+    protected $apiUser;
+
+    /**
+     * The SendGrid API Key
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
+     * The email addresses to which the message will be sent
+     * @var string
+     */
+    protected $from;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * The email addresses to which the message will be sent
      * @var string[]
      */
+<<<<<<< HEAD
     protected array $to;
 
     /**
      * The subject of the email
      */
     protected string $subject;
+=======
+    protected $to;
+
+    /**
+     * The subject of the email
+     * @var string
+     */
+    protected $subject;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string          $apiUser The SendGrid API User
@@ -52,10 +84,15 @@ class SendGridHandler extends MailHandler
      * @param string          $from    The sender of the email
      * @param string|string[] $to      The recipients of the email
      * @param string          $subject The subject of the mail
+<<<<<<< HEAD
      *
      * @throws MissingExtensionException If the curl extension is missing
      */
     public function __construct(string $apiUser, string $apiKey, string $from, string|array $to, string $subject, int|string|Level $level = Level::Error, bool $bubble = true)
+=======
+     */
+    public function __construct(string $apiUser, string $apiKey, string $from, $to, string $subject, $level = Logger::ERROR, bool $bubble = true)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the SendGridHandler');
@@ -70,7 +107,11 @@ class SendGridHandler extends MailHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
+=======
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function send(string $content, array $records): void
     {

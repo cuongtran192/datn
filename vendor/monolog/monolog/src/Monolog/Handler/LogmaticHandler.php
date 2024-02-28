@@ -11,16 +11,23 @@
 
 namespace Monolog\Handler;
 
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LogmaticFormatter;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Formatter\FormatterInterface;
+use Monolog\Formatter\LogmaticFormatter;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * @author Julien Breux <julien.breux@gmail.com>
  */
 class LogmaticHandler extends SocketHandler
 {
+<<<<<<< HEAD
     private string $logToken;
 
     private string $hostname;
@@ -32,15 +39,43 @@ class LogmaticHandler extends SocketHandler
      * @param string $hostname Host name supplied by Logmatic.
      * @param string $appName  Application name supplied by Logmatic.
      * @param bool   $useSSL   Whether or not SSL encryption should be used.
+=======
+    /**
+     * @var string
+     */
+    private $logToken;
+
+    /**
+     * @var string
+     */
+    private $hostname;
+
+    /**
+     * @var string
+     */
+    private $appname;
+
+    /**
+     * @param string     $token    Log token supplied by Logmatic.
+     * @param string     $hostname Host name supplied by Logmatic.
+     * @param string     $appname  Application name supplied by Logmatic.
+     * @param bool       $useSSL   Whether or not SSL encryption should be used.
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      *
      * @throws MissingExtensionException If SSL encryption is set to true and OpenSSL is missing
      */
     public function __construct(
         string $token,
         string $hostname = '',
+<<<<<<< HEAD
         string $appName = '',
         bool $useSSL = true,
         $level = Level::Debug,
+=======
+        string $appname = '',
+        bool $useSSL = true,
+        $level = Logger::DEBUG,
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         bool $bubble = true,
         bool $persistent = false,
         float $timeout = 0.0,
@@ -68,6 +103,7 @@ class LogmaticHandler extends SocketHandler
 
         $this->logToken = $token;
         $this->hostname = $hostname;
+<<<<<<< HEAD
         $this->appName  = $appName;
     }
 
@@ -81,16 +117,39 @@ class LogmaticHandler extends SocketHandler
 
     /**
      * @inheritDoc
+=======
+        $this->appname  = $appname;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function generateDataStream(array $record): string
+    {
+        return $this->logToken . ' ' . $record['formatted'];
+    }
+
+    /**
+     * {@inheritDoc}
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     protected function getDefaultFormatter(): FormatterInterface
     {
         $formatter = new LogmaticFormatter();
 
+<<<<<<< HEAD
         if ($this->hostname !== '') {
             $formatter->setHostname($this->hostname);
         }
         if ($this->appName !== '') {
             $formatter->setAppName($this->appName);
+=======
+        if (!empty($this->hostname)) {
+            $formatter->setHostname($this->hostname);
+        }
+        if (!empty($this->appname)) {
+            $formatter->setAppname($this->appname);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         }
 
         return $formatter;

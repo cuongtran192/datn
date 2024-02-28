@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### 3.5.0 (2023-10-27)
 
   * Added ability to indent stack traces in LineFormatter via e.g. `indentStacktraces('  ')` (#1835)
@@ -106,6 +107,8 @@ New deprecations:
   value equal to what `Logger::WARNING` was giving you.
 - `Logger::getLevelName()` is now deprecated.
 
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 ### 2.9.2 (2023-10-27)
 
   * Fixed display_errors parsing in ErrorHandler which did not support string values (#1804)

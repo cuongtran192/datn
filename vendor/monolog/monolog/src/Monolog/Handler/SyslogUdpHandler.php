@@ -12,9 +12,14 @@
 namespace Monolog\Handler;
 
 use DateTimeInterface;
+<<<<<<< HEAD
 use Monolog\Handler\SyslogUdp\UdpSocket;
 use Monolog\Level;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Handler\SyslogUdp\UdpSocket;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 use Monolog\Utils;
 
 /**
@@ -30,6 +35,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
     const RFC5424e = 2;
 
     /** @var array<self::RFC*, string> */
+<<<<<<< HEAD
     private array $dateFormats = [
         self::RFC3164 => 'M d H:i:s',
         self::RFC5424 => \DateTime::RFC3339,
@@ -53,6 +59,33 @@ class SyslogUdpHandler extends AbstractSyslogHandler
      * @phpstan-param self::RFC* $rfc
      */
     public function __construct(string $host, int $port = 514, string|int $facility = LOG_USER, int|string|Level $level = Level::Debug, bool $bubble = true, string $ident = 'php', int $rfc = self::RFC5424)
+=======
+    private $dateFormats = array(
+        self::RFC3164 => 'M d H:i:s',
+        self::RFC5424 => \DateTime::RFC3339,
+        self::RFC5424e => \DateTime::RFC3339_EXTENDED,
+    );
+
+    /** @var UdpSocket */
+    protected $socket;
+    /** @var string */
+    protected $ident;
+    /** @var self::RFC* */
+    protected $rfc;
+
+    /**
+     * @param string     $host     Either IP/hostname or a path to a unix socket (port must be 0 then)
+     * @param int        $port     Port number, or 0 if $host is a unix socket
+     * @param string|int $facility Either one of the names of the keys in $this->facilities, or a LOG_* facility constant
+     * @param bool       $bubble   Whether the messages that are handled can bubble up the stack or not
+     * @param string     $ident    Program name or tag for each log message.
+     * @param int        $rfc      RFC to format the message for.
+     * @throws MissingExtensionException
+     *
+     * @phpstan-param self::RFC* $rfc
+     */
+    public function __construct(string $host, int $port = 514, $facility = LOG_USER, $level = Logger::DEBUG, bool $bubble = true, string $ident = 'php', int $rfc = self::RFC5424)
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         if (!extension_loaded('sockets')) {
             throw new MissingExtensionException('The sockets extension is required to use the SyslogUdpHandler');
@@ -66,11 +99,19 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         $this->socket = new UdpSocket($host, $port);
     }
 
+<<<<<<< HEAD
     protected function write(LogRecord $record): void
     {
         $lines = $this->splitMessageIntoLines($record->formatted);
 
         $header = $this->makeCommonSyslogHeader($this->toSyslogPriority($record->level), $record->datetime);
+=======
+    protected function write(array $record): void
+    {
+        $lines = $this->splitMessageIntoLines($record['formatted']);
+
+        $header = $this->makeCommonSyslogHeader($this->logLevels[$record['level']], $record['datetime']);
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
         foreach ($lines as $line) {
             $this->socket->write($line, $header);
@@ -95,7 +136,10 @@ class SyslogUdpHandler extends AbstractSyslogHandler
         $lines = preg_split('/$\R?^/m', (string) $message, -1, PREG_SPLIT_NO_EMPTY);
         if (false === $lines) {
             $pcreErrorCode = preg_last_error();
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             throw new \RuntimeException('Could not preg_split: ' . $pcreErrorCode . ' / ' . Utils::pcreLastErrorMessage($pcreErrorCode));
         }
 
@@ -109,6 +153,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
     {
         $priority = $severity + $this->facility;
 
+<<<<<<< HEAD
         $pid = getmypid();
         if (false === $pid) {
             $pid = '-';
@@ -116,6 +161,13 @@ class SyslogUdpHandler extends AbstractSyslogHandler
 
         $hostname = gethostname();
         if (false === $hostname) {
+=======
+        if (!$pid = getmypid()) {
+            $pid = '-';
+        }
+
+        if (!$hostname = gethostname()) {
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
             $hostname = '-';
         }
 
@@ -142,8 +194,11 @@ class SyslogUdpHandler extends AbstractSyslogHandler
 
     /**
      * Inject your own socket, mainly used for testing
+<<<<<<< HEAD
      *
      * @return $this
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function setSocket(UdpSocket $socket): self
     {

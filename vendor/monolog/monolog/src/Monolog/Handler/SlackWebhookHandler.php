@@ -12,10 +12,16 @@
 namespace Monolog\Handler;
 
 use Monolog\Formatter\FormatterInterface;
+<<<<<<< HEAD
 use Monolog\Level;
 use Monolog\Utils;
 use Monolog\Handler\Slack\SlackRecord;
 use Monolog\LogRecord;
+=======
+use Monolog\Logger;
+use Monolog\Utils;
+use Monolog\Handler\Slack\SlackRecord;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
 /**
  * Sends notifications through Slack Webhooks
@@ -27,6 +33,7 @@ class SlackWebhookHandler extends AbstractProcessingHandler
 {
     /**
      * Slack Webhook token
+<<<<<<< HEAD
      */
     private string $webhookUrl;
 
@@ -34,6 +41,17 @@ class SlackWebhookHandler extends AbstractProcessingHandler
      * Instance of the SlackRecord util class preparing data for Slack API.
      */
     private SlackRecord $slackRecord;
+=======
+     * @var string
+     */
+    private $webhookUrl;
+
+    /**
+     * Instance of the SlackRecord util class preparing data for Slack API.
+     * @var SlackRecord
+     */
+    private $slackRecord;
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
 
     /**
      * @param string      $webhookUrl             Slack Webhook URL
@@ -44,8 +62,11 @@ class SlackWebhookHandler extends AbstractProcessingHandler
      * @param bool        $useShortAttachment     Whether the the context/extra messages added to Slack as attachments are in a short style
      * @param bool        $includeContextAndExtra Whether the attachment should include context and extra data
      * @param string[]    $excludeFields          Dot separated list of fields to exclude from slack message. E.g. ['context.field1', 'extra.field2']
+<<<<<<< HEAD
      *
      * @throws MissingExtensionException If the curl extension is missing
+=======
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
      */
     public function __construct(
         string $webhookUrl,
@@ -55,9 +76,15 @@ class SlackWebhookHandler extends AbstractProcessingHandler
         ?string $iconEmoji = null,
         bool $useShortAttachment = false,
         bool $includeContextAndExtra = false,
+<<<<<<< HEAD
         $level = Level::Critical,
         bool $bubble = true,
         array $excludeFields = []
+=======
+        $level = Logger::CRITICAL,
+        bool $bubble = true,
+        array $excludeFields = array()
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     ) {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the SlackWebhookHandler');
@@ -89,14 +116,21 @@ class SlackWebhookHandler extends AbstractProcessingHandler
     }
 
     /**
+<<<<<<< HEAD
      * @inheritDoc
      */
     protected function write(LogRecord $record): void
+=======
+     * {@inheritDoc}
+     */
+    protected function write(array $record): void
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
     {
         $postData = $this->slackRecord->getSlackData($record);
         $postString = Utils::jsonEncode($postData);
 
         $ch = curl_init();
+<<<<<<< HEAD
         $options = [
             CURLOPT_URL => $this->webhookUrl,
             CURLOPT_POST => true,
@@ -104,6 +138,15 @@ class SlackWebhookHandler extends AbstractProcessingHandler
             CURLOPT_HTTPHEADER => ['Content-type: application/json'],
             CURLOPT_POSTFIELDS => $postString,
         ];
+=======
+        $options = array(
+            CURLOPT_URL => $this->webhookUrl,
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => array('Content-type: application/json'),
+            CURLOPT_POSTFIELDS => $postString,
+        );
+>>>>>>> ffc421df8b2673130290487edd180df2ab612c65
         if (defined('CURLOPT_SAFE_UPLOAD')) {
             $options[CURLOPT_SAFE_UPLOAD] = true;
         }
