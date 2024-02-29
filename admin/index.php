@@ -25,7 +25,13 @@
          </div >
     </div>
     <div class="flex flex-row items-center">
-        <div class="bg-gray-100 p-2 mx-4 opacity-50 text-2xl ring-2 ring-blue-500 font-semibold rounded-[15px]">15/2/2024</div>
+        <div class="bg-gray-100 p-2 mx-4 opacity-50 text-2xl ring-2 ring-blue-500 font-semibold rounded-[15px]"><?php
+// Lấy ngày hiện tại
+$ngayHienTai = date("d-m-Y");
+
+// Hiển thị ngày hiện tại
+echo  $ngayHienTai;
+?></div>
         <div class="text-white mx-4 ">
             <i class="fas fa-bell text-red-400 text-4xl hover:text-red-300"></i>
         </div>

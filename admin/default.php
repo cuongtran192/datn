@@ -1,4 +1,23 @@
 
+<?php
+include '../connectdb.php';
+
+// Thực hiện truy vấn SQL
+$sql = "SELECT SUM(total_price) AS TongDoanhThu FROM `orders` WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())";
+$result = $conn->query($sql);
+
+// Kiểm tra và hiển thị kết quả
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    echo  $row['TongDoanhThu'];
+} else {
+    echo "0";
+}
+
+// Đóng kết nối
+
+?>
+
 <div class="flex flex-col items-left mr-2 my-2  bg-white p-4 rounded-[15px]">
       <!-- phần thông tin chính  -->
       <div class="flex flex-row">
@@ -6,20 +25,32 @@
           <div class="flex flex-row justify-between"> 
             <div class="m-4">
               <div class="font-bold text-2xl">Tổng doanh thu</div>
-              <div class="text-gray-400"> 30 ngày gần đây </div>
+              <div class="text-gray-400"> trong tháng </div>
             </div>
             <div class="m-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-green-500">
                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
             </div>
           </div>
-          <div class=" m-4 font-bold"><span class="font-bold text-4xl">255555 </span><span class=" text-2xl text-gray-500"> .000 đồng</span></div>
+          <div class=" m-4 font-bold"><span class="font-bold text-4xl">
+             <?php  $sql = "SELECT SUM(total_price) AS TongDoanhThu FROM `orders` WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())";
+                    $result = $conn->query($sql);
+
+// Kiểm tra và hiển thị kết quả
+                    if ($result->num_rows > 0) {
+                       $row = $result->fetch_assoc();
+                       echo  number_format($row['TongDoanhThu']); ;
+                         } else {
+                       echo "0";
+}
+?> 
+  </span><span class=" text-2xl text-gray-500"> đ</span></div>
         </div>
         <div class="w-1/4 h-[200px] m-2 border border-4 border-gray-400/50 rounded-lg ">
         <div class="flex flex-row justify-between"> 
             <div class="m-4">
               <div class="font-bold text-2xl text-gray-600">Số đơn đặt hàng</div>
-              <div class="text-gray-400"> 30 ngày gần đây </div>
+              <div class="text-gray-400"> trong tháng </div>
             </div>
             <div class="m-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-red-500">
@@ -28,13 +59,23 @@
 
             </div>
           </div>
-          <div class="m-4 font-bold"><span class="font-bold text-4xl">255555 </span><span class=" text-2xl text-gray-500"> đơn hàng</span></div>
+          <div class="m-4 font-bold"><span class="font-bold text-4xl">   <?php $sql2 = "SELECT COUNT(*) AS SoLuongDonHang FROM orders WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())";
+                    $result2 = $conn->query($sql2);
+
+// Kiểm tra và hiển thị kết quả
+                    if ($result2->num_rows > 0) {
+                       $row = $result2->fetch_assoc();
+                       echo  number_format($row['SoLuongDonHang']); ;
+                         } else {
+                       echo "0";
+}
+?>  </span><span class=" text-2xl text-gray-500"> đơn hàng</span></div>
         </div>
         <div class="w-1/4 h-[200px] m-2 border border-4 border-gray-400/50 rounded-lg ">
         <div class="flex flex-row justify-between"> 
             <div class="m-4">
               <div class="font-bold text-2xl"> Số khách hàng</div>
-              <div class="text-gray-400"> 30 ngày gần đây </div>
+              <div class="text-gray-400"> trong tháng </div>
             </div>
             <div class="m-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-yellow-500">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
@@ -47,7 +88,7 @@
         <div class="flex flex-row justify-between"> 
             <div class="m-4">
               <div class="font-bold text-2xl">Số sản phẩm bán</div>
-              <div class="text-gray-400"> 30 ngày gần đây </div>
+              <div class="text-gray-400"> trong tháng </div>
             </div>
             <div class="m-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-blue-500">
