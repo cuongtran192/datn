@@ -37,7 +37,30 @@ if (isset($_GET['action'])) {
               break;
         case 'xoa':
           $id= $_GET['id'];
+
+          $deleteReviewQuery = "DELETE FROM review WHERE user_id = $id";
+          $getorderIdQuery = "SELECT * FROM orders WHERE user_id = $id";
+          // Xóa bảng order có user_id = $id
+          $deleteorderQuery = "DELETE FROM orders WHERE user_id = $id";
           $deleteQuery = "DELETE FROM users WHERE user_id = $id";
+          // Lấy order_id từ bảng order để sử dụng trong việc xóa bảng product_order
+      
+
+         
+
+          $resultGetorder = $conn->query($getorderIdQuery);
+          $orderIds = $resultGetorder->fetch_all(MYSQLI_ASSOC);
+          foreach ($orderIds as $order) {
+            $orderId = $order['order_id'];
+
+            $deleteProductorderQuery = "DELETE FROM order_product WHERE order_id = $orderId";
+            $resultDeleteProductorder = $conn->query($deleteProductorderQuery);
+          }
+
+        $conn->query( $deleteReviewQuery);
+        $conn->query($deleteorderQuery);
+        $conn->query($deleteReviewQuery);
+
           if($conn->query($deleteQuery)) {
               header("Location: index.php?page=user");
           } else {

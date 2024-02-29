@@ -43,9 +43,14 @@ if (isset($_GET['action'])) {
     
         case 'xoa':
           $id= $_GET['id'];
-          $deleteQuery = "DELETE FROM cart WHERE user_id = $id";
+
+
+          $deleteQuery = "DELETE FROM orders WHERE order_id = $id";
+          $deleteProductorderQuery = "DELETE FROM order_product WHERE order_id = $id";
+          $resultDeleteProductorder = $conn->query($deleteProductorderQuery);
+
           if($conn->query($deleteQuery)) {
-              header("Location: index.php?page=user");
+              header("Location: index.php?page=order");
           } else {
               echo "Lỗi khi xóa: " . $conn->error;
           }

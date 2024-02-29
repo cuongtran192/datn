@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     $product = getProductById($productId);
 }
 ?>
-
+<a href="./?page=product&action=lietke">Trở lại </a>
 <div class="">Chỉnh sửa thông tin sản phẩm</div>
 <form action="index.php?page=product&action=xulysua" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">

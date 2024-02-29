@@ -64,6 +64,7 @@ if (isset($_GET['id'])) {
 }
 
 ?>
+<a href="./?page=product&action=lietke">Trở lại </a>
 <div class="">Tạo sản phẩm mới</div>
 <form action="index.php?page=product&action=xulytao" method="POST" enctype="multipart/form-data">
 <label for="name">Tên sản phẩm:</label>

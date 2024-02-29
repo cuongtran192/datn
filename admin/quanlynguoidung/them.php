@@ -1,4 +1,7 @@
+<a href="./?page=user&action=lietke">Trở lại </a>
 <div class="">Thêm người dùng</div>
+
+
 <form action="index.php?page=user&action=xulysua" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $user['user_id']; ?>">
         <label for="name">Họ và tên:</label>

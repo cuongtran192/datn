@@ -66,6 +66,7 @@ if (isset($_GET['action'])) {
     // Thực hiện truy vấn
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
+        include 'quanlysanpham/lietke.php';
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -138,15 +139,32 @@ if (isset($_GET['action'])) {
         case 'tao':
            include "quanlysanpham/tao.php";
               break;
-        case 'xoa':
+        case 'an':
           $id= $_GET['id'];
-          $deleteQuery = "DELETE FROM product WHERE product_id = $id";
+         
+          $deleteQuery = "UPDATE product
+          SET active = 0
+          WHERE product_id=$id";
+
           if($conn->query($deleteQuery)) {
-              header("Location: index.php?page=product");
+               header("Location: index.php?page=product");
           } else {
               echo "Lỗi khi xóa: " . $conn->error;
           }
             break;
+          case 'hien':
+              $id= $_GET['id'];
+             
+              $deleteQuery = "UPDATE product
+              SET active = 1
+              WHERE product_id=$id";
+    
+              if($conn->query($deleteQuery)) {
+                   header("Location: index.php?page=product");
+              } else {
+                  echo "Lỗi khi xóa: " . $conn->error;
+              }
+                break;
         case 'lietke':
           include 'quanlysanpham/lietke.php';
             break; 

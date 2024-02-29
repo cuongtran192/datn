@@ -28,6 +28,7 @@ if (isset($_GET['id'])) {
 
 ?>
 <div class="">Chỉnh sửa thông tin</div>
+<a href="./?page=order&action=lietke">Trở lại </a>
 <form action="index.php?page=order&action=xulysua" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $order['order_id']; ?>">
         <div class="w-[40%]">
