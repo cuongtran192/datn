@@ -27,6 +27,8 @@
     <div class="flex flex-row items-center">
         <div class="bg-gray-100 p-2 mx-4 opacity-50 text-2xl ring-2 ring-blue-500 font-semibold rounded-[15px]"><?php
 // Lấy ngày hiện tại
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 $ngayHienTai = date("d-m-Y");
 
 // Hiển thị ngày hiện tại

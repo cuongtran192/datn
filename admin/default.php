@@ -75,14 +75,25 @@ if ($result->num_rows > 0) {
         <div class="flex flex-row justify-between"> 
             <div class="m-4">
               <div class="font-bold text-2xl"> Số khách hàng</div>
-              <div class="text-gray-400"> trong tháng </div>
+              <div class="text-gray-400">  </div>
             </div>
             <div class="m-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 text-yellow-500">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
               </svg>
             </div>
           </div>
-          <div class="m-4 font-bold"><span class="font-bold text-4xl">188 </span><span class=" text-2xl text-gray-500"> khách hàng</span></div>
+          <div class="m-4 font-bold"><span class="font-bold text-4xl"> 
+              <?php $sql = "SELECT COUNT(*) AS SoLuongNguoi FROM users";
+                          $result = $conn->query($sql);
+
+                          // Kiểm tra và in kết quả
+                          if ($result->num_rows > 0) {
+                              $row = $result->fetch_assoc();
+                              echo  $row["SoLuongNguoi"];
+                          } else {
+                              echo "0";
+} ?> 
+</span><span class=" text-2xl text-gray-500"> khách hàng</span></div>
         </div>
         <div class="w-1/4 h-[200px] m-2 border border-4 border-gray-400/50 rounded-lg ">
         <div class="flex flex-row justify-between"> 
@@ -97,7 +108,31 @@ if ($result->num_rows > 0) {
 
             </div>
           </div>
-          <div class="m-4 font-bold"><span class="font-bold text-4xl">2533 </span><span class=" text-2xl text-gray-500"> sản phẩm</span></div>
+          <div class="m-4 font-bold"><span class="font-bold text-4xl">
+                        <?php 
+                        date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+                        // Lấy tháng hiện tại
+                        $currentMonth = date("n");
+                        $currentYear = date("Y");
+                   
+
+                        $sql = "SELECT SUM(op.number) AS total_sold
+                        FROM `orders` o
+                        JOIN order_product op ON o.order_id = op.order_id
+                        WHERE MONTH(o.order_date) = $currentMonth
+                        AND YEAR(o.order_date) = $currentYear";
+                
+                $result = $conn->query($sql);
+                
+                // Kiểm tra và xử lý kết quả
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    echo  $row["total_sold"];
+                } else {
+                    echo "0";
+                }
+ ?>  </span><span class=" text-2xl text-gray-500"> sản phẩm</span></div>
         </div>
       </div>
       <!-- phần biểu đồ doanh thu  -->
