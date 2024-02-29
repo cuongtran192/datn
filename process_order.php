@@ -8,8 +8,9 @@ $total_price = $_SESSION['total_price']; // Lấy tổng tiền từ session
 $address = $_POST['address'];
 $name = $_POST['name'];
 $phone = $_POST['phone'];
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-// Gán giá trị ngày đặt hàng
+// Lấy thời gian hiện tại với định dạng Y-m-d H:i:s
 $order_date = date("Y-m-d H:i:s");
 
 // Thêm dữ liệu vào bảng orders
@@ -35,7 +36,13 @@ while ($row_cart = $result_cart->fetch_assoc()) {
     $stmt_order_product = $conn->prepare($sql_order_product);
     $stmt_order_product->bind_param("iiid", $order_id, $product_id, $quantity, $total);
     $stmt_order_product->execute();
+
+    $sql_update_product = "UPDATE product SET number = number - ? WHERE product_id = ?";
+    $stmt_update_product = $conn->prepare($sql_update_product);
+    $stmt_update_product->bind_param("ii", $quantity, $product_id);
+    $stmt_update_product->execute();
 }
+
 
 
 // Xóa dữ liệu trong bảng cart sau khi đặt hàng thành công

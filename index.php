@@ -543,9 +543,9 @@ $connect = mysqli_connect($servername, $username, $password, $dbname);
 // Kiểm tra kết nối
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
-}
-  $sql = "SELECT * FROM product WHERE purpose_id IN (1, 2, 3) ORDER BY RAND() LIMIT 5";
-  $counter = 4; // Counter to keep track of number of products in each row
+
+}$sql = "SELECT * FROM product WHERE type_id = 1 ORDER BY discount DESC LIMIT 5";
+$counter = 5; // Counter to keep track of number of products in each row
 
   if ($result = mysqli_query($connect, $sql)) {
     $counter = 0; // Initialize product counter

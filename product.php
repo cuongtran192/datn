@@ -101,7 +101,8 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
         echo '<button class="quantity-plus" style="margin-right: 0px;">+</button>';
         echo '<span class="available-quantity" style="margin-left: 20px; margin-right: 5px;"> Còn ' . $row['number'] . ' sản phẩm</span>'; // Thay đổi giá trị margin-right
         echo '</div>';
-        if ($product_id && $discountedPrice) {
+        if ($row['number'] > 0) {
+            // Hiển thị nút "Mua ngay" và "Thêm vào giỏ hàng"
             echo '<form method="post" action="add_to_cart.php">';
             echo '<input type="hidden" name="product_id" value="' . $product_id . '">'; // Ẩn trường chứa ID sản phẩm
             echo '<input type="hidden" name="price" value="' . $discountedPrice . '">'; // Ẩn trường chứa giá đã giảm
@@ -111,8 +112,10 @@ $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100)
             echo '<button class="buy-now-btn" style="background-color: #CC0000; border: none; color: #fff; padding: 18px 44px; ">';
             echo 'Mua ngay';
             echo '</button>';
-      
             echo '</form>';
+        } else {
+            // Hiển thị dòng chữ "Hết hàng"
+            echo '<div style="margin-top: 20px; color: red; font-size: 18px;">Sản phẩm hiện tại hết hàng vui lòng quay lại sau!</div>';
         }
 
         
