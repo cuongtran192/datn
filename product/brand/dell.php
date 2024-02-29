@@ -108,7 +108,7 @@ include 'header.php';
             die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
         }
         $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
-        $sql = "SELECT * FROM product WHERE brand_id='3'";
+        $sql = "SELECT * FROM product WHERE brand_id='3' AND type_id='1'";
         if ($sort == 'asc') {
             $sql .= " ORDER BY price ASC";
         } elseif ($sort == 'desc') {
@@ -123,32 +123,45 @@ include 'header.php';
             $counter = 0; // Initialize product counter
             while ($row = mysqli_fetch_array($result)) {
                 if ($counter % 5 == 0) { // Start a new row after every 5 products
-                    echo '</div>'; // Close previous row if not the first row
                     echo '<div class="row justify-content-center custom-margin-bottom">'; // Start a new row
                 }
-
+            
                 echo '<div class="col-md-2 custom-margin text-center">';
-                echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
+                echo '<div class="product-card bg-white'; // Add class for out-of-stock
+                if ($row['number'] == 0) {
+                    echo ' out-of-stock'; // Add out-of-stock class if number is 0
+                }
+                echo '">'; // Close product-card class
+            
                 echo '<a href="../../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
                 echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
                 echo '</a>';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $row['name'] . '</h5>';
                 echo '<p class="card-text">' . str_replace(", ", "<br>", $row['description']) . '</p>';
-
+            
                 $originalPrice = $row['price'];
                 $discountPercentage = $row['discount'];
                 $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage / 100);
-
-                echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
-                echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
-                echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+            
+                if ($row['number'] == 0) {
+                    echo '<div class="out-of-stock-text">Sản phẩm hiện tại đang hết hàng</div>'; // Display "Hết hàng" text if product is out of stock
+                } else {
+                    echo '<h5 class="card-text discounted-price">' . number_format($originalPrice, 0, ',', '.') . ' ₫ </h5>';
+                    echo '<div class="rounded-pill bg-danger text-white">' . -intval($discountPercentage) . '%</div>';
+                    echo '<h6 class="card-text price">' . number_format($discountedPrice, 0, ',', '.') . ' ₫ </h6>';
+                }
+            
                 echo '</div>'; // Close card-body
                 echo '<div class="card-footer"></div>'; // Empty card-footer
                 echo '</div>'; // Close product-card
                 echo '</div>'; // Close col-md-3
-
+            
                 $counter++;
+            
+                if ($counter % 5 == 0) { // Close the row after every 5 products
+                    echo '</div>';
+                }
             }
             mysqli_free_result($result);
         } else {
