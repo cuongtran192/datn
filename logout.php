@@ -11,4 +11,8 @@ session_destroy();
 // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
 header("Location: index.php"); // hoặc index.php hoặc bất kỳ trang nào bạn muốn
 exit;
+
+
+//dd
+
 ?>
