@@ -138,7 +138,7 @@ if (isset($_SESSION['phone'])) {
         font-size: 20px; /* Đặt kích thước chữ là 20px */
     }
 </style>
-<nav class="navbar navbar-expand-lg " style="margin-left: 11.3rem;">
+<nav class="navbar navbar-expand-lg " style="margin-left: 11.3rem;margin-top:1rem">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-3 mb-lg-0">
@@ -151,28 +151,28 @@ if (isset($_SESSION['phone'])) {
                             <a class="dropdown-item dropdown-toggle" href="#">Laptop</a>
                             <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
                                 <li><a class="dropdown-item" href="product/laptopgaming.php">Laptop Gaming</a></li>
-                                <li><a class="dropdown-item" href="#">Laptop Đồ Họa</a></li>
-                                <li><a class="dropdown-item" href="#">Laptop Văn Phòng</a></li>
+                                <li><a class="dropdown-item" href="product/laptopdohoa.php">Laptop Đồ Họa</a></li>
+                                <li><a class="dropdown-item" href="product/laptopvanphong.php">Laptop Văn Phòng</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Hãng Laptop</a>
+                                    <a class="dropdown-item dropdown-toggle" href="">Hãng Laptop</a>
                                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                        <li><a class="dropdown-item" href="#">Asus</a></li>
-                                        <li><a class="dropdown-item" href="#">Acer</a></li>
-                                        <li><a class="dropdown-item" href="#">MSI</a></li>
-                                        <li><a class="dropdown-item" href="#">Dell</a></li>
-                                        <li><a class="dropdown-item" href="#">Lenovo</a></li>
-                                        <li><a class="dropdown-item" href="#">Hp</a></li>
-                                        <li><a class="dropdown-item" href="#">Gigabyte</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/asus.php">Asus</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/acer.php">Acer</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/msi.php">MSI</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/dell.php">Dell</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/lenovo.php">Lenovo</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/hp.php">Hp</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/gigabyte.php">Gigabyte</a></li>
                                         <!-- Thêm các hãng laptop khác ở đây -->
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Chuột</a></li>
-                        <li><a class="dropdown-item" href="#">Bàn Phím</a></li>
-                        <li><a class="dropdown-item" href="#">Tai Nghe</a></li>
-                        <li><a class="dropdown-item" href="#">Balo</a></li>
+                        <li><a class="dropdown-item" href="product/chuot.php">Chuột</a></li>
+                        <li><a class="dropdown-item" href="product/banphim.php">Bàn Phím</a></li>
+                        <li><a class="dropdown-item" href="product/tainghe.php">Tai Nghe</a></li>
+                        <li><a class="dropdown-item" href="product/balo.php">Balo</a></li>
                     </ul>
                     
                 </li>
@@ -190,25 +190,25 @@ if (isset($_SESSION['phone'])) {
 </style>
 
 <ul class="navbar-nav me-auto mb-3 mb-lg-0" style="text-align: right;">
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/check.png" alt="Check Icon" style="width: 40px; height: 40px;">
             Cam kết chính hãng
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/freeship.png" alt="Truck Icon" style="width: 40px; height: 40px;">
             Miễn phí vận chuyển
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/monney.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Giá tốt nhất
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 70px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/phone.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Hỗ trợ 24/7
@@ -247,10 +247,10 @@ if (isset($_SESSION['phone'])) {
  
  .slideshow-container {
     position: relative;
-    max-width: 900px;
+    max-width: 880px;
     margin: auto;
     overflow: hidden;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 .slide-wrapper {
@@ -308,11 +308,11 @@ if (isset($_SESSION['phone'])) {
     right: 200px; /* Cách lề phải 200px */
     transform: translateY(-50%);
     width: 280px; /* Độ rộng của ô */
-    height: 420px; /* Chiều cao của ô */
+    height: 410px; /* Chiều cao của ô */
     background-color: white; /* Màu nền trắng */
     border: 1px solid red; /* Viền màu đỏ */
     border-radius: 15px; /* Bo góc */
-    top: 422px;
+    top: 460px;
    
 }
 .content-box1 {
@@ -321,11 +321,11 @@ if (isset($_SESSION['phone'])) {
     left: 190px; /* Cách lề phải 200px */
     transform: translateY(-50%);
     width: 290px; /* Độ rộng của ô */
-    height: 420px; /* Chiều cao của ô */
+    height: 410px; /* Chiều cao của ô */
     background-color: white; /* Màu nền trắng */
     border: 1px solid blue; /* Viền màu đỏ */
     border-radius: 15px; /* Bo góc */
-    top: 422px;
+    top: 460px;
    
 }
     .contact-info p {
@@ -365,6 +365,7 @@ if (isset($_SESSION['phone'])) {
     </style>
 </head>
 <body>
+<hr class="section-divider">
 <div class="container mx-1">
     <div class="content-box1 mx-3">
     <p class="text-danger mt-3"><b>THÔNG TIN KHUYẾN MÃI</b> </p>
@@ -558,7 +559,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -588,9 +589,11 @@ if (!$connect) {
     echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
 }
 ?>
+
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP GAMING SIÊU ƯU ĐÃI</h2>
     </div>
+    <hr class="section-divider">
 <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
@@ -612,7 +615,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -646,7 +649,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP VĂN PHÒNG HOT</h2>
     </div>
-
+    <hr class="section-divider">
 
     <?php
 if (!$connect) {
@@ -669,7 +672,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -702,7 +705,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP ĐỒ HỌA KHỦNG</h2>
     </div>
-
+    <hr class="section-divider">
 
     <?php
 if (!$connect) {
@@ -725,7 +728,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -758,7 +761,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP VĂN PHÒNG HOT</h2>
     </div>
-
+    <hr class="section-divider">
 
     <?php
 if (!$connect) {
@@ -781,7 +784,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -815,7 +818,7 @@ if (!$connect) {
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">BÀN PHÍM MỚI</h2>
     </div>
 
-
+    <hr class="section-divider">
     <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
@@ -837,7 +840,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -870,7 +873,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">CHUỘT SIÊU XỊN</h2>
     </div>
-
+    <hr class="section-divider">
 <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
@@ -892,7 +895,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -924,7 +927,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">TAI NGHE</h2>
     </div>
-
+    <hr class="section-divider">
 <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
@@ -946,7 +949,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';
@@ -980,7 +983,7 @@ if (!$connect) {
 <div>
     <h2 style="color: black; font-size: 30px; margin-top: 40px;">BALO LAPTOP</h2>
     </div>
-
+    <hr class="section-divider">
 <?php
 if (!$connect) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
@@ -1002,7 +1005,7 @@ if (!$connect) {
 
         echo '<div class="col-md-2 custom-margin text-center">';
         echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-        echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+        echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
         echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
         echo '</a>';
         echo '<div class="card-body">';

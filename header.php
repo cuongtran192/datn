@@ -122,29 +122,29 @@ if (isset($_SESSION['phone'])) {
                         <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle" href="#">Laptop</a>
                             <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                <li><a class="dropdown-item" href="#">Laptop Gaming</a></li>
-                                <li><a class="dropdown-item" href="#">Laptop Đồ Họa</a></li>
-                                <li><a class="dropdown-item" href="#">Laptop Văn Phòng</a></li>
+                                <li><a class="dropdown-item" href="product/laptopgaming.php">Laptop Gaming</a></li>
+                                <li><a class="dropdown-item" href="product/laptopdohoa.php">Laptop Đồ Họa</a></li>
+                                <li><a class="dropdown-item" href="product/laptopvanphong.php">Laptop Văn Phòng</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Hãng Laptop</a>
+                                    <a class="dropdown-item dropdown-toggle" href="">Hãng Laptop</a>
                                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                        <li><a class="dropdown-item" href="#">Asus</a></li>
-                                        <li><a class="dropdown-item" href="#">Acer</a></li>
-                                        <li><a class="dropdown-item" href="#">MSI</a></li>
-                                        <li><a class="dropdown-item" href="#">Dell</a></li>
-                                        <li><a class="dropdown-item" href="#">Lenovo</a></li>
-                                        <li><a class="dropdown-item" href="#">Hp</a></li>
-                                        <li><a class="dropdown-item" href="#">Gigabyte</a></li>
+                                    <li><a class="dropdown-item" href="product/brand/asus.php">Asus</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/acer.php">Acer</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/msi.php">MSI</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/dell.php">Dell</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/lenovo.php">Lenovo</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/hp.php">Hp</a></li>
+                                        <li><a class="dropdown-item" href="product/brand/gigabyte.php">Gigabyte</a></li>
                                         <!-- Thêm các hãng laptop khác ở đây -->
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Chuột</a></li>
-                        <li><a class="dropdown-item" href="#">Bàn Phím</a></li>
-                        <li><a class="dropdown-item" href="#">Tai Nghe</a></li>
-                        <li><a class="dropdown-item" href="#">Balo</a></li>
+                        <li><a class="dropdown-item" href="product/chuot.php">Chuột</a></li>
+                        <li><a class="dropdown-item" href="product/banphim.php">Bàn Phím</a></li>
+                        <li><a class="dropdown-item" href="product/tainghe.php">Tai Nghe</a></li>
+                        <li><a class="dropdown-item" href="product/balo.php">Balo</a></li>
                     </ul>
                     
                 </li>
@@ -162,25 +162,25 @@ if (isset($_SESSION['phone'])) {
 </style>
 
 <ul class="navbar-nav me-auto mb-3 mb-lg-0" style="text-align: right;">
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/check.png" alt="Check Icon" style="width: 40px; height: 40px;">
             Cam kết chính hãng
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/freeship.png" alt="Truck Icon" style="width: 40px; height: 40px;">
             Miễn phí vận chuyển
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 80px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/monney.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Giá tốt nhất
         </a>
     </li>
-    <li class="nav-item" style="margin-right: 70px;">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
             <img src="img/logo/phone.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Hỗ trợ 24/7
@@ -197,7 +197,7 @@ if (isset($_SESSION['phone'])) {
     <!-- Các phần tử và mã HTML khác ở đây -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-36Q4W51J8pfrKo4MszP4PijI6asp2rfruh27qspn4pC/rpIEj5K7vr/v5zE0rJGc" crossorigin="anonymous"></script>
-
+    <hr class="section-divider">
 </html>
 
 <!-- JavaScript để xử lý dropdown -->

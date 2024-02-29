@@ -74,7 +74,7 @@ include 'header.php';
 </style>
 <div class="container">
 
-    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP GAMING </h2>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP HP </h2>
    
     <div class="col-md-12 mb-3">
     <div class="d-inline-block rounded-pill bg-light p-0 mr-2">
@@ -108,7 +108,7 @@ include 'header.php';
             die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
         }
         $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
-        $sql = "SELECT * FROM product WHERE purpose_id='3'";
+        $sql = "SELECT * FROM product WHERE brand_id='4'";
         if ($sort == 'asc') {
             $sql .= " ORDER BY price ASC";
         } elseif ($sort == 'desc') {
@@ -129,7 +129,7 @@ include 'header.php';
 
                 echo '<div class="col-md-2 custom-margin text-center">';
                 echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-                echo '<a href="../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+                echo '<a href="../../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
                 echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
                 echo '</a>';
                 echo '<div class="card-body">';
@@ -158,4 +158,4 @@ include 'header.php';
     </div>
 </div>
 
-<?php include '../footer.php'; ?>
+<?php include '../../footer.php'; ?>

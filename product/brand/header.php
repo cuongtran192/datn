@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="../css/style.css">  
+    <link rel="stylesheet" href="../../css/style.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-9I6oIH7yCJUD6E+0oxzeboFzJg7VYY3qFmxO7VhtXRSIOYRgJlOyZF/lcGwtpNy0+gZ5RtZfLxj2Q9i1gs5y1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -20,8 +20,8 @@
     <div class="header">
         <div class="menu">
             <div class="logo">
-                <a href="../index.php">
-                    <img src="../img/logo/logo.png" alt="Logo">
+                <a href="../../index.php">
+                    <img src="../../img/logo/logo.png" alt="Logo">
                 </a>
             </div>
             <div class="search-bar">
@@ -29,16 +29,16 @@
                 <button type="submit" class="search-button">Tìm kiếm</button>
             </div>
             <div class="contact">
-                <img src="../img/logo/phone-icon.png" alt="Phone Icon">
+                <img src="../../img/logo/phone-icon.png" alt="Phone Icon">
                 <span class="contact-text">Liên hệ <br> tư vấn</span>
             </div>
             <div class="warranty">
-                <img src="../img/logo/globe-icon.png" alt="Globe Icon">
+                <img src="../../img/logo/globe-icon.png" alt="Globe Icon">
                 <span class="warranty-text">Chính sách <br> bảo hành</span>
             </div>
             <div class="cart">
    <a href="cart.php" style="text-decoration: none;">
-    <img src="../img/logo/cart-icon.png" alt="Cart Icon">
+    <img src="../../img/logo/cart-icon.png" alt="Cart Icon">
     <span class="cart-text">Giỏ hàng <br> của bạn</span>
 </a>
 
@@ -75,12 +75,12 @@ if (isset($_SESSION['phone'])) {
     echo '
     <div class="dropdown">
         <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
-            <img src="../img/logo/user-icon.png" alt="User Icon" style="margin-bottom: -5px;">
+            <img src="../../img/logo/user-icon.png" alt="User Icon" style="margin-bottom: -5px;">
             <span class="user-text">Xin chào!<br>' . $name . '</span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px;">
-        <li><a class="dropdown-item text-danger  mb-2" href="../user.php">Thông tin cá nhân</a></li>
-        <li><a class="dropdown-item text-primary " href="../logout.php">Đăng xuất</a></li>
+        <li><a class="dropdown-item text-danger  mb-2" href="../../user.php">Thông tin cá nhân</a></li>
+        <li><a class="dropdown-item text-primary " href="../../logout.php">Đăng xuất</a></li>
     </ul>
     
     </div>';
@@ -88,8 +88,8 @@ if (isset($_SESSION['phone'])) {
 } else {
     // Nếu chưa đăng nhập, hiển thị nút Đăng nhập/Đăng ký
     echo '
-    <a href="../login.php" style="text-decoration: none;">
-        <img src="../img/logo/user-icon.png" alt="User Icon">
+    <a href="../../login.php" style="text-decoration: none;">
+        <img src="../../img/logo/user-icon.png" alt="User Icon">
         <span class="user-text">Đăng nhập <br> & Đăng Ký</span>
     </a>';
 }
@@ -122,29 +122,29 @@ if (isset($_SESSION['phone'])) {
                         <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle" href="#">Laptop</a>
                             <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                <li><a class="dropdown-item" href="laptopgaming.php">Laptop Gaming</a></li>
-                                <li><a class="dropdown-item" href="laptopdohoa.php">Laptop Đồ Họa</a></li>
-                                <li><a class="dropdown-item" href="laptopvanphong.php">Laptop Văn Phòng</a></li>
+                                <li><a class="dropdown-item" href="../laptopgaming.php">Laptop Gaming</a></li>
+                                <li><a class="dropdown-item" href="../laptopdohoa.php">Laptop Đồ Họa</a></li>
+                                <li><a class="dropdown-item" href="../laptopvanphong.php">Laptop Văn Phòng</a></li>
                                 <li class="dropdown-divider"></li>
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle" href="">Hãng Laptop</a>
                                     <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarDropdown" style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 0px; left: 100%; will-change: transform;">
-                                    <li><a class="dropdown-item" href="brand/asus.php">Asus</a></li>
-                                        <li><a class="dropdown-item" href="brand/acer.php">Acer</a></li>
-                                        <li><a class="dropdown-item" href="brand/msi.php">MSI</a></li>
-                                        <li><a class="dropdown-item" href="brand/dell.php">Dell</a></li>
-                                        <li><a class="dropdown-item" href="brand/lenovo.php">Lenovo</a></li>
-                                        <li><a class="dropdown-item" href="brand/hp.php">Hp</a></li>
-                                        <li><a class="dropdown-item" href="brand/gigabyte.php">Gigabyte</a></li>
+                                    <li><a class="dropdown-item" href="asus.php">Asus</a></li>
+                                        <li><a class="dropdown-item" href="acer.php">Acer</a></li>
+                                        <li><a class="dropdown-item" href="msi.php">MSI</a></li>
+                                        <li><a class="dropdown-item" href="dell.php">Dell</a></li>
+                                        <li><a class="dropdown-item" href="lenovo.php">Lenovo</a></li>
+                                        <li><a class="dropdown-item" href="hp.php">Hp</a></li>
+                                        <li><a class="dropdown-item" href="gigabyte.php">Gigabyte</a></li>
                                         <!-- Thêm các hãng laptop khác ở đây -->
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a class="dropdown-item" href="chuot.php">Chuột</a></li>
-                        <li><a class="dropdown-item" href="banphim.php">Bàn Phím</a></li>
-                        <li><a class="dropdown-item" href="tainghe.php">Tai Nghe</a></li>
-                        <li><a class="dropdown-item" href="balo.php">Balo</a></li>
+                        <li><a class="dropdown-item" href="../chuot.php">Chuột</a></li>
+                        <li><a class="dropdown-item" href="../banphim.php">Bàn Phím</a></li>
+                        <li><a class="dropdown-item" href="../tainghe.php">Tai Nghe</a></li>
+                        <li><a class="dropdown-item" href="../balo.php">Balo</a></li>
                     </ul>
                     
                 </li>
@@ -162,27 +162,27 @@ if (isset($_SESSION['phone'])) {
 </style>
 
 <ul class="navbar-nav me-auto mb-3 mb-lg-0" style="text-align: right;">
-   <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
-            <img src="../img/logo/check.png" alt="Check Icon" style="width: 40px; height: 40px;">
+            <img src="../../img/logo/check.png" alt="Check Icon" style="width: 40px; height: 40px;">
             Cam kết chính hãng
         </a>
     </li>
-   <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
-            <img src="../img/logo/freeship.png" alt="Truck Icon" style="width: 40px; height: 40px;">
+            <img src="../../img/logo/freeship.png" alt="Truck Icon" style="width: 40px; height: 40px;">
             Miễn phí vận chuyển
         </a>
     </li>
-   <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
-            <img src="../img/logo/monney.png" alt="Chat Icon" style="width: 40px; height: 40px;">
+            <img src="../../img/logo/monney.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Giá tốt nhất
         </a>
     </li>
-   <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
+    <li class="nav-item" style="margin-right: 80px;margin-top: 5px">
         <a href="#" class="nav-link">
-            <img src="../img/logo/phone.png" alt="Chat Icon" style="width: 40px; height: 40px;">
+            <img src="../../img/logo/phone.png" alt="Chat Icon" style="width: 40px; height: 40px;">
             Hỗ trợ 24/7
         </a>
     </li>

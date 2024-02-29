@@ -1,5 +1,5 @@
 <?php
-
+include '../connectdb.php';
 include 'header.php';
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -74,7 +74,7 @@ include 'header.php';
 </style>
 <div class="container">
 
-    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP GAMING </h2>
+    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP VĂN PHÒNG </h2>
    
     <div class="col-md-12 mb-3">
     <div class="d-inline-block rounded-pill bg-light p-0 mr-2">
@@ -108,7 +108,7 @@ include 'header.php';
             die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
         }
         $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
-        $sql = "SELECT * FROM product WHERE purpose_id='3'";
+        $sql = "SELECT * FROM product WHERE purpose_id='1'";
         if ($sort == 'asc') {
             $sql .= " ORDER BY price ASC";
         } elseif ($sort == 'desc') {

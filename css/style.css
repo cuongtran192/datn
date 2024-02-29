@@ -335,7 +335,7 @@ transform: scale(1.2);
     margin-left: 200px;
     margin-right: 200px;
     background: linear-gradient(to bottom, rgb(250, 138, 0), rgb(252, 85, 2));
-    height: 725px; /* Điều chỉnh chiều cao tùy ý */
+    height: 710px; /* Điều chỉnh chiều cao tùy ý */
     border-radius: 20px; /* Bo tròn các góc */
         margin-top: 25px; /* Cách bên trên là 25px */
 }
@@ -469,3 +469,13 @@ transform: scale(1.2);
 .custom-margin-bottom {
     margin-bottom: -60px; /* Đặt khoảng cách dưới là 50px */
 }
+
+.section-divider {
+    border-top: 2px solid #000000; /* Độ dày của đường kẻ ngang */
+    margin-top: 20px; /* Khoảng cách từ đường kẻ ngang đến chữ LAPTOP GYGABYTE */
+    margin-bottom: 20px; /* Khoảng cách từ đường kẻ ngang đến các sản phẩm */
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0)); /* Gradient mờ từ đậm đến nhạt */
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.8), inset 0px 0px 10px rgba(255, 255, 255, 0.4); /* Bóng đường kẻ ngang */
+}
+
+
