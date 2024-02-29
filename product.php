@@ -28,10 +28,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         echo '<div class="main-image" id="main-image" style="margin-left: 200px; margin-top: 5px;">'; // Cách lề trái 200px và cách lề trên 25px
         echo '<img src="' . $row['image_link_1'] . '" alt="' . $row['name'] . '" style=" width: 550px; height: 500px; display: inline-block; ">';
         echo '</div>'; // Close main-image
-        echo '<div class="product-name" style="position: absolute; top: 210px ;margin-right: 120px;margin-left: 850px;  font-size: 30px; z-index: 1;">';
+        echo '<div class="product-name" style="position: absolute; top: 230px ;margin-right: 120px;margin-left: 850px;  font-size: 30px; z-index: 1;">';
         echo $row['name'];
         echo '</div>'; // Close product-name   
-        echo '<div class="product-info" style="position: absolute; top: 300px; left: 850px; font-size: 16px; color: #555555; z-index: 1;">';
+        echo '<div class="product-info" style="position: absolute; top: 320px; left: 850px; font-size: 16px; color: #555555; z-index: 1;">';
         echo '<span>Số lượng:   ' . $row['number'] . '</span> | <span>Đã bán:   ' . $row['number_buy'] . '</span> | ';
 
 // Lấy đánh giá trung bình từ bảng review
@@ -147,15 +147,23 @@ echo '<h4 style="font-weight: bold; font-size: 35px;margin-bottom: 20px;font-fam
 echo '</div>';
 $text = $row['description1']; // Lấy đoạn văn bản từ cột 'description1'
 
-// Tách đoạn văn bản thành các dòng dựa trên ký tự xuống dòng (\n)
-$lines = explode("\n", $text);
+// Kiểm tra nếu $text là chuỗi trống
+if (empty($text)) {
+    echo '<div style="text-align:center; margin-right: 200px;">'; // Đặt lề trái 0
+    echo '<p style="font-weight: i; font-size: 20px; margin-left: 200px; margin-bottom: 10px;  color: #000000; background-color: #ffffff; padding: 10px;">Chưa có thông tin về sản phẩm.</p>';
+    echo '</div>';
+} else {
+    // Tách đoạn văn bản thành các dòng dựa trên ký tự xuống dòng (\n)
+    $lines = explode("\n", $text);
 
-// Hiển thị từng dòng trên một dòng mới
-echo '<div style="text-align:left; display: flex; flex-direction: column; align-items: flex-start; margin-right: 200px;">'; // Đặt lề trái 0
-foreach ($lines as $line) {
-    echo '<p style="font-weight: i; font-size: 20px; margin-left: 200px; margin-bottom: 10px;  color: #000000; background-color: #ffffff; padding: 10px;">' . $line . '</p>';
+    // Hiển thị từng dòng trên một dòng mới
+    echo '<div style="text-align:left; display: flex; flex-direction: column; align-items: flex-start; margin-right: 200px;">'; // Đặt lề trái 0
+    foreach ($lines as $line) {
+        echo '<p style="font-weight: i; font-size: 20px; margin-left: 200px; margin-bottom: 10px;  color: #000000; background-color: #ffffff; padding: 10px;">' . $line . '</p>';
+    }
+    echo '</div>';
 }
-echo '</div>';
+
 
 echo '<div style="margin-top: 30px; font-size: 20px; margin-left: 200px; margin-right: 200px;">'; // Căn lề trái và lề phải cách nhau 200px
 echo '<h4 style="font-weight: bold; font-size: 35px;margin-bottom: 20px;font-family: Arial, sans-serif;">Đánh giá người dùng:</h4>'; // Đặt chữ đậm

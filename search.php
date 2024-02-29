@@ -1,5 +1,4 @@
 <?php
-
 include 'header.php';
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -70,15 +69,18 @@ include 'header.php';
     .custom-margin-bottom {
         margin-bottom: -60px; /* Đặt khoảng cách dưới là 50px */
     }
-
+    <?php
+// Kiểm tra xem biến $search_query đã được định nghĩa và có giá trị không
+$search_query = isset($_GET['query']) ? $_GET['query'] : '';
+?>
 </style>
 <div class="container">
 
-    <h2 style="color: black; font-size: 30px; margin-top: 40px;">LAPTOP GIGABYTE </h2>
+<h2 style="color: black; font-size: 30px; margin-top: 40px;">Tìm kiếm: <?php echo htmlspecialchars($search_query); ?></h2>
    
     <div class="col-md-12 mb-3">
     <div class="d-inline-block rounded-pill bg-light p-0 mr-2">
-        <a href="?sort=asc" class="btn btn-link text-decoration-none text-dark">
+        <a href="?query=<?php echo urlencode($search_query); ?>&sort=asc" class="btn btn-link text-decoration-none text-dark">
             <span class="d-flex align-items-center">
                 <span class="font-size-small">Giá thấp - cao</span>
                 <i class="bi bi-arrow-up ml-2"></i>
@@ -86,7 +88,7 @@ include 'header.php';
         </a>
     </div>
     <div class="d-inline-block rounded-pill bg-light p-0">
-        <a href="?sort=desc" class="btn btn-link text-decoration-none text-dark">
+        <a href="?query=<?php echo urlencode($search_query); ?>&sort=desc" class="btn btn-link text-decoration-none text-dark">
             <span class="d-flex align-items-center">
                 <span class="font-size-small">Giá cao - thấp</span>
                 <i class="bi bi-arrow-down ml-2"></i>
@@ -94,7 +96,7 @@ include 'header.php';
         </a>
 </div>
 <div class="d-inline-block rounded-pill bg-light p-0">
-        <a href="?sort=discount" class="btn btn-link text-decoration-none text-dark">
+        <a href="?query=<?php echo urlencode($search_query); ?>&sort=discount" class="btn btn-link text-decoration-none text-dark">
             <span class="d-flex align-items-center">
                 <span class="font-size-small">Khuyến mãi</span>
                 <i class="bi bi-tag ml-2"></i> <!-- Thêm icon cho nút Khuyến mãi -->
@@ -104,11 +106,15 @@ include 'header.php';
 
 
         <?php
+          $search_query = isset($_GET['query']) ? $_GET['query'] : '';
+          $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
         if ($conn->connect_error) {
             die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
         }
-        $sort = isset($_GET['sort']) ? $_GET['sort'] : '';
-        $sql = "SELECT * FROM product WHERE brand_id='6'";
+      
+
+        // Truy vấn SQL
+        $sql = "SELECT * FROM product WHERE name LIKE '%$search_query%'";
         if ($sort == 'asc') {
             $sql .= " ORDER BY price ASC";
         } elseif ($sort == 'desc') {
@@ -129,7 +135,7 @@ include 'header.php';
 
                 echo '<div class="col-md-2 custom-margin text-center">';
                 echo '<div class="product-card bg-white">'; // Add bg-white class to keep white background
-                echo '<a href="../../product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
+                echo '<a href="product.php?id=' . $row['product_id'] . '">'; // Thêm ID của sản phẩm vào đường link
                 echo '<img class="card-img-top" src="' . $row['image_link_1'] . '" alt="">';
                 echo '</a>';
                 echo '<div class="card-body">';
@@ -158,4 +164,4 @@ include 'header.php';
     </div>
 </div>
 
-<?php include '../../footer.php'; ?>
+<?php include 'footer.php'; ?>

@@ -25,8 +25,10 @@
                 </a>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Bạn cần tìm gì..." class="search-input">
-                <button type="submit" class="search-button">Tìm kiếm</button>
+            <form action="search.php" method="GET" class="search-form">
+    <input type="text" name="query" placeholder="Bạn cần tìm gì..." class="search-input">
+    <button type="submit" class="search-button">Tìm kiếm</button>
+            </form>
             </div>
             <div class="contact">
                 <img src="img/logo/phone-icon.png" alt="Phone Icon">

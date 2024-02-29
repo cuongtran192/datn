@@ -12,23 +12,24 @@ if (isset($_SESSION['user_id'])) {
         $rate = $_POST['rate'];
         $comment = $_POST['comment'];
 
-        // Kiểm tra xem sản phẩm tồn tại trong cơ sở dữ liệu
-        $product_check_query = "SELECT * FROM product WHERE product_id='$product_id'";
-        $result = $conn->query($product_check_query);
-        if ($result->num_rows == 1) {
-            // Sản phẩm tồn tại, tiếp tục thêm đánh giá
+        // Kiểm tra xem người dùng đã đánh giá sản phẩm này trước đó hay chưa
+        $review_check_query = "SELECT * FROM review WHERE user_id='$user_id' AND product_id='$product_id'";
+        $review_result = $conn->query($review_check_query);
+        if ($review_result->num_rows > 0) {
+            // Người dùng đã đánh giá sản phẩm này trước đó, hiển thị thông báo
+            echo '<script>alert("Bạn đã nhận xét sản phẩm này trước đó. Vui lòng quay lại.");';
+            echo 'window.history.back();</script>';
+        } else {
+            // Người dùng chưa đánh giá sản phẩm này, tiếp tục thêm đánh giá
             $sql = "INSERT INTO review (user_id, product_id, rate, comment, date_review) VALUES ('$user_id', '$product_id', '$rate', '$comment', NOW())";
             if ($conn->query($sql) === TRUE) {
-                echo "Đánh giá đã được gửi thành công!";
+                // Đánh giá được gửi thành công, chuyển hướng người dùng đến trang trước đó
+                echo '<script>alert("Đánh giá đã được gửi thành công!");';
+                echo 'window.location.href = document.referrer;</script>';
             } else {
                 echo "Lỗi: " . $sql . "<br>" . $conn->error;
             }
-        } else {
-            // Sản phẩm không tồn tại, thông báo lỗi
-            echo "Sản phẩm không tồn tại!";
         }
-
-        $conn->close();
     } else {
         echo "Dữ liệu không hợp lệ!";
     }
