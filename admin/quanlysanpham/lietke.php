@@ -1,12 +1,12 @@
 <!-- phần thông tin chính  -->
 <div class="mx-auto">
-<a href='index.php?page=product&action=tao' class='text-blue-500 px-2'>tao</a>
+
 <div class="grid grid-cols-10 border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
-<div class="border-b-2 text-gray-400 font-bold text-base p-2">Mã sp</div>
+<div class="border-b-2 text-gray-400 font-bold text-base p-2">Mã sản phẩm</div>
 <div class="border-b-2  col-span-2 text-gray-400 font-bold text-base p-2">Tên</div>
 <div class=" border-b-2 text-gray-400 p-2 font-bold text-base">Giá</div>
 <div class="border-b-2 text-gray-400 font-bold text-base p-2">Giảm giá</div>
-<div class="border-b-2 text-gray-400  font-bold text-base p-2">Ảnh</div>
+<div class="border-b-2 text-gray-400  font-bold text-base p-2">Hình Ảnh</div>
 <div class="border-b-2 text-gray-400  font-bold text-base p-2">Số lượng</div>
 <div class="border-b-2 text-gray-400  font-bold text-base p-2">Đã bán</div>
 <div class="border-b-2 text-gray-400  font-bold text-base p-2">Trạng thái </div>
@@ -35,7 +35,8 @@ foreach ($product as $product) {
     echo "<div class='border-b-2 col-span-2 font-sans font-base text-base p-2'>" . $product['name'] . "</div>";
    
 
-    echo "<div class='border-b-2  font-sans font-base text-base p-2'>" . $product['price'] . " đ</div>";
+    echo "<div class='border-b-2  font-sans font-base text-base p-2'>" . number_format($product['price'], 0, ',', '.') . " đ</div>";
+
 
 echo "<div class='border-b-2 font-sans font-base text-base p-2'>".$product['discount']." %</div>";
    
@@ -52,10 +53,11 @@ echo "<div class='border-b-2 font-sans font-base text-base p-2'>".$product['disc
     
     // Add links for edit and delete actions
     echo "<div class='border-b-2 font-sans font-base text-base py-2'>";
-    echo "<a href='index.php?page=product&action=xem&id={$product['product_id']}' class='text-green-500 px-2'>Xem</a>";
+    echo "<a href='index.php?page=product&action=xem&id={$product['product_id']}' class='text-green-500 px-1'>Xem</a>";
 
-    echo "<a href='index.php?page=product&action=sua&id={$product['product_id']}' class='text-blue-500 px-2'>Sửa</a>";
-    echo "<a href='index.php?page=product&action=$action&id={$product['product_id']}' class='text-red-500 px-2'>$text</a>";
+    echo "<a href='index.php?page=product&action=sua&id={$product['product_id']}' class='text-blue-500 px-1'>Sửa</a>";
+    echo"<a href='index.php?page=product&action=tao' class='text-blue-500 px-1'>thêm</a>";
+    echo "<a href='index.php?page=product&action=$action&id={$product['product_id']}' class='text-red-500 px-1'>$text</a>";
     echo "</div>";
     
     

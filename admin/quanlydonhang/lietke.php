@@ -33,7 +33,8 @@ echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $order['orde
 
 echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $order["user_id"] . "</div>";
 
-echo "<div class=' border-b-2 font-sans font-base text-base p-2 '>" . $order['total_price']  . "</div>";
+echo "<div class='border-b-2  font-sans font-base text-base p-2'>" . number_format($order['total_price'], 0, ',', '.') . " đ</div>";
+
 
 echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $order['order_date'] . "</div>";
 echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $order['address'] . "</div>";
@@ -43,7 +44,7 @@ echo "<div class='border-b-2 font-sans  font-base text-base p-2'>" .$order['phon
 echo "<div class='border-b-2 font-sans  font-base text-base p-2'>" .$order['state'] . "</div>";
 
 echo "<div class='border-b-2 font-sans font-base text-base p-2'>"  ;
-echo "<a href='index.php?page=order&action=xem&id={$order['order_id']}' class='text-blue-500 px-2'>xem</a>";
+echo "<a href='index.php?page=order&action=xem&id={$order['order_id']}' class='text-blue-500 px-2'>Xem</a>";
 echo "<a href='index.php?page=order&action=sua&id={$order['order_id']}' class='text-blue-500 px-2'>Sửa</a>";
 echo "<a href='index.php?page=order&action=xoa&id={$order['order_id']}' class='text-red-500 px-2'>Xóa</a>";
 echo "</div>";
