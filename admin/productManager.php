@@ -48,13 +48,9 @@ if (isset($_GET['action'])) {
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search"])) {
                 $searchType = $_POST['search_type'];
                 $searchTerm = $_POST['search_term'];
-               
-            
           include 'quanlysanpham/timkiem.php';
-            break;
-               
             }
-
+            break;
         case 'xulytao':
           if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Lấy thông tin từ form
@@ -117,13 +113,9 @@ if (isset($_GET['action'])) {
           } else {
             echo "Không có dữ liệu được gửi đi.";
         }
-
-
             break;
-
-
         case 'xulysua':
-  
+
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             
@@ -154,11 +146,12 @@ if (isset($_GET['action'])) {
 // Execute the update
 
        if ($conn->query($sql) === TRUE) {
-            header("Location: index.php?page=product&action=sua&id=$product_id");
+            // header("Location: index.php?page=product&action=sua&id=$product_id");
+            include "quanlysanpham/lietke.php";
         } else {
             echo "Lỗi: " . $conn->error;
       }
-        }          
+        }          break;
        case 'sua':
         $id= $_GET['id'];
             include "quanlysanpham/formsua.php";
@@ -178,7 +171,9 @@ if (isset($_GET['action'])) {
           WHERE product_id=$id";
 
           if($conn->query($deleteQuery)) {
-               header("Location: index.php?page=product");
+              //  header("Location: index.php?page=product");
+            include "quanlysanpham/lietke.php";
+
           } else {
               echo "Lỗi khi xóa: " . $conn->error;
           }
@@ -191,13 +186,15 @@ if (isset($_GET['action'])) {
               WHERE product_id=$id";
     
               if($conn->query($deleteQuery)) {
-                   header("Location: index.php?page=product");
+                include "quanlysanpham/lietke.php";
+
               } else {
                   echo "Lỗi khi xóa: " . $conn->error;
               }
                 break;
         case 'lietke':
-          include 'quanlysanpham/lietke.php';
+          include "quanlysanpham/lietke.php";
+
             break; 
                                              
         // Thêm các trường hợp khác tương tự

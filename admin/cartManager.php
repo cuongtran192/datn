@@ -66,15 +66,15 @@ if (isset($_GET['action'])) {
            
         
             include 'quanlydonhang/timkiem.php';
-            break;
+          
            
         }
-        
+      
 
-          include 'quanlydonhang/timkiem.php';
+         
           break;
         case 'xulysua':
-          $id= $_GET['id'];
+         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idd = $_POST['id'];
           $name = $_POST['name'];
@@ -87,11 +87,11 @@ if (isset($_GET['action'])) {
         $sql = "UPDATE orders SET name='$name', Address='$address', phone='$phone', state='$state' WHERE order_id=$idd";
 
        if ($conn->query($sql) === TRUE) {
-            header("Location: index.php?page=order&action=sua&id=$idd");
+        include "quanlydonhang/lietke.php";
         } else {
             echo "Lỗi: " . $conn->error;
       }
-        }          
+        } break;          
        case 'sua':
         $id= $_GET['id'];
             include "quanlydonhang/formsua.php";
@@ -110,7 +110,8 @@ if (isset($_GET['action'])) {
           $resultDeleteProductorder = $conn->query($deleteProductorderQuery);
 
           if($conn->query($deleteQuery)) {
-              header("Location: index.php?page=order");
+            include "quanlydonhang/lietke.php";
+
           } else {
               echo "Lỗi khi xóa: " . $conn->error;
           }
