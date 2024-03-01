@@ -138,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
                 echo '<a href="checkout.php" class="btn btn-danger btn-checkout">Thanh toán</a>';
             } else {
                 // Nếu không có sản phẩm trong giỏ hàng, hiển thị thông báo
-                echo '<button class="btn btn-danger btn-checkout" disabled>Bạn vui lòng thêm sản phẩm vào giỏ hàng để thanh toán</button>';
+                echo '<button class="btn btn-danger btn-checkout" disabled>Bạn vui lòng thêm sản phẩm vào giỏ hàng </button>';
             }
 
             $conn->close();

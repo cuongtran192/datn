@@ -37,12 +37,18 @@ while ($row_cart = $result_cart->fetch_assoc()) {
     $stmt_order_product->bind_param("iiid", $order_id, $product_id, $quantity, $total);
     $stmt_order_product->execute();
 
+    // Truy vấn SQL để giảm số lượng sản phẩm trong kho (number)
     $sql_update_product = "UPDATE product SET number = number - ? WHERE product_id = ?";
     $stmt_update_product = $conn->prepare($sql_update_product);
     $stmt_update_product->bind_param("ii", $quantity, $product_id);
     $stmt_update_product->execute();
-}
 
+    // Truy vấn SQL để tăng số lượng đã mua của sản phẩm (number_buy)
+    $sql_update_product_buy = "UPDATE product SET number_buy = number_buy + ? WHERE product_id = ?";
+    $stmt_update_product_buy = $conn->prepare($sql_update_product_buy);
+    $stmt_update_product_buy->bind_param("ii", $quantity, $product_id);
+    $stmt_update_product_buy->execute();
+}
 
 
 // Xóa dữ liệu trong bảng cart sau khi đặt hàng thành công
@@ -52,6 +58,8 @@ $conn->query($sql_delete_cart);
 // Đóng kết nối
 $stmt_order->close();
 $stmt_order_product->close();
+$stmt_update_product->close();
+$stmt_update_product_buy->close();
 $conn->close();
 
 // Chuyển hướng người dùng đến trang cảm ơn

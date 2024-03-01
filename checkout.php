@@ -31,7 +31,7 @@ if (!isset($_SESSION['user_id'])) {
         <table class="table table-striped">
             <thead>
                 <tr>
-                <th scope="col" style="width: 10%;">Hình ảnh</th>
+                    <th scope="col" style="width: 10%;">Hình ảnh</th>
                     <th scope="col">Tên Sản Phẩm</th>
                     <th scope="col">Số Lượng</th>
                     <th scope="col">Giá</th>
@@ -66,12 +66,14 @@ if (!isset($_SESSION['user_id'])) {
                         $total_price += $row["total"]; // Tính tổng tiền
                     }
                 } else {
-                    echo "<tr><td colspan='4'>Không có sản phẩm trong giỏ hàng.</td></tr>";
+                    echo "<tr><td colspan='5'>Không có sản phẩm trong giỏ hàng.</td></tr>";
                 }
+                // Hiển thị hàng tổng cộng
                 echo "<tr>";
-    echo "<td colspan='4' class='text-right'><strong>Tổng tiền:</strong></td>";
-    echo "<td>" . number_format($total_price, 0, '', '.') . 'đ</td>'; // Hiển thị tổng tiền
-    echo "</tr>";
+                echo "<td colspan='4' class='text-right'><strong>Tổng tiền:</strong></td>";
+                echo "<td>" . number_format($total_price, 0, '', '.') . 'đ</td>'; // Hiển thị tổng tiền
+                echo "</tr>";
+
                 // Lưu tổng tiền vào biến session
                 $_SESSION['total_price'] = $total_price;
 
@@ -84,33 +86,40 @@ if (!isset($_SESSION['user_id'])) {
 
 <div class="container mt-6">
     <h2 class="mb-4">Xác nhận đơn hàng</h2>
-    <!-- Form thông tin đặt hàng -->
-    <form action="process_order.php" method="post">
-        <div class="form-group">
-            <label for="name">Họ và tên:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Số điện thoại:</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
-        </div>
-        <div class="form-group">
-            <label for="address">Địa chỉ giao hàng:</label>
-            <textarea class="form-control" id="address" name="address" required></textarea>
-
-        </div>
-        <div class="form-group">
-    <label for="payment">Phương thức thanh toán:</label>
-    <select class="form-control" id="payment" name="payment">
-        <option value="cash">Thanh toán khi nhận hàng (COD)</option>
-        <option value="bank_transfer">Chuyển khoản ngân hàng</option>
-        <option value="credit_card">Thẻ tín dụng</option>
-    </select>
+    <?php
+    // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
+    if ($result->num_rows > 0) {
+        echo '<form action="process_order.php" method="post">';
+        echo '<div class="form-group">';
+        echo '<label for="name">Họ và tên:</label>';
+        echo '<input type="text" class="form-control" id="name" name="name" required>';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="phone">Số điện thoại:</label>';
+        echo '<input type="text" class="form-control" id="phone" name="phone" required>';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="address">Địa chỉ giao hàng:</label>';
+        echo '<textarea class="form-control" id="address" name="address" required></textarea>';
+        echo '</div>';
+        echo '<div class="form-group">';
+        echo '<label for="payment">Phương thức thanh toán:</label>';
+        echo '<select class="form-control" id="payment" name="payment">';
+        echo '<option value="cash">Thanh toán khi nhận hàng (COD)</option>';
+        echo '<option value="bank_transfer">Chuyển khoản ngân hàng</option>';
+        echo '<option value="credit_card">Thẻ tín dụng</option>';
+        echo '</select>';
+        echo '</div>';
+        echo '<button type="submit" class="btn btn-success">Đặt hàng</button>';
+        echo '</form>';
+    } else {
+        // Hiển thị thông báo khi không có sản phẩm trong giỏ hàng
+        echo '<div class="alert alert-warning" role="alert">';
+        echo 'Không có sản phẩm trong giỏ hàng. Vui lòng thêm sản phẩm vào giỏ hàng để tiến hành thanh toán.';
+        echo '</div>';
+    }
+    ?>
 </div>
-
-        <!-- Các trường thông tin khác có thể được thêm vào đây -->
-        <button type="submit" class="btn btn-success">Đặt hàng</button>
-    </form>
 
 </body>
 </html>

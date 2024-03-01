@@ -1038,7 +1038,17 @@ if (!$connect) {
     echo "ERROR: Không thể thực thi $sql. " . mysqli_error($connect);
 }
 ?>
-
+<hr class="section-divider">
+<h2 style="color: black; font-size: 25px; margin-top: 40px;">Bạn có câu hỏi gì hãy để lại cho chúng tôi biết ?</h2>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email của bạn</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Câu hỏi của bạn ?</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Gửi</button>
 
 </body>
 </html>
