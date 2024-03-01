@@ -1,5 +1,5 @@
 <?php
-// Kết nối đến cơ sở dữ liệu
+// Kết nối đến cơ sở dữ liệu và bắt đầu session
 include 'header.php';
 include 'connectdb.php';
 
@@ -30,7 +30,7 @@ if ($result_order_detail->num_rows == 0) {
 $order_detail = $result_order_detail->fetch_assoc();
 
 // Truy vấn SQL để lấy thông tin chi tiết về các sản phẩm trong đơn hàng từ bảng order_product
-$sql_product_detail = "SELECT p.name AS product_name, p.price AS product_price, op.number AS product_quantity, op.price AS product_total
+$sql_product_detail = "SELECT p.name AS product_name, p.price AS product_price, op.number AS product_quantity, op.price AS product_total, p.image_link_1 AS image_link
                       FROM order_product op
                       INNER JOIN product p ON op.product_id = p.product_id
                       WHERE op.order_id = ?";
@@ -38,9 +38,6 @@ $stmt_product_detail = $conn->prepare($sql_product_detail);
 $stmt_product_detail->bind_param("i", $order_id);
 $stmt_product_detail->execute();
 $result_product_detail = $stmt_product_detail->get_result();
-
-// Đóng kết nối
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -69,27 +66,30 @@ $conn->close();
     <thead>
         <tr>
             <th style="white-space: nowrap;">STT</th>
+            <th style="white-space: nowrap;">Hình ảnh</th> <!-- Thêm cột hình ảnh -->
             <th style="white-space: nowrap;">Tên sản phẩm</th>
             <th style="white-space: nowrap;">Số lượng</th>
             <th style="white-space: nowrap;">Đơn giá</th>
             <th style="white-space: nowrap;">Tổng tiền</th>
         </tr>
     </thead>
-        <tbody>
-            <?php
-            $count = 1;
-            while ($product_detail = $result_product_detail->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $count++ . "</td>";
-                echo "<td>" . $product_detail['product_name'] . "</td>";
-                echo "<td>" . $product_detail['product_quantity'] . "</td>";
-                echo "<td>" . number_format($product_detail['product_price'], 0, '', '.') . 'đ' . "</td>";
-                echo "<td>" . number_format($product_detail['product_total'], 0, '', '.') . 'đ' . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+    <tbody>
+        <?php
+        $count = 1;
+        while ($product_detail = $result_product_detail->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $count++ . "</td>";
+            // Thêm cột hình ảnh
+            echo "<td><img src='" . $product_detail['image_link'] . "' alt='Product Image' style='max-width: 100px;'></td>";
+            echo "<td>" . $product_detail['product_name'] . "</td>";
+            echo "<td>" . $product_detail['product_quantity'] . "</td>";
+            echo "<td>" . number_format($product_detail['product_price'], 0, '', '.') . 'đ' . "</td>";
+            echo "<td>" . number_format($product_detail['product_total'], 0, '', '.') . 'đ' . "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
 </div>
 
 
