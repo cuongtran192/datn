@@ -36,37 +36,42 @@ if (isset($_GET['id'])) {
 
 }
 ?>
+<div class="m-5 justify-self-start "><a class=" rounded-2xl p-3 bg-green-400 text-black " href="./?page=order&action=lietke">Trở lại </a></div>
+<div class=" text-3xl font-bold my-4" class=""> Thông tin Đơn hàng</div>
 
-<div class=""> Thông tin Đơn hàng</div>
-<a href="./?page=order&action=lietke">Trở lại </a>
-<div class="flex flex-row">
-    <div class="w-[40%]">
-    <div >Mã đơn hàng:</div>
-    <div   class="" ><?php echo $order['order_id']; ?></div><br>
-
-    <div >Mã khách hàng:</div>
-    <div  class=""><?php echo $order['user_id']; ?></div><br>
-
-    <div >Tổng giá:</div>
-    <div   class="" ><?php echo $order['total_price']; ?></div><br>
-
-    <div >Địa chỉ nhận hàng:</div>
-    <div   class="" ><?php echo $order['address']; ?></div><br>
-    <div >Tên người nhận:</div>
-    <div   class="" ><?php echo $order['name']; ?></div><br>
-    <div >Số điện thoại :</div>
-    <div   class="" ><?php echo $order['phone']; ?></div><br>
-    <div >Tình trạng giao hàng :</div>
-    <div   class="" ><?php echo $order['state']; ?></div><br>
+<div class="">
+    <div class="">
+    <div class="flex flex-row my-3">
+    <div class="text-xl p-3 w-1/4" >Mã đơn hàng:</div>
+    <div   class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['order_id']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div  class="text-xl p-3 w-1/4">Mã khách hàng:</div>
+    <div class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl""><?php echo $order['user_id']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div class="text-xl p-3 w-1/4">Tổng giá:</div>
+    <div   class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['total_price']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div class="text-xl p-3 w-1/4">Địa chỉ nhận hàng:</div>
+    <div   class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['address']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div  class="text-xl p-3 w-1/4">Tên người nhận:</div>
+    <div   class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['name']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div class="text-xl p-3 w-1/4">Số điện thoại :</div>
+   
+    <div   class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['phone']; ?></div><br></div>
+    <div class="flex flex-row my-3">
+    <div class="text-xl p-3 w-1/4">Tình trạng giao hàng :</div>
+    <div  class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['state']; ?></div><br></div>
 </div>
-    <div class="w-[60%]">
-<div class="grid grid-cols-7 border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
+    <div >
+<div class="grid grid-cols-8 border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
 <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Số thứ tự</div>
-<div class="border-b-2   text-gray-400 font-bold text-xl p-2">Tên sản phẩm</div>
+<div class="border-b-2 col-span-2  text-gray-400 font-bold text-xl p-2">Tên sản phẩm</div>
 <div class="border-b-2   text-gray-400 font-bold text-xl p-2">Hình ảnh</div>
 <div class=" border-b-2 text-gray-400 p-2 font-bold text-xl">Số lượng mua</div>
 <div class="border-b-2 text-gray-400 font-bold text-xl p-2">giá</div>
-<div class="border-b-2 text-gray-400  font-bold text-xl p-2">số lượng tồn kho</div>
+<div class="border-b-2 text-gray-400  font-bold text-xl p-2">Số lượng tồn kho</div>
 <div class="border-b-2 text-gray-400  font-bold text-xl p-2">Đã bán</div>
 
 <?php
@@ -83,7 +88,7 @@ if (isset($_GET['id'])) {
 
         echo "<div class='border-b-2 font-sans font-base text-base p-2'>" . $key. "</div>";
         $key++;
-        echo "<div class='border-b-2  font-sans font-base text-base p-2'>" .$product['name'] . "</div>";
+        echo "<div class='border-b-2 col-span-2 font-sans font-base text-base p-2'>" .$product['name'] . "</div>";
         echo "<img class='w-[60px] h-[60px]'src='{$image}' alt='Image'>";
         echo " <div class='border-b-2 font-sans font-base text-base p-2'>" . $product_order['number'] . "</div>";
 

@@ -1,6 +1,6 @@
 <!-- phần thông tin chính  -->
-<div class="mx-auto">
-
+<div class="mx-auto my-6">
+<a href='index.php?page=product&action=tao' class='text-blue-500 px-1 bg-blue-200 p-2 rounded-lg mx-6 my-6'>Tạo sản phẩm</a>
 <div class="grid grid-cols-10 border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
 <div class="border-b-2 text-gray-400 font-bold text-base p-2">Mã sản phẩm</div>
 <div class="border-b-2  col-span-2 text-gray-400 font-bold text-base p-2">Tên</div>
@@ -56,7 +56,7 @@ echo "<div class='border-b-2 font-sans font-base text-base p-2'>".$product['disc
     echo "<a href='index.php?page=product&action=xem&id={$product['product_id']}' class='text-green-500 px-1'>Xem</a>";
 
     echo "<a href='index.php?page=product&action=sua&id={$product['product_id']}' class='text-blue-500 px-1'>Sửa</a>";
-    echo"<a href='index.php?page=product&action=tao' class='text-blue-500 px-1'>thêm</a>";
+    
     echo "<a href='index.php?page=product&action=$action&id={$product['product_id']}' class='text-red-500 px-1'>$text</a>";
     echo "</div>";
     

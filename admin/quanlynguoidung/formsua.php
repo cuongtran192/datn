@@ -30,21 +30,21 @@ if (isset($_GET['id'])) {
 <div class=" text-3xl font-bold my-4">Chỉnh sửa thông tin</div>
 <form action="index.php?page=user&action=xulysua" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $user['user_id']; ?>">
-    <div class="flex flex-row ">
-        <label class="text-xl p-3 "  for="name">Họ và tên:</label>
-        <input class="bg-gray-500 p-3"  type="text" id="name" name="name" value="<?php echo $user['name']; ?>"><br>
+    <div class="flex flex-row my-3 ">
+        <label class="text-xl p-3 w-1/4 "  for="name">Họ và tên:</label>
+        <input class="text-white bg-gray-500 w-1/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl"  type="text" id="name" name="name" value="<?php echo $user['name']; ?>"><br>
     </div>
-     <div class="flex flex-row ">
-             <label class="text-xl p-3" for="address">Địa chỉ:</label>
-        <input class="bg-gray-500 p-3 focus:bg-green-200" type="text" id="address" name="address" value="<?php echo $user['Address']; ?>"><br>
+     <div class="flex flex-row my-3 ">
+             <label class="text-xl p-3 w-1/4" for="address">Địa chỉ:</label>
+        <input class="text-white bg-gray-500 w-1/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl " type="text" id="address" name="address" value="<?php echo $user['Address']; ?>"><br>
     </div>
-     <div class="flex flex-row ">
-             <label class="text-xl p-3" for="phone">Số điện thoại:</label>
-        <input class="bg-gray-500 p-3" type="text" id="phone" name="phone" value="<?php echo $user['phone']; ?>"><br>
+     <div class="flex flex-row my-3 ">
+             <label class="text-xl p-3 w-1/4" for="phone">Số điện thoại:</label>
+        <input class="text-white bg-gray-500 w-1/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" type="text" id="phone" name="phone" value="<?php echo $user['phone']; ?>"><br>
     </div>
-     <div class="flex flex-row ">
-             <label class="text-xl p-3" for="email">Email:</label>
-        <input class="bg-gray-500 p-3" type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
+     <div class="flex flex-row my-3 ">
+             <label class="text-xl p-3 w-1/4" for="email">Email:</label>
+        <input class="text-white bg-gray-500 w-1/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br>
     </div>
 
 
