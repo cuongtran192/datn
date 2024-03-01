@@ -105,9 +105,9 @@ if (!isset($_SESSION['user_id'])) {
         echo '<div class="form-group">';
         echo '<label for="payment">Phương thức thanh toán:</label>';
         echo '<select class="form-control" id="payment" name="payment">';
-        echo '<option value="cash">Thanh toán khi nhận hàng (COD)</option>';
-        echo '<option value="bank_transfer">Chuyển khoản ngân hàng</option>';
-        echo '<option value="credit_card">Thẻ tín dụng</option>';
+        echo '<option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng (COD)</option>';
+        echo '<option value="Chuyển khoản ngân hàng">Chuyển khoản ngân hàng</option>';
+        echo '<option value="Thẻ tín dụng">Thẻ tín dụng</option>';
         echo '</select>';
         echo '</div>';
         echo '<button type="submit" class="btn btn-success">Đặt hàng</button>';

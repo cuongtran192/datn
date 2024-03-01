@@ -51,12 +51,13 @@ if (isset($_GET['id'])) {
 
         <label for="order_status">Trạng thái đơn hàng:</label>
         <select name="order_status" id="order_status">
-        <option value="cho_xac_nhan" <?php echo ($order['state'] == 'cho_xac_nhan') ? 'selected' : ''; ?>>Chờ xác nhận</option>
-        <option value="da_xac_nhan" <?php echo ($order['state'] == 'da_xac_nhan') ? 'selected' : ''; ?>>Đã xác nhận</option>
-        <option value="dang_xu_ly" <?php echo ($order['state'] == 'dang_xu_ly') ? 'selected' : ''; ?>>Đang xử lý</option>
-        <option value="da_gui" <?php echo ($order['state'] == 'da_gui') ? 'selected' : ''; ?>>Đã gửi</option>
-        <option value="da_nhan" <?php echo ($order['state'] == 'da_nhan') ? 'selected' : ''; ?>>Đã nhận</option>
-        <option value="da_huy" <?php echo ($order['state'] == 'da_huy') ? 'selected' : ''; ?>>Đã hủy</option>
+        <option value="Chờ xác nhận" <?php echo ($order['state'] == 'cho_xac_nhan') ? 'selected' : ''; ?>>Chờ xác nhận</option>
+        <option value="Đã xác nhận" <?php echo ($order['state'] == 'da_xac_nhan') ? 'selected' : ''; ?>>Đã xác nhận</option>
+        <option value="Đang xử lý" <?php echo ($order['state'] == 'dang_xu_ly') ? 'selected' : ''; ?>>Đang xử lý</option>
+        <option value="Đang giao" <?php echo ($order['state'] == 'dang_giao') ? 'selected' : ''; ?>>Đang giao</option>
+        <option value="Đã gửi" <?php echo ($order['state'] == 'da_gui') ? 'selected' : ''; ?>>Đã gửi</option>
+        <option value="Đã nhận" <?php echo ($order['state'] == 'da_nhan') ? 'selected' : ''; ?>>Đã nhận</option>
+        <option value="Đã hủy" <?php echo ($order['state'] == 'da_huy') ? 'selected' : ''; ?>>Đã hủy</option>
     
 
         <!-- Thêm các trạng thái khác nếu cần -->
