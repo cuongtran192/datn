@@ -7,10 +7,17 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="css/style.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-9I6oIH7yCJUD6E+0oxzeboFzJg7VYY3qFmxO7VhtXRSIOYRgJlOyZF/lcGwtpNy0+gZ5RtZfLxj2Q9i1gs5y1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <link href="path/to/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bao gồm JavaScript của Bootstrap (bao gồm cả popper.js) -->
+<script src="path/to/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="overlay" id="overlay"></div>
 <div id="myModal" class="modal">   
     <span class="close">&times;</span>
@@ -1050,6 +1057,19 @@ if (!$connect) {
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 <button type="submit" class="btn btn-primary">Gửi</button>
+<!-- tư vấn zalo -->
+<div class="fixed-icons">
+    <a href="https://www.messenger.com/t/100010262371560" class="btn" style="background-color: #0084FF;; color: #fff;" target="_blank">
+        <i class="fab fa-facebook-messenger"></i> Chat với nhân viên
+    </a>
+</div>
+<div class="fixed1-icons">
+    <a href="https://zalo.me/0971433911" class="btn" style="background-color:  color: #fff; padding: 5px 10px; display: inline-block; text-decoration: none;" target="_blank">
+        <img src="img/logo/zalo.png" alt="Zalo Icon" style="width: 50px; height: 50px; vertical-align: middle; margin-right: 5px;">
+    </a>
+</div>
+
+
 
 </body>
 </html>

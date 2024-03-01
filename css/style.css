@@ -479,8 +479,20 @@ transform: scale(1.2);
 }
 
 .out-of-stock-text {
-    color: red; /* Màu chữ đỏ */
+    color: red; /* Màu chữ đỏ hết sản phẩm */
     font-weight:u ; /* Chữ in đậm */
     font-size: 23px;
 }
 
+.fixed-icons {
+    position: fixed;
+    bottom: 20px; /* Khoảng cách từ dưới lên */
+    right: 0px; /* Khoảng cách từ phải sang trái */
+    z-index: 9999; /* Đảm bảo nằm trên mọi nội dung khác */
+}
+.fixed1-icons {
+    position: fixed;
+    bottom: 60px; /* Khoảng cách từ dưới lên */
+    right: 0px; /* Khoảng cách từ phải sang trái */
+    z-index: 9999; /* Đảm bảo nằm trên mọi nội dung khác */
+}
