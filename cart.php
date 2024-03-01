@@ -1,7 +1,6 @@
 <?php
 include 'header.php';
 
-
 // Kiểm tra xem user_id đã được thiết lập trong session hay chưa
 if (!isset($_SESSION['user_id'])) {
     // Hiển thị thông báo và chờ người dùng xác nhận
@@ -14,7 +13,6 @@ if (!isset($_SESSION['user_id'])) {
     echo '</script>';
     exit; // Kết thúc kịch bản
 }
-
 
 ?>
 
@@ -60,7 +58,7 @@ if (!isset($_SESSION['user_id'])) {
         <table class="table table-striped">
             <thead class="table-header">
                 <tr>
-                <th scope="col" style="width: 20%;">Hình ảnh</th>
+                    <th scope="col" style="width: 20%;">Hình ảnh</th>
                     <th scope="col" style="width: 150%;">Tên Sản Phẩm</th>
                     <th scope="col" style="width: 20%;">Loại Sản Phẩm</th>
                     <th scope="col" style="width: 10%;">Số Lượng</th>
@@ -71,14 +69,14 @@ if (!isset($_SESSION['user_id'])) {
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 include 'connectdb.php'; // Kết nối đến cơ sở dữ liệu
 
                 // Lấy user_id từ session hoặc bất kỳ cơ chế xác thực nào khác
                 $user_id = $_SESSION['user_id'];
 
                 // Truy vấn SQL để lấy thông tin giỏ hàng của user hiện tại
-                $sql = "SELECT p.name AS product_name, t.name AS product_type,p.image_link_1, c.number AS quantity, p.price AS price, p.discount AS discount, c.total AS total, c.product_id AS product_id
+                $sql = "SELECT p.name AS product_name, t.name AS product_type, p.image_link_1, c.number AS quantity, p.price AS price, p.discount AS discount, c.total AS total, c.product_id AS product_id
                         FROM product p
                         INNER JOIN cart c ON p.product_id = c.product_id
                         INNER JOIN type t ON p.type_id = t.type_id
@@ -100,9 +98,9 @@ if (!isset($_SESSION['user_id'])) {
                         echo '<td>' . number_format($row["total"], 0, '', '.') . 'đ</td>'; // Hiển thị tổng tiền
                         $total_price += $row["total"]; // Tính tổng tiền
                         echo '<td class="text-right">
-                        <button type="submit" class="btn btn-primary btn-update">Cập nhật</button>
-                        <button type="submit" formaction="delete_product.php" class="btn btn-danger btn-delete" name="delete_product">Xóa</button>
-                        </td>';
+                            <button type="submit" class="btn btn-primary btn-update">Cập nhật</button>
+                            <button type="submit" formaction="delete_product.php" class="btn btn-danger btn-delete" name="delete_product">Xóa</button>
+                            </td>';
                         echo '</form>';
                         echo "</tr>";
                     }
@@ -125,18 +123,33 @@ if (!isset($_SESSION['user_id'])) {
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="checkout.php" class="btn btn-danger btn-checkout">Thanh toán</a>
+            <?php
+            include 'connectdb.php'; // Kết nối đến cơ sở dữ liệu
+
+            // Truy vấn SQL để kiểm tra xem giỏ hàng có sản phẩm không
+            $user_id = $_SESSION['user_id'];
+            $check_sql = "SELECT COUNT(*) AS num_products FROM cart WHERE user_id = $user_id";
+            $check_result = $conn->query($check_sql);
+            $row = $check_result->fetch_assoc();
+            $num_products = $row['num_products'];
+
+            if ($num_products > 0) {
+                // Nếu có sản phẩm trong giỏ hàng, chuyển hướng đến trang thanh toán
+                echo '<a href="checkout.php" class="btn btn-danger btn-checkout">Thanh toán</a>';
+            } else {
+                // Nếu không có sản phẩm trong giỏ hàng, hiển thị thông báo
+                echo '<button class="btn btn-danger btn-checkout" disabled>Bạn vui lòng thêm sản phẩm vào giỏ hàng để thanh toán</button>';
+            }
+
+            $conn->close();
+            ?>
         </div>
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <?php
 include 'footer.php';
 ?>
 
 </body>
 </html>
-

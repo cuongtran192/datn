@@ -463,16 +463,16 @@ function prevSlide() {
 </div>
 
 <div class="brand">
-    <a href="asus.php">
+    <a href="product/brand/asus.php">
         <img src="img/brand/logo1.png" alt="Logo 1">
     </a>
-    <a href="msi.php">
+    <a href="product/brand/msi.php">
         <img src="img//brand/logo2.png" alt="Logo 2">
     </a>
-    <a href="acer.php">
+    <a href="product/brand/acer.php">
         <img src="img/brand/logo3.png" alt="Logo 3">
     </a>
-    <a href="gigabyte.php">
+    <a href="product/brand/gigabyte.php">
         <img src="img/brand/logo4.png" alt="Logo 4">
     </a>
     <a href="https://example.com">
@@ -481,13 +481,13 @@ function prevSlide() {
     <a href="https://example.com">
         <img src="img/brand/logo6.png" alt="Logo 6">
     </a>
-    <a href="https://example.com">
+    <a href="product/brand/lenovo.php">
         <img src="img/brand/logo11.png" alt="Logo 11">
     </a>
-    <a href="https://example.com">
+    <a href="product/brand/hp.php">
         <img src="img/brand/logo10.png" alt="Logo 10">
     </a>
-    <a href="https://example.com">
+    <a href="product/brand/dell.php">
         <img src="img/brand/logo9.png" alt="Logo 9">
     </a>
     <a href="https://example.com">
