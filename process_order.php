@@ -3,21 +3,23 @@ session_start();
 include 'connectdb.php';
 
 // Lấy thông tin từ form
-$user_id = $_SESSION['user_id']; // Lấy user_id từ session
-$total_price = $_SESSION['total_price']; // Lấy tổng tiền từ session
+$user_id = $_SESSION['user_id'];
+$total_price = $_SESSION['total_price'];
 $address = $_POST['address'];
 $name = $_POST['name'];
 $phone = $_POST['phone'];
+$payment = $_POST['payment']; // Thu thập giá trị phương thức thanh toán từ form
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 
 // Lấy thời gian hiện tại với định dạng Y-m-d H:i:s
 $order_date = date("Y-m-d H:i:s");
 
 // Thêm dữ liệu vào bảng orders
-$sql_order = "INSERT INTO orders (user_id, total_price, order_date, address, name, phone, state)
-              VALUES (?, ?, ?, ?, ?, ?, 'cho_xac_nhan')";
+$sql_order = "INSERT INTO orders (user_id, total_price, order_date, address, name, phone, payment, state)
+              VALUES (?, ?, ?, ?, ?, ?, ?, 'Đang nhận đơn')";
 $stmt_order = $conn->prepare($sql_order);
-$stmt_order->bind_param("idssss", $user_id, $total_price, $order_date, $address, $name, $phone);
+$stmt_order->bind_param("idsssss", $user_id, $total_price, $order_date, $address, $name, $phone, $payment);
 $stmt_order->execute();
 $order_id = $stmt_order->insert_id; // Lấy order_id của đơn hàng vừa thêm
 
