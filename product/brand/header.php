@@ -82,6 +82,7 @@ if (isset($_SESSION['phone'])) {
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px;">
         <li><a class="dropdown-item text-danger  mb-2" href="../../user.php">Thông tin cá nhân</a></li>
+        <li><a class="dropdown-item text-success  mb-2" href="../../order.php">Theo dõi đơn hàng</a></li>
         <li><a class="dropdown-item text-primary " href="../../logout.php">Đăng xuất</a></li>
     </ul>
     

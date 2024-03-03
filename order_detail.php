@@ -95,3 +95,6 @@ $result_product_detail = $stmt_product_detail->get_result();
 
 </body>
 </html>
+<?php
+include 'footer.php';
+?>
