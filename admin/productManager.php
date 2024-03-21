@@ -30,9 +30,9 @@ use Cloudinary\Api\Upload\UploadApi;
 
 // Cấu hình thông tin đăng nhập của Cloudinary
 $config = [
-    "cloud_name" => 'dhwhjdkrr',
-    "api_key" => '869728322565296',
-    "api_secret" => 'XdyEWnWw_fdHGeFRwy5wTxa-JJc',
+    "cloud_name" => 'doxa1jpq0',
+    "api_key" => '832514887176995',
+    "api_secret" => '-q2pDBam_xi6KVqzPihNIox2r78',
     "secure" => true,
 ];
 
@@ -75,6 +75,7 @@ if (isset($_GET['action'])) {
               
             $name = $_POST['name'];
             $description = $_POST['description'];
+            $description1 = $_POST['description1'];
             $price = $_POST['price'];
             $discount = $_POST['discount'];
             $number = $_POST['number'];
@@ -87,8 +88,8 @@ if (isset($_GET['action'])) {
             $image_link_3=$result3['secure_url'];
             $image_link_4=$result4['secure_url'];
             echo $image_link_1."  ".$image_link_2 ."  ".$image_link_1."  ".$image_link_2;
-            $sql = "INSERT INTO product (name, description, price, discount, number, number_buy, type_id, brand_id, purpose_id, image_link_1, image_link_2, image_link_3, image_link_4)
-            VALUES ('$name', '$description', $price, $discount, $number, $number_buy, $type_id, $brand_id, $purpose_id, '$image_link_1', '$image_link_2', '$image_link_3', '$image_link_4')";
+            $sql = "INSERT INTO product (name, description, description1, price, discount, number, number_buy, type_id, brand_id, purpose_id, image_link_1, image_link_2, image_link_3, image_link_4)
+            VALUES ('$name', '$description', '$description1 ',$price, $discount, $number, $number_buy, $type_id, $brand_id, $purpose_id, '$image_link_1', '$image_link_2', '$image_link_3', '$image_link_4')";
     
     // Thực hiện truy vấn
     if ($conn->query($sql) === TRUE) {

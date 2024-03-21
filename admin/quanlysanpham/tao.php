@@ -76,8 +76,8 @@ if (isset($_GET['id'])) {
         <textarea class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" id="description" name="description" required></textarea><br></div>
 
         <div class="flex flex-row my-3"> 
-        <label class="text-xl p-3 w-1/4" for="description">Mô tả2:</label>
-        <textarea class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl"id="description" name="description1" required></textarea><br></div>
+        <label class="text-xl p-3 w-1/4" for="description1">Mô tả2:</label>
+        <textarea class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl"id="description1" name="description1" required></textarea><br></div>
         <div class="flex flex-row my-3"> 
         <label class="text-xl p-3 w-1/4" for="price">Giá:</label>
         <input class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" type="number" id="price" name="price" min="0" required><br></div>
