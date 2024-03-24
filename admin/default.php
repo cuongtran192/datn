@@ -6,13 +6,7 @@ include '../connectdb.php';
 $sql = "SELECT SUM(total_price) AS TongDoanhThu FROM `orders` WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE())";
 $result = $conn->query($sql);
 
-// Kiểm tra và hiển thị kết quả
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    echo  $row['TongDoanhThu'];
-} else {
-    echo "0";
-}
+
 
 // Đóng kết nối
 

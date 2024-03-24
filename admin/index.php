@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Kiểm tra xem người dùng đã đăng nhập là admin chưa
+if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true) {
+    // Nếu không phải là admin, chuyển hướng người dùng đến trang đăng nhập
+    header("Location: login.php");
+    exit;
+}
+
+// Đây là trang admin_dashboard.php, có thể thêm nội dung admin ở đây
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

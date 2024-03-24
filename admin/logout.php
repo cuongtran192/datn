@@ -3,11 +3,11 @@
 session_start();
 
 // Xóa session của admin nếu nó tồn tại
-if (isset($_SESSION["phone"])) {
-    unset($_SESSION["phone"]);
+if (isset($_SESSION["admin"])) {
+    unset($_SESSION["admin"]);
 }
 
 // Chuyển hướng người dùng đến trang đăng nhập
-header("Location: index.php");
+header("Location: login.php");
 exit;
 ?>
