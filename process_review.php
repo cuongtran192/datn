@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id'])) {
             $insert_sql = "INSERT INTO review (user_id, product_id, rate, comment, date_review) VALUES ('$user_id', '$product_id', '$rate', '$comment', NOW())";
             if ($conn->query($insert_sql) === TRUE) {
                 // Đánh giá mới được gửi thành công, chuyển hướng người dùng đến trang trước đó
-                echo '<script>alert("Đánh giá mới của bạn đã được gửi thành công!");';
+                echo '<script>alert("Cảm ơn bạn đã đánh giá sản phẩm!");';
                 echo 'window.location.href = document.referrer;</script>';
             } else {
                 echo "Lỗi: " . $insert_sql . "<br>" . $conn->error;

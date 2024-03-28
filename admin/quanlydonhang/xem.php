@@ -63,8 +63,23 @@ if (isset($_GET['id'])) {
     <div class="flex flex-row my-3">
     <div class="text-xl p-3 w-1/4">Tình trạng giao hàng :</div>
     <div  class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl" ><?php echo $order['state']; ?></div><br></div>
+    <div class="text-xl p-3 w-1/4 inline-block">Phương thức thanh toán:</div>
+<div class="text-black bg-gray-300 w-2/3 p-3 focus:bg-green-200 focus:text-black rounded-2xl inline-block">
+    <?php 
+        if (!empty($order['payment'])) {
+            echo $order['payment'];
+        } else {
+            echo "Chưa xác định";
+        }
+    ?>
 </div>
-    <div >
+<br>
+
+
+<br>
+<br>
+
+<div >
 <div class="grid grid-cols-8 border-double border-double border-4 border-indigo-600 rounded-2xl p-3">
 <div class="border-b-2 text-gray-400 font-bold text-xl p-2">Số thứ tự</div>
 <div class="border-b-2 col-span-2  text-gray-400 font-bold text-xl p-2">Tên sản phẩm</div>

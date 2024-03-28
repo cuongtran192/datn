@@ -29,6 +29,10 @@ if ( isset($_POST['search_date'])&& $searchType==='date') {
 } else {
 
 switch ($searchType) {
+    case 'id_order':
+        $query = "SELECT * FROM orders WHERE order_id = '$searchTerm'";
+                // ...
+     break;
 
     case 'name':
         $query = "SELECT * FROM orders WHERE name LIKE '%$searchTerm%'";

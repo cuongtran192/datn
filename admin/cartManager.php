@@ -4,6 +4,7 @@
     <input type="text" name="search_term" placeholder="Tìm kiếm..." class="w-[400px] border border-gray-300 p-2 rounded-l-md focus:outline-none focus:border-gray-600" value="<?php echo isset($_POST['search_term']) ? htmlspecialchars($_POST['search_term']) : ''; ?>">
 
     <select name="search_type" id="search_type" class="border border-gray-300 p-2 focus:outline-none" onchange="toggleDateInput()">
+    <option value="id_order" <?php echo (isset($_POST['search_type']) && $_POST['search_type'] == 'id_order') ? 'selected' : ''; ?>>Mã đơn hàng</option>
         <option value="name" <?php echo (isset($_POST['search_type']) && $_POST['search_type'] == 'name') ? 'selected' : ''; ?>>Tên người nhận</option>
         <option value="phone" <?php echo (isset($_POST['search_type']) && $_POST['search_type'] == 'phone') ? 'selected' : ''; ?>>Số điện thoại</option>
         <option value="address" <?php echo (isset($_POST['search_type']) && $_POST['search_type'] == 'address') ? 'selected' : ''; ?>>Địa chỉ</option>

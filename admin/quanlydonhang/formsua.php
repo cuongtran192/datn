@@ -59,9 +59,9 @@ if (isset($_GET['id'])) {
         <option value="Đã xác nhận" <?php echo ($order['state'] == 'da_xac_nhan') ? 'selected' : ''; ?>>Đã xác nhận</option>
         <option value="Đang xử lý" <?php echo ($order['state'] == 'dang_xu_ly') ? 'selected' : ''; ?>>Đang xử lý</option>
         <option value="Đang giao" <?php echo ($order['state'] == 'dang_giao') ? 'selected' : ''; ?>>Đang giao</option>
-        <option value="Đã gửi" <?php echo ($order['state'] == 'da_gui') ? 'selected' : ''; ?>>Đã gửi</option>
-        <option value="Đã nhận" <?php echo ($order['state'] == 'da_nhan') ? 'selected' : ''; ?>>Đã nhận</option>
+        <option value="Đã nhận đơn" <?php echo ($order['state'] == 'da_nhan') ? 'selected' : ''; ?>>Đã nhận</option>
         <option value="Đã hủy" <?php echo ($order['state'] == 'da_huy') ? 'selected' : ''; ?>>Đã hủy</option>
+        <option value="Giao hàng thành công" <?php echo ($order['state'] == 'giao_thanh_cong') ? 'selected' : ''; ?>>Giao hàng thành công</option>
        
         <!-- Thêm các trạng thái khác nếu cần -->
     </select> </div>
